@@ -3,8 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Salman/Documents/GitHub/CloudGazer/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/reflection_layout.xml" value="0.25677083333333334" />
       </map>
     </option>
   </component>
