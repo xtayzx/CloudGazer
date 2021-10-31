@@ -32,4 +32,13 @@
         android:textAlignment="center"
         android:textSize="34sp" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:fontFamily="sans-serif-black"
+        android:text="I LOVE CANDY WBU?"
+        android:textAlignment="center"
+        android:textSize="34sp" />
+
 </LinearLayout>
