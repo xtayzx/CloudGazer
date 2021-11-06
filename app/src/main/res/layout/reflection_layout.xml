@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -84,7 +85,6 @@
             android:id="@+id/cloudTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:paddingRight="25dp"
             android:text="What cloud did you see? " />
 
@@ -153,7 +153,7 @@
             android:id="@+id/rateTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="60dp"
+            android:paddingRight="30dp"
             android:text="Rate your day today: " />
 
         <SeekBar
@@ -164,11 +164,13 @@
             android:paddingTop="15dp"/>
 
         <EditText
+            android:id="@+id/rateDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"/>
+            android:layout_marginStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
 
 
     </LinearLayout>
@@ -184,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="25dp"
-            android:text="How are you feeling today? " />
+            android:text="How are you feeling today?" />
 
         <EditText
             android:id="@+id/feelingTextMultiLine2"
