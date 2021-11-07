@@ -17,6 +17,12 @@ public class Welcome extends AppCompatActivity {
 
     }
 
+    public void logIn(View v){
+        //**** THIS INTENT WILL CHANGE TO FOLLOW THE PROPER SITE MAP ****
+        Intent i = new Intent(this, Meditation.class);
+        startActivity(i);
+    }
+
     public void accountCreate (View v){
         Intent i = new Intent(this, SignUp.class);
         startActivity(i);
