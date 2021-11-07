@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     android:background="#E5FCFF"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Welcome">
 
 
     <TextView
         android:id="@+id/MainHeading"
         android:layout_width="227dp"
         android:layout_height="74dp"
+
         android:fontFamily="sans-serif-condensed"
         android:text="CLOUD GAZER"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="34sp"
         android:typeface="serif"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitle" />
@@ -62,8 +64,11 @@
         android:layout_marginEnd="90dp"
         android:ems="10"
         android:inputType="textPassword"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
+        android:layout_alignEnd="@+id/nameTextView"
         app:layout_constraintTop_toBottomOf="@+id/MainHeading" />
 
     <TextView
@@ -95,9 +100,11 @@
         android:layout_marginStart="162dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="162dp"
-        android:background="#83E2FF"
+        android:backgroundTint="#75CAE4"
         android:text="Log In"
-        android:textColor="#000000"
+
+        android:onClick="logIn"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEntry" />
@@ -106,17 +113,17 @@
         android:id="@+id/signUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Don't Have an Account? Sign Up Here!"
+        android:layout_marginTop="30dp"
 
-        android:focusable="true"
         android:clickable="true"
+        android:focusable="true"
+        android:onClick="accountCreate"
 
+        android:text="Don't Have an Account? Sign Up Here!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInButton"
 
-        android:onClick="signUp"/>
+        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
