@@ -19,4 +19,9 @@ public class SignUp extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void reflectionActivity(View v){
+        Intent i  = new Intent(this, ReflectionActivity.class);
+        startActivity(i);
+    }
+
 }

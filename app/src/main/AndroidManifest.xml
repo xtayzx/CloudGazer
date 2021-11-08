@@ -16,6 +16,9 @@
             android:name=".SignUp"
             android:exported="true" />
         <activity
+            android:name=".ReflectionActivity"
+            android:exported="true" />
+        <activity
             android:name=".Welcome"
             android:exported="true" >
             <intent-filter>
