@@ -14,7 +14,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reflection_layout);
+        setContentView(R.layout.activity_reflection_layout);
 
         rateDay = (EditText)findViewById(R.id.rateDay);
 
