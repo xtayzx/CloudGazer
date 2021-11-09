@@ -15,5 +15,7 @@ public class Meditation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meditation);
+
+        //just checking if git works on this laptop
     }
 }
