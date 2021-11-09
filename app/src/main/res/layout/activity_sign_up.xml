@@ -15,11 +15,10 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="90dp"
         android:ems="10"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEntry" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameEntry" />
 
     <TextView
         android:id="@+id/nameTextView3"
@@ -40,7 +39,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="90dp"
         android:ems="10"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,14 +68,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/nameEntry"
+        android:id="@+id/usernameEntry"
         android:layout_width="152dp"
         android:layout_height="46dp"
         android:layout_marginStart="170dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="90dp"
         android:ems="10"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
