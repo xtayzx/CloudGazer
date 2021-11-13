@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cloud Gazer</string>
+    <string name="submit">Submit</string>
+    <string name="cloud_des">What cloud did you see today?</string>
+    <string name="rate_des">Rate your day today:</string>
+    <string name="day_des">How are you feeling today?</string>
 </resources>

@@ -19,6 +19,12 @@
             android:name=".ReflectionActivity"
             android:exported="true" />
         <activity
+            android:name=".RecyclerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewEntryActivity"
+            android:exported="true" />
+        <activity
             android:name=".Welcome"
             android:exported="true" >
             <intent-filter>
