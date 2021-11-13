@@ -38,8 +38,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         Cursor cursor = db.getData();
 
         //get the column index for both the columns
-        int index1 = cursor.getColumnIndex(Constants.DATE);
-        int index2 = cursor.getColumnIndex(Constants.CLOUD_DES);
+        int index1 = cursor.getColumnIndex(Constants.TITLE);
+        int index2 = cursor.getColumnIndex(Constants.DATE);
+        int index3 = cursor.getColumnIndex(Constants.CLOUD_DES);
 
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
@@ -78,9 +79,10 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                String date = cursor.getString(index1);
-                String cloudDes = cursor.getString(index2);
-                String row = date + "," + cloudDes;
+                String title = cursor.getString(index1);
+                String date = cursor.getString(index2);
+                String cloudDes = cursor.getString(index3);
+                String row = title + "," + date + "," + cloudDes;
                 mArrayList.add(row);
                 cursor.moveToNext();
             }
@@ -111,8 +113,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LinearLayout clickedRow = (LinearLayout) view;
+        TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
         TextView cloudDes = (TextView) view.findViewById(R.id.singleCloudDesRow);
-        Toast.makeText(this, "row " + (1+position) + ":  " + date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
     }
 }

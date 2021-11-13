@@ -35,8 +35,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyAdapter.MyViewHolder holder, int position) {
         String[] results = (list.get(position).toString()).split(",");
-        holder.dateView.setText(results[0]);
-        holder.singleCloudDesView.setText(results[1]);
+        holder.titleView.setText(results[0]);
+        holder.dateView.setText(results[1]);
+        holder.singleCloudDesView.setText(results[2]);
 //        holder.locationTextView.setText(results[2]);
 //        holder.latinTextView.setText(results[3]);
     }
@@ -49,6 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        public TextView titleView;
         public TextView dateView;
         public TextView singleCloudDesView;
 //        public TextView locationTextView;
@@ -61,18 +63,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             myLayout = (LinearLayout) itemView;
 
+            titleView = (TextView)itemView.findViewById(R.id.titleRow);
             dateView = (TextView) itemView.findViewById(R.id.dateRow);
             singleCloudDesView = (TextView) itemView.findViewById(R.id.singleCloudDesRow);
 
             itemView.setOnClickListener(this);
             context = itemView.getContext();
-
         }
 
         @Override
         public void onClick(View view) {
             Toast.makeText(context,
-                    "You have clicked " + ((TextView)view.findViewById(R.id.dateRow)).getText().toString(),
+                    "You have clicked " + ((TextView)view.findViewById(R.id.titleRow)).getText().toString(),
                     Toast.LENGTH_SHORT).show();
         }
     }

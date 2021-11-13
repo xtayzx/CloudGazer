@@ -13,7 +13,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     private SeekBar thisSeekBar;
     private RadioGroup communitySelect;
     private int rateDayValue;
-    EditText inputDate, inputTime, inputLocation, inputCloudDes, inputRateDay, inputDayDes;
+    EditText inputTitle, inputDate, inputTime, inputLocation, inputCloudDes, inputRateDay, inputDayDes;
     MyDatabase db;
     String inputCommunity;
 
@@ -28,6 +28,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         communitySelect = (RadioGroup)findViewById(R.id.communitySelect);
         communitySelect.setOnCheckedChangeListener(this);
 
+        inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText)findViewById(R.id.inputTime);
         inputLocation = (EditText)findViewById(R.id.inputLocation);
@@ -41,6 +42,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
     public void submit (View view)
     {
+        String title = inputTitle.getText().toString();
         String date = inputDate.getText().toString();
         String time = inputTime.getText().toString();
         String location = inputLocation.getText().toString();
@@ -48,8 +50,8 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         String rateDay = inputRateDay.getText().toString();
         String dayDes = inputDayDes.getText().toString();
         String communitySelect = inputCommunity;
-        Toast.makeText(this, date +" "+ time+" "+ location+" "+ cloudDes+" "+ rateDay+" "+ dayDes+" "+ communitySelect, Toast.LENGTH_SHORT).show();
-        long id = db.insertData(date, time, location, cloudDes,rateDay,dayDes, communitySelect);
+        Toast.makeText(this, title +" "+date +" "+ time+" "+ location+" "+ cloudDes+" "+ rateDay+" "+ dayDes+" "+ communitySelect, Toast.LENGTH_SHORT).show();
+        long id = db.insertData(title, date, time, location, cloudDes,rateDay,dayDes, communitySelect);
         if (id < 0)
         {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();

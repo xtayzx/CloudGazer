@@ -16,15 +16,16 @@ public class MyDatabase {
         helper = new MyHelper(context);
     }
 
-    public long insertData (String date, String time, String location, String rateDay, String cloudDes, String dayDes, String community)
+    public long insertData (String title, String date, String time, String location, String cloudDes, String rateDay, String dayDes, String community)
     {
         db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(Constants.TITLE, title);
         contentValues.put(Constants.DATE, date);
         contentValues.put(Constants.TIME, time);
         contentValues.put(Constants.LOCATION, location);
-        contentValues.put(Constants.RATE_DAY, rateDay);
         contentValues.put(Constants.CLOUD_DES, cloudDes);
+        contentValues.put(Constants.RATE_DAY, rateDay);
         contentValues.put(Constants.DAY_DES, dayDes);
         contentValues.put(Constants.COMMUNITY, community);
         long id = db.insert(Constants.TABLE_NAME, null, contentValues);
@@ -34,7 +35,7 @@ public class MyDatabase {
     public Cursor getData()
     {
         SQLiteDatabase db = helper.getWritableDatabase();
-        String[] columns = {Constants.UID, Constants.DATE, Constants.TIME, Constants.LOCATION, Constants.RATE_DAY, Constants.CLOUD_DES, Constants.DAY_DES, Constants.COMMUNITY};
+        String[] columns = {Constants.UID, Constants.TITLE, Constants.DATE, Constants.TIME, Constants.LOCATION, Constants.CLOUD_DES, Constants.RATE_DAY, Constants.DAY_DES, Constants.COMMUNITY};
         Cursor cursor = db.query(Constants.TABLE_NAME, columns, null, null, null, null, null);
         return cursor;
     }

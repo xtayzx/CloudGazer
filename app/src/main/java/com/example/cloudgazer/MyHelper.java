@@ -15,11 +15,12 @@ public class MyHelper extends SQLiteOpenHelper {
             "CREATE TABLE "+
                     Constants.TABLE_NAME + " (" +
                     Constants.UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    Constants.TITLE + " TEXT, " +
                     Constants.DATE + " TEXT, " +
                     Constants.TIME + " TEXT, " +
                     Constants.LOCATION + " TEXT, " +
-                    Constants.RATE_DAY + " TEXT, " +
                     Constants.CLOUD_DES+ " TEXT, " +
+                    Constants.RATE_DAY + " TEXT, " +
                     Constants.DAY_DES+ " TEXT, " +
                     Constants.COMMUNITY + " TEXT);" ;
 

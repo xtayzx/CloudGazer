@@ -38,8 +38,9 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
 //        Cursor checkCursor = db.getData();
 
         //get the column index for both the columns
-        int index1 = cursor.getColumnIndex(Constants.DATE);
-        int index2 = cursor.getColumnIndex(Constants.CLOUD_DES);
+        int index1 = cursor.getColumnIndex(Constants.TITLE);
+        int index2 = cursor.getColumnIndex(Constants.DATE);
+        int index3 = cursor.getColumnIndex(Constants.CLOUD_DES);
         int communitySelect = cursor.getColumnIndex(Constants.COMMUNITY);
 
         //retrieve the arraylist from the database
@@ -58,9 +59,10 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
                 //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
                 if (intentQuery.equals(intentQueryMatch)) {
                     //Log.i("TEST", "It's a MATCH");
-                    String date = cursor.getString(index1);
-                    String cloudType = cursor.getString(index2);
-                    String s = date + "," + cloudType;
+                    String title = cursor.getString(index1);
+                    String date = cursor.getString(index2);
+                    String cloudType = cursor.getString(index3);
+                    String s = title + "," + date + "," + cloudType;
                     mArrayList.add(s);
                     cursor.moveToNext();
                 }
@@ -98,9 +100,10 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LinearLayout clickedRow = (LinearLayout) view;
+        TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
         TextView cloudDes = (TextView) view.findViewById(R.id.singleCloudDesRow);
-        Toast.makeText(this, "row " + (1+position) + ":  " + date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() + " " + date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
     }
 }
 

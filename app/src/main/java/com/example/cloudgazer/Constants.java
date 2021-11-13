@@ -5,6 +5,7 @@ public class Constants {
     public static final String TABLE_NAME = "USERDATA";
     public static final String UID = "_id";
 
+    public static final String TITLE = "title";
     public static final String DATE = "date";
     public static final String TIME = "time";
     public static final String LOCATION = "location";
