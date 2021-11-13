@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ViewEntryActivity extends Activity implements View.OnClickListener{
-    TextView inputAll;
+//    TextView inputAll;
     Button backButton;
 
     MyDatabase db;
