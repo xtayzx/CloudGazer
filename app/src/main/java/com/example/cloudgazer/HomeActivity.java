@@ -1,10 +1,11 @@
 package com.example.cloudgazer;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * Created by helmine on 2017-02-09.
  */
 
-public class RecyclerActivity extends Activity implements AdapterView.OnItemClickListener{
+public class HomeActivity extends Activity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
     MyDatabase db;
     MyAdapter myAdapter;
@@ -27,7 +28,7 @@ public class RecyclerActivity extends Activity implements AdapterView.OnItemClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler);
+        setContentView(R.layout.activity_home);
         myRecycler = (RecyclerView) findViewById(R.id.recycler);
 
         db = new MyDatabase(this);
@@ -43,35 +44,37 @@ public class RecyclerActivity extends Activity implements AdapterView.OnItemClic
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
 
-        Intent intent = getIntent();
-        String intentQuery = intent.getStringExtra("query");
+//        Intent intent = getIntent();
+//        String intentQuery = intent.getStringExtra("query");
         //Log.i("TEST", "This is the value of what's passed: "+plantQuery);
 
-        if(intentQuery != null) {
-            ArrayList<String> mArrayList = new ArrayList<>();
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                String intentQueryMatch = cursor.getString(index2);
-                //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
-                if (intentQuery.equals(intentQueryMatch)) {
-                    //Log.i("TEST", "It's a MATCH");
-                    String date = cursor.getString(index1);
-                    String cloudType = cursor.getString(index2);
-                    String s = date + "," + cloudType;
-                    mArrayList.add(s);
-                    cursor.moveToNext();
-                }
+//        if(intentQuery != null) {
+//            ArrayList<String> mArrayList = new ArrayList<>();
+//            cursor.moveToFirst();
+//            while (!cursor.isAfterLast()) {
+//                //checking for if cloud des matches
+//                String intentQueryMatch = cursor.getString(index2);
+//                //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
+//                if (intentQuery.equals(intentQueryMatch)) {
+//                    //Log.i("TEST", "It's a MATCH");
+//                    String date = cursor.getString(index1);
+//                    String cloudType = cursor.getString(index2);
+//                    String s = date + "," + cloudType;
+//                    mArrayList.add(s);
+//                    cursor.moveToNext();
+//                }
+//
+//                else if (intentQuery != intentQueryMatch) {
+//                    cursor.moveToNext();
+//                }
+//            }
+//            Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
+//            myAdapter = new MyAdapter(mArrayList);
+//            myRecycler.setAdapter(myAdapter);
+//        }
 
-                else if (intentQuery != intentQueryMatch) {
-                    cursor.moveToNext();
-                }
-            }
-            Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
-            myAdapter = new MyAdapter(mArrayList);
-            myRecycler.setAdapter(myAdapter);
-        }
-
-        else if (intentQuery == null){
+//        else if (intentQuery == null){
+//        if (intentQuery == null){
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -83,12 +86,24 @@ public class RecyclerActivity extends Activity implements AdapterView.OnItemClic
             }
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
-        }
+//        }
     }
 
     public void meditationActivity (View view)
     {
         Intent intent = new Intent(this, Meditation.class);
+        startActivity(intent);
+    }
+
+    public void communityActivity (View view)
+    {
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("communitySelect", "yes");
+        Toast.makeText(this, "Community selection has been selected", Toast.LENGTH_LONG).show();
+        editor.commit();
+
+        Intent intent = new Intent(this, CommunityActivity.class);
         startActivity(intent);
     }
 

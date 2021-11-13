@@ -5,7 +5,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
-    tools:context=".RecyclerActivity">
+    tools:context=".HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
-                android:text="Community Tab" />
+                android:text="Community Tab"
+                android:onClick="communityActivity"/>
         </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

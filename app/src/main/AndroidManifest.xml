@@ -19,10 +19,13 @@
             android:name=".ReflectionActivity"
             android:exported="true" />
         <activity
-            android:name=".RecyclerActivity"
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".ViewEntryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CommunityActivity"
             android:exported="true" />
         <activity
             android:name=".Welcome"

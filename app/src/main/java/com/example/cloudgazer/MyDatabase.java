@@ -16,7 +16,7 @@ public class MyDatabase {
         helper = new MyHelper(context);
     }
 
-    public long insertData (String date, String time, String location, String rateDay, String cloudDes, String dayDes)
+    public long insertData (String date, String time, String location, String rateDay, String cloudDes, String dayDes, String community)
     {
         db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -26,6 +26,7 @@ public class MyDatabase {
         contentValues.put(Constants.RATE_DAY, rateDay);
         contentValues.put(Constants.CLOUD_DES, cloudDes);
         contentValues.put(Constants.DAY_DES, dayDes);
+        contentValues.put(Constants.COMMUNITY, community);
         long id = db.insert(Constants.TABLE_NAME, null, contentValues);
         return id;
     }
@@ -33,7 +34,7 @@ public class MyDatabase {
     public Cursor getData()
     {
         SQLiteDatabase db = helper.getWritableDatabase();
-        String[] columns = {Constants.UID, Constants.DATE, Constants.TIME, Constants.LOCATION, Constants.RATE_DAY, Constants.CLOUD_DES, Constants.DAY_DES};
+        String[] columns = {Constants.UID, Constants.DATE, Constants.TIME, Constants.LOCATION, Constants.RATE_DAY, Constants.CLOUD_DES, Constants.DAY_DES, Constants.COMMUNITY};
         Cursor cursor = db.query(Constants.TABLE_NAME, columns, null, null, null, null, null);
         return cursor;
     }

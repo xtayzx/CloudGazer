@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener {
     private SeekBar thisSeekBar;
+    private RadioGroup communitySelect;
     private int rateDayValue;
     EditText inputDate, inputTime, inputLocation, inputCloudDes, inputRateDay, inputDayDes;
     MyDatabase db;
+    String inputCommunity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,9 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
         thisSeekBar = (SeekBar)findViewById(R.id.seekBar);
         thisSeekBar.setOnSeekBarChangeListener(examSeekBarListener);
+
+        communitySelect = (RadioGroup)findViewById(R.id.communitySelect);
+        communitySelect.setOnCheckedChangeListener(this);
 
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText)findViewById(R.id.inputTime);
@@ -41,8 +47,9 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         String cloudDes = inputCloudDes.getText().toString();
         String rateDay = inputRateDay.getText().toString();
         String dayDes = inputDayDes.getText().toString();
-        Toast.makeText(this, date +" "+ time+" "+ location+" "+ cloudDes+" "+ rateDay+" "+ dayDes, Toast.LENGTH_SHORT).show();
-        long id = db.insertData(date, time, location, cloudDes,rateDay,dayDes);
+        String communitySelect = inputCommunity;
+        Toast.makeText(this, date +" "+ time+" "+ location+" "+ cloudDes+" "+ rateDay+" "+ dayDes+" "+ communitySelect, Toast.LENGTH_SHORT).show();
+        long id = db.insertData(date, time, location, cloudDes,rateDay,dayDes, communitySelect);
         if (id < 0)
         {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
@@ -55,7 +62,12 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 //        plantType.setText("");
 //        plantLocation.setText("");
 //        plantLatin.setText("");
-        Intent intent = new Intent(this, RecyclerActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void home(View view){
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -90,6 +102,19 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         if(seekBar.getId() == thisSeekBar.getId()) {
             rateDayValue = seekBar.getProgress();
             inputRateDay.setText(rateDayValue);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        //set color according to selected RadioButton
+        switch (checkedId) {
+            case R.id.yesRadioButton:
+                inputCommunity = "yes";
+                break;
+            case R.id.noRadioButton:
+                inputCommunity = "no";
+                break;
         }
     }
 

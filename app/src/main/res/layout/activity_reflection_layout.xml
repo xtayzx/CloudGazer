@@ -100,50 +100,50 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            android:id="@+id/rateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="60dp"
-            android:text="@string/rate_des" />
+<!--        <TextView-->
+<!--            android:id="@+id/rateTextView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingRight="60dp"-->
+<!--            android:text="@string/rate_des" />-->
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<!--        <RadioGroup-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-            <RadioButton
-                android:id="@+id/excellentRadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Excellent" />
-            <RadioButton
-                android:id="@+id/greatRadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Great" />
-            <RadioButton
-                android:id="@+id/goodRadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Good" />
-            <RadioButton
-                android:id="@+id/okayRadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Okay" />
-            <RadioButton
-                android:id="@+id/poorRadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Poor" />
-        </RadioGroup>
+<!--            <RadioButton-->
+<!--                android:id="@+id/excellentRadioButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Excellent" />-->
+<!--            <RadioButton-->
+<!--                android:id="@+id/greatRadioButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Great" />-->
+<!--            <RadioButton-->
+<!--                android:id="@+id/goodRadioButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Good" />-->
+<!--            <RadioButton-->
+<!--                android:id="@+id/okayRadioButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Okay" />-->
+<!--            <RadioButton-->
+<!--                android:id="@+id/poorRadioButton"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Poor" />-->
+<!--        </RadioGroup>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -199,12 +199,48 @@
             android:inputType="textMultiLine" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/communityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="25dp"
+            android:text="@string/cloud_des" />
+
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/communitySelect">
+                    <RadioButton
+                        android:id="@+id/yesRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+                    <RadioButton
+                        android:id="@+id/noRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+            </RadioGroup>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit"
         android:onClick="submit"/>
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to Home"
+        android:onClick="home"/>
 
 
 </LinearLayout>

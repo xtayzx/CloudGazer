@@ -1,0 +1,106 @@
+package com.example.cloudgazer;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+/**
+ * Created by helmine on 2017-02-09.
+ */
+
+public class CommunityActivity extends Activity implements AdapterView.OnItemClickListener{
+    RecyclerView myRecycler;
+    MyDatabase db;
+    MyAdapter myAdapter;
+    MyHelper helper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_community);
+        myRecycler = (RecyclerView) findViewById(R.id.recycler);
+
+        db = new MyDatabase(this);
+        helper = new MyHelper(this);
+
+        //populate all the data and put it inside the arraylist
+        Cursor cursor = db.getData();
+//        Cursor checkCursor = db.getData();
+
+        //get the column index for both the columns
+        int index1 = cursor.getColumnIndex(Constants.DATE);
+        int index2 = cursor.getColumnIndex(Constants.CLOUD_DES);
+        int communitySelect = cursor.getColumnIndex(Constants.COMMUNITY);
+
+        //retrieve the arraylist from the database
+        //populate all the data from the database and run the while loop
+
+        Intent intent = getIntent();
+        String intentQuery = intent.getStringExtra("communitySelect");
+        Log.i("TEST", "This is the value of what's passed: "+intentQuery);
+
+        if(intentQuery != null) {
+            ArrayList<String> mArrayList = new ArrayList<>();
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                //checking for if cloud des matches
+                String intentQueryMatch = cursor.getString(communitySelect);
+                //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
+                if (intentQuery.equals(intentQueryMatch)) {
+                    //Log.i("TEST", "It's a MATCH");
+                    String date = cursor.getString(index1);
+                    String cloudType = cursor.getString(index2);
+                    String s = date + "," + cloudType;
+                    mArrayList.add(s);
+                    cursor.moveToNext();
+                }
+
+                else if (intentQuery != intentQueryMatch) {
+                    cursor.moveToNext();
+                }
+            }
+            Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
+            myAdapter = new MyAdapter(mArrayList);
+            myRecycler.setAdapter(myAdapter);
+        }
+
+//        else if (intentQuery == null){
+//            ArrayList<String> mArrayList = new ArrayList<>();
+//            cursor.moveToFirst();
+//            while (!cursor.isAfterLast()) {
+//                String date = cursor.getString(index1);
+//                String cloudDes = cursor.getString(index2);
+//                String row = date + "," + cloudDes;
+//                mArrayList.add(row);
+//                cursor.moveToNext();
+//            }
+//            myAdapter = new MyAdapter(mArrayList);
+//            myRecycler.setAdapter(myAdapter);
+//        }
+    }
+
+    public void backToHome (View view)
+    {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        LinearLayout clickedRow = (LinearLayout) view;
+        TextView date = (TextView) view.findViewById(R.id.dateRow);
+        TextView cloudDes = (TextView) view.findViewById(R.id.singleCloudDesRow);
+        Toast.makeText(this, "row " + (1+position) + ":  " + date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
+    }
+}
+

@@ -20,7 +20,8 @@ public class MyHelper extends SQLiteOpenHelper {
                     Constants.LOCATION + " TEXT, " +
                     Constants.RATE_DAY + " TEXT, " +
                     Constants.CLOUD_DES+ " TEXT, " +
-                    Constants.DAY_DES + " TEXT);" ;
+                    Constants.DAY_DES+ " TEXT, " +
+                    Constants.COMMUNITY + " TEXT);" ;
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME;
 
