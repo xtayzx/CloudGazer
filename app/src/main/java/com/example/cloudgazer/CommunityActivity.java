@@ -49,7 +49,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         String intentQuery = intent.getStringExtra("communitySelect");
         Log.i("TEST", "This is the value of what's passed: "+intentQuery);
 
-        if(intentQuery != null) {
+//        if(intentQuery != null) {
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -72,7 +72,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
             Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
-        }
+//        }
 
 //        else if (intentQuery == null){
 //            ArrayList<String> mArrayList = new ArrayList<>();

@@ -97,13 +97,14 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
     public void communityActivity (View view)
     {
-        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString("communitySelect", "yes");
-        Toast.makeText(this, "Community selection has been selected", Toast.LENGTH_LONG).show();
-        editor.commit();
+//        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPrefs.edit();
+//        editor.putString("communitySelect", "yes");
+//        Toast.makeText(this, "Community selection has been selected", Toast.LENGTH_LONG).show();
+//        editor.commit();
 
         Intent intent = new Intent(this, CommunityActivity.class);
+        intent.putExtra("communitySelect", "yes");
         startActivity(intent);
     }
 
