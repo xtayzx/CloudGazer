@@ -3,19 +3,16 @@ package com.example.cloudgazer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.SeekBar;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +24,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
     private static final String TAG = "TAG";
 
     TextView displaymsg;
-
-    Timer timer;
+    Button reflect;
 
     private SensorManager mSensor;
     Sensor mLight;
@@ -40,6 +36,9 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
     private MediaPlayer beep;
     private boolean still = false;
+    private boolean facedown = false;
+    private boolean meditate = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +46,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
         setContentView(R.layout.activity_meditation);
 
         displaymsg = (TextView) findViewById(R.id.display);
+        reflect = (Button) findViewById(R.id.reflect);
 
         beep = new MediaPlayer();
 
@@ -96,22 +96,36 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
         if (event.sensor.getType() == Sensor.TYPE_LIGHT && still==true) {
             Log.i(TAG, "light found");
+
             float lux = event.values[0];
-            if (lux <= 5) {
-                Log.i(TAG, "light value is 0");
-                displaymsg.setText("meditating mode ");
-                counter++;
-                Log.i(TAG, "counter = " + counter);
+            Log.i(TAG, "meditate: " + meditate);
 
-                //beep = MediaPlayer.create(getApplicationContext(),R.raw.beep_00);
-                // beep.start();
+            if (lux <= 5 && meditate == false) {
+                Log.i(TAG, "meditate: " + meditate);
+                facedown = true;
 
+                if (facedown == true) {
+                    Log.i(TAG, "light value is 0");
+                    displaymsg.setText("meditating mode ");
+                    counter++;
+                    Log.i(TAG, "counter = " + counter);
+
+//                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+//                    beep.start();
+                }
 
                 if (counter == 60) {
-                    beep = MediaPlayer.create(getApplicationContext(),R.raw.beep_01);
+//                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_01);
+//                    beep.start();
                     displaymsg.setText("all done");
-                    counter =  0;
+                    facedown = false;
+                    meditate = true;
+                    counter = 0;
                 }
+            }
+            if (meditate == true){
+                //this was intially a implicit intent but we might have to change becasue it doesnt apply here. we can use it for the social media thing
+                reflect.setVisibility(View.VISIBLE);
             }
             else {
                 displaymsg.setText("look at the sky - not your phone");
@@ -120,8 +134,14 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
     }
 
+    public void goToReflect (View v) {
+        Intent i = new Intent(this, ReflectionActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
 }
