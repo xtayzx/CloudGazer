@@ -37,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         String[] results = (list.get(position).toString()).split(",");
         holder.titleView.setText(results[0]);
         holder.dateView.setText(results[1]);
-        holder.singleCloudDesView.setText(results[2]);
+        holder.dayDesView.setText(results[2]);
 //        holder.locationTextView.setText(results[2]);
 //        holder.latinTextView.setText(results[3]);
     }
@@ -52,7 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public TextView titleView;
         public TextView dateView;
-        public TextView singleCloudDesView;
+        public TextView dayDesView;
 //        public TextView locationTextView;
 //        public TextView latinTextView;
         public LinearLayout myLayout;
@@ -65,7 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             titleView = (TextView)itemView.findViewById(R.id.titleRow);
             dateView = (TextView) itemView.findViewById(R.id.dateRow);
-            singleCloudDesView = (TextView) itemView.findViewById(R.id.singleCloudDesRow);
+            dayDesView = (TextView) itemView.findViewById(R.id.dayDesRow);
 
             itemView.setOnClickListener(this);
             context = itemView.getContext();

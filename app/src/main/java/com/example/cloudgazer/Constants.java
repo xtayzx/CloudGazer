@@ -10,7 +10,7 @@ public class Constants {
     public static final String TIME = "time";
     public static final String LOCATION = "location";
     public static final String RATE_DAY = "rateDay";
-    public static final String CLOUD_DES = "cloudDes";
+    public static final String WEATHER = "weather";
     public static final String DAY_DES = "dayDes";
     public static final String COMMUNITY = "community";
     public static final int DATABASE_VERSION = 1;

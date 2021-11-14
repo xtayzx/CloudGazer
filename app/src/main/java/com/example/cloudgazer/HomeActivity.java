@@ -40,7 +40,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         //get the column index for both the columns
         int index1 = cursor.getColumnIndex(Constants.TITLE);
         int index2 = cursor.getColumnIndex(Constants.DATE);
-        int index3 = cursor.getColumnIndex(Constants.CLOUD_DES);
+        int index3 = cursor.getColumnIndex(Constants.DAY_DES);
 
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
@@ -81,8 +81,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             while (!cursor.isAfterLast()) {
                 String title = cursor.getString(index1);
                 String date = cursor.getString(index2);
-                String cloudDes = cursor.getString(index3);
-                String row = title + "," + date + "," + cloudDes;
+                String dayDes = cursor.getString(index3);
+                String row = title + "," + date + "," + dayDes;
                 mArrayList.add(row);
                 cursor.moveToNext();
             }
@@ -115,7 +115,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         LinearLayout clickedRow = (LinearLayout) view;
         TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
-        TextView cloudDes = (TextView) view.findViewById(R.id.singleCloudDesRow);
-        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
+        TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
     }
 }

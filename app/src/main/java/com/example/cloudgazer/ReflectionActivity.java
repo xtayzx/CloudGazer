@@ -11,11 +11,11 @@ import android.widget.Toast;
 
 public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener {
     private SeekBar thisSeekBar;
-    private RadioGroup communitySelect;
+    private RadioGroup communitySelect, weatherSelect;
     private int rateDayValue;
-    EditText inputTitle, inputDate, inputTime, inputLocation, inputCloudDes, inputRateDay, inputDayDes;
+    EditText inputTitle, inputDate, inputTime, inputLocation, inputRateDay, inputDayDes;
     MyDatabase db;
-    String inputCommunity;
+    String inputCommunity, inputWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,14 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         communitySelect = (RadioGroup)findViewById(R.id.communitySelect);
         communitySelect.setOnCheckedChangeListener(this);
 
+        weatherSelect = (RadioGroup)findViewById(R.id.weatherSelect);
+        weatherSelect.setOnCheckedChangeListener(this);
+
         inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText)findViewById(R.id.inputTime);
         inputLocation = (EditText)findViewById(R.id.inputLocation);
-        inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
+        //inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
         inputRateDay = (EditText)findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
 
@@ -46,12 +49,12 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         String date = inputDate.getText().toString();
         String time = inputTime.getText().toString();
         String location = inputLocation.getText().toString();
-        String cloudDes = inputCloudDes.getText().toString();
         String rateDay = inputRateDay.getText().toString();
+        String weather = inputWeather;
         String dayDes = inputDayDes.getText().toString();
         String communitySelect = inputCommunity;
-        Toast.makeText(this, title +" "+date +" "+ time+" "+ location+" "+ cloudDes+" "+ rateDay+" "+ dayDes+" "+ communitySelect, Toast.LENGTH_SHORT).show();
-        long id = db.insertData(title, date, time, location, cloudDes,rateDay,dayDes, communitySelect);
+        Toast.makeText(this, title +" "+date +" "+ time+" "+ location+" "+ rateDay+" "+ weather+" "+ dayDes+" "+ communitySelect, Toast.LENGTH_SHORT).show();
+        long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect);
         if (id < 0)
         {
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
@@ -116,6 +119,27 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
                 break;
             case R.id.noRadioButton:
                 inputCommunity = "no";
+                break;
+        }
+
+        switch (checkedId) {
+            case R.id.sunnyRadioButton:
+                inputCommunity = "sunny";
+                break;
+            case R.id.partlyCloudyRadioButton:
+                inputCommunity = "partlyCloudy";
+                break;
+            case R.id.cloudyRadioButton:
+                inputCommunity = "cloudy";
+                break;
+            case R.id.rainyRadioButton:
+                inputCommunity = "rainy";
+                break;
+            case R.id.snowyRadioButton:
+                inputCommunity = "snowy";
+                break;
+            case R.id.otherRadioButton:
+                inputCommunity = "other";
                 break;
         }
     }

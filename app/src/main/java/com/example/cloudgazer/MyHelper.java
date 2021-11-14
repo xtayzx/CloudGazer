@@ -19,8 +19,8 @@ public class MyHelper extends SQLiteOpenHelper {
                     Constants.DATE + " TEXT, " +
                     Constants.TIME + " TEXT, " +
                     Constants.LOCATION + " TEXT, " +
-                    Constants.CLOUD_DES+ " TEXT, " +
                     Constants.RATE_DAY + " TEXT, " +
+                    Constants.WEATHER+ " TEXT, " +
                     Constants.DAY_DES+ " TEXT, " +
                     Constants.COMMUNITY + " TEXT);" ;
 
