@@ -3,6 +3,7 @@ package com.example.cloudgazer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -45,6 +46,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
     public void submit (View view)
     {
+
         String title = inputTitle.getText().toString();
         String date = inputDate.getText().toString();
         String time = inputTime.getText().toString();
@@ -53,22 +55,29 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         String weather = inputWeather;
         String dayDes = inputDayDes.getText().toString();
         String communitySelect = inputCommunity;
-        Toast.makeText(this, title +" "+date +" "+ time+" "+ location+" "+ rateDay+" "+ weather+" "+ dayDes+" "+ communitySelect, Toast.LENGTH_SHORT).show();
-        long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect);
-        if (id < 0)
-        {
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect;
+
+        //check if any fields do not have any data inputted
+        if (title == null || title.matches("") ||date == null || date.matches("") || time == null || date.matches("")|| location == null || location.matches("") || weather == null || dayDes == null || dayDes.matches("")|| communitySelect == null) {
+            Log.i("ENTRIES", allData);
+            Toast.makeText(this, "Error: not all fields have been inputted. Please try again.", Toast.LENGTH_LONG).show();
         }
-        else
-        {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
-        }
-//        plantName.setText("");
-//        plantType.setText("");
-//        plantLocation.setText("");
-//        plantLatin.setText("");
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+
+        else {
+            Toast.makeText(this, allData, Toast.LENGTH_SHORT).show();
+            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect);
+            if (id < 0) {
+                Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+            }
+    //        plantName.setText("");
+    //        plantType.setText("");
+    //        plantLocation.setText("");
+    //        plantLatin.setText("");
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+       }
     }
 
     public void home(View view){
@@ -114,32 +123,32 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         //set color according to selected RadioButton
         switch (checkedId) {
+            case R.id.sunnyRadioButton:
+                inputWeather = "sunny";
+                break;
+            case R.id.partlyCloudyRadioButton:
+                inputWeather = "partlyCloudy";
+                break;
+            case R.id.cloudyRadioButton:
+                inputWeather = "cloudy";
+                break;
+            case R.id.rainyRadioButton:
+                inputWeather = "rainy";
+                break;
+            case R.id.snowyRadioButton:
+                inputWeather = "snowy";
+                break;
+            case R.id.otherRadioButton:
+                inputWeather = "other";
+                break;
+        }
+
+        switch (checkedId) {
             case R.id.yesRadioButton:
                 inputCommunity = "yes";
                 break;
             case R.id.noRadioButton:
                 inputCommunity = "no";
-                break;
-        }
-
-        switch (checkedId) {
-            case R.id.sunnyRadioButton:
-                inputCommunity = "sunny";
-                break;
-            case R.id.partlyCloudyRadioButton:
-                inputCommunity = "partlyCloudy";
-                break;
-            case R.id.cloudyRadioButton:
-                inputCommunity = "cloudy";
-                break;
-            case R.id.rainyRadioButton:
-                inputCommunity = "rainy";
-                break;
-            case R.id.snowyRadioButton:
-                inputCommunity = "snowy";
-                break;
-            case R.id.otherRadioButton:
-                inputCommunity = "other";
                 break;
         }
     }
