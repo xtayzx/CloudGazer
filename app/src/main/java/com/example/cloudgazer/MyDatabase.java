@@ -40,6 +40,15 @@ public class MyDatabase {
         return cursor;
     }
 
+    public void deleteRow(String title)
+    {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.execSQL("DELETE FROM " + Constants.DATABASE_NAME+ " WHERE "+Constants.TITLE+"='"+title+"'");
+//        db.close();
+        db = helper.getWritableDatabase();
+        db.delete(Constants.TABLE_NAME, Constants.TITLE+"=?", new String[]{title});
+    }
+
 //    public String getSensorData(String name)
 //    {
 //        SQLiteDatabase db = helper.getWritableDatabase();

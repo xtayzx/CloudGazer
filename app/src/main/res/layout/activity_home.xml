@@ -1,10 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent" android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
+    android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -22,15 +20,26 @@
                 android:id="@+id/inputButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Complete a Entry"
                 android:onClick="meditationActivity"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/addButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
-                android:text="Community Tab"
+                android:layout_weight="1"
+                android:text="Add an Entry"
+                android:onClick="reflectionActivity"/>
+
+            <Button
+                android:id="@+id/communityButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_weight="1"
+                android:text="Community Activity"
                 android:onClick="communityActivity"/>
         </LinearLayout>
 
@@ -39,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"/>
+
     </LinearLayout>
 
 

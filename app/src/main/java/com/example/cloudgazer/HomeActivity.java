@@ -97,6 +97,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         startActivity(intent);
     }
 
+    public void reflectionActivity (View view)
+    {
+        Intent intent = new Intent(this, ReflectionActivity.class);
+        startActivity(intent);
+    }
+
     public void communityActivity (View view)
     {
 //        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);

@@ -76,6 +76,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Toast.makeText(context,
                     "You have clicked " + ((TextView)view.findViewById(R.id.titleRow)).getText().toString(),
                     Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(view.getContext(), ViewEntryActivity.class);
+            intent.putExtra("title",((TextView)view.findViewById(R.id.titleRow)).getText().toString() );
+            view.getContext().startActivity(intent);
         }
     }
 }
