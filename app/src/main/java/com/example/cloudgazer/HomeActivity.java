@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     MyDatabase db;
     MyAdapter myAdapter;
     MyHelper helper;
+    EditText searchInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
+
+        searchInput = (EditText)findViewById(R.id.searchEntry);
 
         //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
@@ -113,6 +117,18 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         Intent intent = new Intent(this, CommunityActivity.class);
         intent.putExtra("communitySelect", "yes");
+        startActivity(intent);
+    }
+
+    public void searchActivity (View view)
+    {
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("searchQuery", searchInput.getText().toString());
+        Toast.makeText(this, "Search query has been inputted", Toast.LENGTH_LONG).show();
+        editor.commit();
+
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 

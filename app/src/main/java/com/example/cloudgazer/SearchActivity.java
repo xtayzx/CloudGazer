@@ -1,0 +1,117 @@
+package com.example.cloudgazer;
+
+import static com.example.cloudgazer.Welcome.DEFAULT;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+/**
+ * Created by helmine on 2017-02-09.
+ */
+
+public class SearchActivity extends Activity implements AdapterView.OnItemClickListener{
+    RecyclerView myRecycler;
+    MyDatabase db;
+    MyAdapter myAdapter;
+    MyHelper helper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_community);
+        myRecycler = (RecyclerView) findViewById(R.id.recycler);
+
+        db = new MyDatabase(this);
+        helper = new MyHelper(this);
+
+        //populate all the data and put it inside the arraylist
+        Cursor cursor = db.getData();
+//        Cursor checkCursor = db.getData();
+
+        //get the column index for both the columns
+        int index1 = cursor.getColumnIndex(Constants.TITLE);
+        int index2 = cursor.getColumnIndex(Constants.DATE);
+        int index3 = cursor.getColumnIndex(Constants.DAY_DES);
+        int dateSelect = cursor.getColumnIndex(Constants.DATE);
+
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        //SharedPreferences.Editor editor = sharedPrefs.edit();
+        String searchQuery = sharedPrefs.getString("searchQuery", DEFAULT);
+
+        //retrieve the arraylist from the database
+        //populate all the data from the database and run the while loop
+
+//        Intent intent = getIntent();
+//        String databaseData = intent.getStringExtra("dataSelect");
+//        Log.i("TEST", "This is the value of what's passed: "+databaseData);
+
+//        if(intentQuery != null) {
+        ArrayList<String> mArrayList = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            //checking for if cloud des matches
+            String dateQueryMatch = cursor.getString(dateSelect);
+            //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
+            if (searchQuery.equals(dateQueryMatch)) {
+                //Log.i("TEST", "It's a MATCH");
+                String title = cursor.getString(index1);
+                String date = cursor.getString(index2);
+                String dayDes = cursor.getString(index3);
+                String s = title + "," + date + "," + dayDes;
+                mArrayList.add(s);
+                cursor.moveToNext();
+            }
+
+            else if (searchQuery != dateQueryMatch) {
+                cursor.moveToNext();
+            }
+        }
+        Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
+        myAdapter = new MyAdapter(mArrayList);
+        myRecycler.setAdapter(myAdapter);
+//        }
+
+//        else if (intentQuery == null){
+//            ArrayList<String> mArrayList = new ArrayList<>();
+//            cursor.moveToFirst();
+//            while (!cursor.isAfterLast()) {
+//                String date = cursor.getString(index1);
+//                String cloudDes = cursor.getString(index2);
+//                String row = date + "," + cloudDes;
+//                mArrayList.add(row);
+//                cursor.moveToNext();
+//            }
+//            myAdapter = new MyAdapter(mArrayList);
+//            myRecycler.setAdapter(myAdapter);
+//        }
+    }
+
+    public void backToHome (View view)
+    {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        LinearLayout clickedRow = (LinearLayout) view;
+        TextView title = (TextView) view.findViewById(R.id.titleRow);
+        TextView date = (TextView) view.findViewById(R.id.dateRow);
+        TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() + " " + date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
+    }
+}
+

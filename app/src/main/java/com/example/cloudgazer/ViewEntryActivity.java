@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -169,9 +170,11 @@ public class ViewEntryActivity extends Activity {
                         // Set the TextView visibility GONE
 //                    tv.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),
-                                "Yes Button Clicked",Toast.LENGTH_SHORT).show();
+                                "This entry has been deleted",Toast.LENGTH_SHORT).show();
                         Log.i("VALUE", String.valueOf(titleField.getText()));
                         db.deleteRow(String.valueOf(titleField.getText()));
+                        deleteButton.setText("Entry Deleted");
+                        deleteButton.setBackgroundColor(Color.BLACK);
 //                        delete = true;
                     }
                 });

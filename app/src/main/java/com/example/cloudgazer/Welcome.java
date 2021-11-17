@@ -73,22 +73,22 @@ public class Welcome extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void checkData() {
-        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-
-        String savedUsername = sharedPrefs.getString("username", DEFAULT);
-        String savedEmail = sharedPrefs.getString("email", DEFAULT);
-        String savedPassword = sharedPrefs.getString("password", DEFAULT);
-
-        Log.i("TESTING", "Saved Username: "+savedUsername+" || Saved Password: "+savedPassword+" || Saved Email: "+savedEmail);
-
-        //add email later
-        if((savedUsername.isEmpty() && savedPassword.isEmpty()) && savedEmail.isEmpty() || savedUsername.equals(DEFAULT) && savedPassword.equals(DEFAULT) && savedEmail.equals(DEFAULT)) {
-            Toast.makeText(this, "No saved username and password. Create a new username and password.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, SignUp.class);
-            startActivity(intent);
-        }
-    }
+//    public void checkData() {
+//        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//
+//        String savedUsername = sharedPrefs.getString("username", DEFAULT);
+//        String savedEmail = sharedPrefs.getString("email", DEFAULT);
+//        String savedPassword = sharedPrefs.getString("password", DEFAULT);
+//
+//        Log.i("TESTING", "Saved Username: "+savedUsername+" || Saved Password: "+savedPassword+" || Saved Email: "+savedEmail);
+//
+//        //add email later
+//        if((savedUsername.isEmpty() && savedPassword.isEmpty()) && savedEmail.isEmpty() || savedUsername.equals(DEFAULT) && savedPassword.equals(DEFAULT) && savedEmail.equals(DEFAULT)) {
+//            Toast.makeText(this, "No saved username and password. Create a new username and password.", Toast.LENGTH_LONG).show();
+//            Intent intent = new Intent(this, SignUp.class);
+//            startActivity(intent);
+//        }
+//    }
 
 }
 
