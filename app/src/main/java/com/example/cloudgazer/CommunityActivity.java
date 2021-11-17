@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class CommunityActivity extends Activity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
     MyDatabase db;
-    MyAdapter myAdapter;
+    MyAdapterC myAdapter;
     MyHelper helper;
 
     @Override
@@ -41,6 +41,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         int index1 = cursor.getColumnIndex(Constants.TITLE);
         int index2 = cursor.getColumnIndex(Constants.DATE);
         int index3 = cursor.getColumnIndex(Constants.DAY_DES);
+        int index4 = cursor.getColumnIndex(Constants.USER);
         int communitySelect = cursor.getColumnIndex(Constants.COMMUNITY);
 
         //retrieve the arraylist from the database
@@ -62,7 +63,8 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
                     String title = cursor.getString(index1);
                     String date = cursor.getString(index2);
                     String dayDes = cursor.getString(index3);
-                    String s = title + "," + date + "," + dayDes;
+                    String user = cursor.getString(index4);
+                    String s = title + "," + date + "," + dayDes+ "," + user;
                     mArrayList.add(s);
                     cursor.moveToNext();
                 }
@@ -72,7 +74,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
                 }
             }
             Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
-            myAdapter = new MyAdapter(mArrayList);
+            myAdapter = new MyAdapterC(mArrayList);
             myRecycler.setAdapter(myAdapter);
 //        }
 
@@ -103,7 +105,8 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
         TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
-        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() + " " + date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
+        TextView user = (TextView) view.findViewById(R.id.userRow);
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() + " " + date.getText() +" "+dayDes.getText() +" "+user.getText(), Toast.LENGTH_LONG).show();
     }
 }
 

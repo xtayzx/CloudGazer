@@ -27,15 +27,18 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
     MyDatabase db;
     MyAdapter myAdapter;
     MyHelper helper;
+    TextView dateInputted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_community);
+        setContentView(R.layout.activity_search);
         myRecycler = (RecyclerView) findViewById(R.id.recycler);
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
+
+        dateInputted = (TextView)findViewById(R.id.dateQuery);
 
         //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
@@ -46,10 +49,12 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
         int index2 = cursor.getColumnIndex(Constants.DATE);
         int index3 = cursor.getColumnIndex(Constants.DAY_DES);
         int dateSelect = cursor.getColumnIndex(Constants.DATE);
+        int usernameSelect = cursor.getColumnIndex(Constants.USER);
 
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         //SharedPreferences.Editor editor = sharedPrefs.edit();
         String searchQuery = sharedPrefs.getString("searchQuery", DEFAULT);
+        String usernameQuery= sharedPrefs.getString("username", DEFAULT);
 
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
@@ -62,10 +67,11 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
         ArrayList<String> mArrayList = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            //checking for if cloud des matches
+            //does the date match and does the user match (is it just a personal entry)
             String dateQueryMatch = cursor.getString(dateSelect);
+            String usernameQueryMatch = cursor.getString(usernameSelect);
             //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
-            if (searchQuery.equals(dateQueryMatch)) {
+            if (searchQuery.equals(dateQueryMatch) && usernameQuery.equals(usernameQueryMatch)) {
                 //Log.i("TEST", "It's a MATCH");
                 String title = cursor.getString(index1);
                 String date = cursor.getString(index2);
@@ -97,6 +103,7 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
 //            myAdapter = new MyAdapter(mArrayList);
 //            myRecycler.setAdapter(myAdapter);
 //        }
+        dateInputted.setText(searchQuery);
     }
 
     public void backToHome (View view)

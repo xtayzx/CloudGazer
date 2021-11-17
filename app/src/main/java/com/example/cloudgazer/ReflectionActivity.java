@@ -1,7 +1,11 @@
 package com.example.cloudgazer;
 
+import static com.example.cloudgazer.Welcome.DEFAULT;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,7 +59,11 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         String weather = inputWeather;
         String dayDes = inputDayDes.getText().toString();
         String communitySelect = inputCommunity;
-        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect;
+
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String user = sharedPrefs.getString("username", DEFAULT);
+
+        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect + " " + user;
 
         //check if any fields do not have any data inputted
         if (title == null || title.matches("") ||date == null || date.matches("") || time == null || date.matches("")|| location == null || location.matches("") || weather == null || dayDes == null || dayDes.matches("")|| communitySelect == null) {
@@ -65,7 +73,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
         else {
             Toast.makeText(this, allData, Toast.LENGTH_SHORT).show();
-            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect);
+            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect, user);
             if (id < 0) {
                 Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
             } else {
@@ -124,31 +132,31 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         //set color according to selected RadioButton
         switch (checkedId) {
             case R.id.sunnyRadioButton:
-                inputWeather = "sunny";
+                inputWeather = "Sunny";
                 break;
             case R.id.partlyCloudyRadioButton:
-                inputWeather = "partlyCloudy";
+                inputWeather = "Partly Cloudy";
                 break;
             case R.id.cloudyRadioButton:
-                inputWeather = "cloudy";
+                inputWeather = "Cloudy";
                 break;
             case R.id.rainyRadioButton:
-                inputWeather = "rainy";
+                inputWeather = "Rainy";
                 break;
             case R.id.snowyRadioButton:
-                inputWeather = "snowy";
+                inputWeather = "Snowy";
                 break;
             case R.id.otherRadioButton:
-                inputWeather = "other";
+                inputWeather = "Other";
                 break;
         }
 
         switch (checkedId) {
             case R.id.yesRadioButton:
-                inputCommunity = "yes";
+                inputCommunity = "Yes";
                 break;
             case R.id.noRadioButton:
-                inputCommunity = "no";
+                inputCommunity = "No";
                 break;
         }
     }

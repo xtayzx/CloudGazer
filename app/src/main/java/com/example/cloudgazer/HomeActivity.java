@@ -1,5 +1,7 @@
 package com.example.cloudgazer;
 
+import static com.example.cloudgazer.Welcome.DEFAULT;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -45,6 +47,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         int index1 = cursor.getColumnIndex(Constants.TITLE);
         int index2 = cursor.getColumnIndex(Constants.DATE);
         int index3 = cursor.getColumnIndex(Constants.DAY_DES);
+        //int index4 = cursor.getColumnIndex(Constants.USER);
+        int personalUser = cursor.getColumnIndex(Constants.USER);
 
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
@@ -78,21 +82,36 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 //            myRecycler.setAdapter(myAdapter);
 //        }
 
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String savedUsername = sharedPrefs.getString("username", DEFAULT);
+
 //        else if (intentQuery == null){
 //        if (intentQuery == null){
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                String title = cursor.getString(index1);
-                String date = cursor.getString(index2);
-                String dayDes = cursor.getString(index3);
-                String row = title + "," + date + "," + dayDes;
-                mArrayList.add(row);
-                cursor.moveToNext();
+                String intentQueryMatch = cursor.getString(personalUser);
+
+                //only show the user inputted entries
+                if (intentQueryMatch.equals(savedUsername)) {
+                    String title = cursor.getString(index1);
+                    String date = cursor.getString(index2);
+                    String dayDes = cursor.getString(index3);
+                    //String user = cursor.getString(index4);
+                    String row = title + "," + date + "," + dayDes;
+                    mArrayList.add(row);
+                    cursor.moveToNext();
+                }
+
+                else if (intentQueryMatch != savedUsername) {
+                    cursor.moveToNext();
+                }
             }
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
-//        }
+    //}
+
+
     }
 
     public void meditationActivity (View view)
@@ -138,6 +157,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
         TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
+        //TextView user = (TextView) view.findViewById(R.id.userRow);
         Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
     }
 }
