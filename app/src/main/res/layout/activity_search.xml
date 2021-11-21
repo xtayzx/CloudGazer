@@ -20,8 +20,32 @@
                 android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Back to Home"
                 android:onClick="backToHome"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="18dp"
+
+                android:text="Date searched: "/>
+
+            <TextView
+                android:id="@+id/dateQuery"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:text="2021/00/00"/>
 
         </LinearLayout>
 

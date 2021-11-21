@@ -1,7 +1,11 @@
 package com.example.cloudgazer;
 
+import static com.example.cloudgazer.Welcome.DEFAULT;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,20 +22,23 @@ import java.util.ArrayList;
  * Created by helmine on 2017-02-09.
  */
 
-public class CommunityActivity extends Activity implements AdapterView.OnItemClickListener{
+public class SearchActivity extends Activity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
     MyDatabase db;
-    MyAdapterC myAdapter;
+    MyAdapter myAdapter;
     MyHelper helper;
+    TextView dateInputted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_community);
+        setContentView(R.layout.activity_search);
         myRecycler = (RecyclerView) findViewById(R.id.recycler);
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
+
+        dateInputted = (TextView)findViewById(R.id.dateQuery);
 
         //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
@@ -41,41 +48,46 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         int index1 = cursor.getColumnIndex(Constants.TITLE);
         int index2 = cursor.getColumnIndex(Constants.DATE);
         int index3 = cursor.getColumnIndex(Constants.DAY_DES);
-        int index4 = cursor.getColumnIndex(Constants.USER);
-        int communitySelect = cursor.getColumnIndex(Constants.COMMUNITY);
+        int dateSelect = cursor.getColumnIndex(Constants.DATE);
+        int usernameSelect = cursor.getColumnIndex(Constants.USER);
+
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        //SharedPreferences.Editor editor = sharedPrefs.edit();
+        String searchQuery = sharedPrefs.getString("searchQuery", DEFAULT);
+        String usernameQuery= sharedPrefs.getString("username", DEFAULT);
 
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
 
-        Intent intent = getIntent();
-        String intentQuery = intent.getStringExtra("communitySelect");
-        Log.i("TEST", "This is the value of what's passed: "+intentQuery);
+//        Intent intent = getIntent();
+//        String databaseData = intent.getStringExtra("dataSelect");
+//        Log.i("TEST", "This is the value of what's passed: "+databaseData);
 
 //        if(intentQuery != null) {
-            ArrayList<String> mArrayList = new ArrayList<>();
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                //checking for if cloud des matches
-                String intentQueryMatch = cursor.getString(communitySelect);
-                //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
-                if (intentQuery.equals(intentQueryMatch)) {
-                    //Log.i("TEST", "It's a MATCH");
-                    String title = cursor.getString(index1);
-                    String date = cursor.getString(index2);
-                    String dayDes = cursor.getString(index3);
-                    String user = cursor.getString(index4);
-                    String s = title + "," + date + "," + dayDes+ "," + user;
-                    mArrayList.add(s);
-                    cursor.moveToNext();
-                }
-
-                else if (intentQuery != intentQueryMatch) {
-                    cursor.moveToNext();
-                }
+        ArrayList<String> mArrayList = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            //does the date match and does the user match (is it just a personal entry)
+            String dateQueryMatch = cursor.getString(dateSelect);
+            String usernameQueryMatch = cursor.getString(usernameSelect);
+            //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
+            if (searchQuery.equals(dateQueryMatch) && usernameQuery.equals(usernameQueryMatch)) {
+                //Log.i("TEST", "It's a MATCH");
+                String title = cursor.getString(index1);
+                String date = cursor.getString(index2);
+                String dayDes = cursor.getString(index3);
+                String s = title + "," + date + "," + dayDes;
+                mArrayList.add(s);
+                cursor.moveToNext();
             }
-            Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
-            myAdapter = new MyAdapterC(mArrayList);
-            myRecycler.setAdapter(myAdapter);
+
+            else if (searchQuery != dateQueryMatch) {
+                cursor.moveToNext();
+            }
+        }
+        Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
+        myAdapter = new MyAdapter(mArrayList);
+        myRecycler.setAdapter(myAdapter);
 //        }
 
 //        else if (intentQuery == null){
@@ -91,6 +103,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
 //            myAdapter = new MyAdapter(mArrayList);
 //            myRecycler.setAdapter(myAdapter);
 //        }
+        dateInputted.setText(searchQuery);
     }
 
     public void backToHome (View view)
@@ -105,8 +118,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
         TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
-        TextView user = (TextView) view.findViewById(R.id.userRow);
-        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() + " " + date.getText() +" "+dayDes.getText() +" "+user.getText(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() + " " + date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
     }
 }
 

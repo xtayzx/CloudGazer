@@ -17,19 +17,19 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ViewEntryActivity extends Activity {
-//    TextView inputAll;
-    Button deleteButton;
-    Boolean delete;
+public class CommunityViewEntryActivity extends Activity {
+    //    TextView inputAll;
+//    Button deleteButton;
+//    Boolean delete;
 
     MyDatabase db;
     MyHelper helper;
-    TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField;
+    TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField, userField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_entry);
+        setContentView(R.layout.activity_view_entry_community);
 
         titleField = (TextView)findViewById(R.id.titleTextView);
         dateField = (TextView)findViewById(R.id.dateEntry);
@@ -39,8 +39,9 @@ public class ViewEntryActivity extends Activity {
         weatherField = (TextView)findViewById(R.id.weatherEntry);
         dayDesField = (TextView)findViewById(R.id.dayDesEntry);
         communityField = (TextView)findViewById(R.id.communityEntry);
+        userField = (TextView)findViewById(R.id.userEntry);
 
-        deleteButton = (Button)findViewById(R.id.deleteButton);
+        //deleteButton = (Button)findViewById(R.id.deleteButton);
 
 //        inputAll = (TextView)findViewById(R.id.input_all);
 
@@ -65,6 +66,7 @@ public class ViewEntryActivity extends Activity {
         int index6 = cursor.getColumnIndex(Constants.WEATHER);
         int index7 = cursor.getColumnIndex(Constants.DAY_DES);
         int index8 = cursor.getColumnIndex(Constants.COMMUNITY);
+        int index9 = cursor.getColumnIndex(Constants.USER);
 
         int title = cursor.getColumnIndex(Constants.TITLE);
 
@@ -93,6 +95,7 @@ public class ViewEntryActivity extends Activity {
                 String weatherEntry = cursor.getString(index6);
                 String dayDesEntry = cursor.getString(index7);
                 String communityEntry = cursor.getString(index8);
+                String userEntry = cursor.getString(index9);
 
                 //String s = title + "," + date + "," + dayDes;
                 //mArrayList.add(s);
@@ -106,6 +109,7 @@ public class ViewEntryActivity extends Activity {
                 weatherField.setText(weatherEntry);
                 dayDesField.setText(dayDesEntry);
                 communityField.setText(communityEntry);
+                userField.setText(userEntry);
                 cursor.moveToNext();
             }
 
@@ -150,52 +154,52 @@ public class ViewEntryActivity extends Activity {
 //        String savedAllData = sharedPrefs.getString("allData", DEFAULT);
 //        inputAll.setText(savedAllData);
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(ViewEntryActivity.this);
-
-                // Set a title for alert dialog
-                builder.setTitle("Delete Entry");
-
-                // Ask the final question
-                builder.setMessage("Are you sure to delete the entry: " + titleField.getText() +"?");
-
-                // Set the alert dialog yes button click listener
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do something when user clicked the Yes button
-                        // Set the TextView visibility GONE
-//                    tv.setVisibility(View.GONE);
-                        Toast.makeText(getApplicationContext(),
-                                "This entry has been deleted",Toast.LENGTH_SHORT).show();
-                        Log.i("VALUE", String.valueOf(titleField.getText()));
-                        db.deleteRow(String.valueOf(titleField.getText()));
-                        deleteButton.setText("Entry Deleted");
-                        deleteButton.setBackgroundColor(Color.BLACK);
-//                        delete = true;
-                    }
-                });
-
-                // Set the alert dialog no button click listener
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do something when No button clicked
-                        Toast.makeText(getApplicationContext(),
-                                "No Button Clicked",Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                // Display the alert dialog on interface
-                dialog.show();
-
-
-            }
-        });
+//        deleteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Build an AlertDialog
+//                AlertDialog.Builder builder = new AlertDialog.Builder(ViewEntryActivity.this);
+//
+//                // Set a title for alert dialog
+//                builder.setTitle("Delete Entry");
+//
+//                // Ask the final question
+//                builder.setMessage("Are you sure to delete the entry: " + titleField.getText() +"?");
+//
+//                // Set the alert dialog yes button click listener
+//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // Do something when user clicked the Yes button
+//                        // Set the TextView visibility GONE
+////                    tv.setVisibility(View.GONE);
+//                        Toast.makeText(getApplicationContext(),
+//                                "This entry has been deleted",Toast.LENGTH_SHORT).show();
+//                        Log.i("VALUE", String.valueOf(titleField.getText()));
+//                        db.deleteRow(String.valueOf(titleField.getText()));
+//                        deleteButton.setText("Entry Deleted");
+//                        deleteButton.setBackgroundColor(Color.BLACK);
+////                        delete = true;
+//                    }
+//                });
+//
+//                // Set the alert dialog no button click listener
+//                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // Do something when No button clicked
+//                        Toast.makeText(getApplicationContext(),
+//                                "No Button Clicked",Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//                AlertDialog dialog = builder.create();
+//                // Display the alert dialog on interface
+//                dialog.show();
+//
+//
+//            }
+//        });
 
 
     }
@@ -210,8 +214,8 @@ public class ViewEntryActivity extends Activity {
 //        }
 //    }
 
-    public void homeButton(View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-    }
+//    public void homeButton(View view) {
+//        Intent intent = new Intent(this, CommunityActivity.class);
+//        startActivity(intent);
+//    }
 }

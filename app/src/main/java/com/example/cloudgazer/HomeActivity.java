@@ -1,5 +1,7 @@
 package com.example.cloudgazer;
 
+import static com.example.cloudgazer.Welcome.DEFAULT;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     MyDatabase db;
     MyAdapter myAdapter;
     MyHelper helper;
+    EditText searchInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +38,17 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         db = new MyDatabase(this);
         helper = new MyHelper(this);
 
+        searchInput = (EditText)findViewById(R.id.searchEntry);
+
         //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
 
         //get the column index for both the columns
         int index1 = cursor.getColumnIndex(Constants.TITLE);
         int index2 = cursor.getColumnIndex(Constants.DATE);
-        int index3 = cursor.getColumnIndex(Constants.CLOUD_DES);
+        int index3 = cursor.getColumnIndex(Constants.DAY_DES);
+        //int index4 = cursor.getColumnIndex(Constants.USER);
+        int personalUser = cursor.getColumnIndex(Constants.USER);
 
         //retrieve the arraylist from the database
         //populate all the data from the database and run the while loop
@@ -74,26 +82,47 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 //            myRecycler.setAdapter(myAdapter);
 //        }
 
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String savedUsername = sharedPrefs.getString("username", DEFAULT);
+
 //        else if (intentQuery == null){
 //        if (intentQuery == null){
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                String title = cursor.getString(index1);
-                String date = cursor.getString(index2);
-                String cloudDes = cursor.getString(index3);
-                String row = title + "," + date + "," + cloudDes;
-                mArrayList.add(row);
-                cursor.moveToNext();
+                String intentQueryMatch = cursor.getString(personalUser);
+
+                //only show the user inputted entries
+                if (intentQueryMatch.equals(savedUsername)) {
+                    String title = cursor.getString(index1);
+                    String date = cursor.getString(index2);
+                    String dayDes = cursor.getString(index3);
+                    //String user = cursor.getString(index4);
+                    String row = title + "," + date + "," + dayDes;
+                    mArrayList.add(row);
+                    cursor.moveToNext();
+                }
+
+                else if (intentQueryMatch != savedUsername) {
+                    cursor.moveToNext();
+                }
             }
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
-//        }
+    //}
+
+
     }
 
     public void meditationActivity (View view)
     {
         Intent intent = new Intent(this, Meditation.class);
+        startActivity(intent);
+    }
+
+    public void reflectionActivity (View view)
+    {
+        Intent intent = new Intent(this, ReflectionActivity.class);
         startActivity(intent);
     }
 
@@ -110,12 +139,25 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         startActivity(intent);
     }
 
+    public void searchActivity (View view)
+    {
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("searchQuery", searchInput.getText().toString());
+        Toast.makeText(this, "Search query has been inputted", Toast.LENGTH_LONG).show();
+        editor.commit();
+
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LinearLayout clickedRow = (LinearLayout) view;
         TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
-        TextView cloudDes = (TextView) view.findViewById(R.id.singleCloudDesRow);
-        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+cloudDes.getText(), Toast.LENGTH_LONG).show();
+        TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
+        //TextView user = (TextView) view.findViewById(R.id.userRow);
+        Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
     }
 }
