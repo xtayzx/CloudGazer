@@ -106,7 +106,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 if (facedown == true) {
                     Log.i(TAG, "light value is 0");
-                    displaymsg.setText("counter : "  + counter);
+                    displaymsg.setText("counter : ");
                     counter++;
                     Log.i(TAG, "counter = " + counter);
 
