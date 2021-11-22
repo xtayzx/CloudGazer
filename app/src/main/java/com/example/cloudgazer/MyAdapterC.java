@@ -42,8 +42,6 @@ public class MyAdapterC extends RecyclerView.Adapter<MyAdapterC.MyViewHolderC> {
         holder.dateView.setText(results[1]);
         holder.dayDesView.setText(results[2]);
         holder.userView.setText(results[3]);
-//        holder.locationTextView.setText(results[2]);
-//        holder.latinTextView.setText(results[3]);
     }
 
 
@@ -58,8 +56,6 @@ public class MyAdapterC extends RecyclerView.Adapter<MyAdapterC.MyViewHolderC> {
         public TextView dateView;
         public TextView dayDesView;
         public TextView userView;
-        //        public TextView locationTextView;
-//        public TextView latinTextView;
         public LinearLayout myLayout;
 
         Context context;

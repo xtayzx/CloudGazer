@@ -40,7 +40,6 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText)findViewById(R.id.inputTime);
         inputLocation = (EditText)findViewById(R.id.inputLocation);
-        //inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
         inputRateDay = (EditText)findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
 
@@ -79,10 +78,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
             } else {
                 Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             }
-    //        plantName.setText("");
-    //        plantType.setText("");
-    //        plantLocation.setText("");
-    //        plantLatin.setText("");
+
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
        }
@@ -93,18 +89,11 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         startActivity(intent);
     }
 
-//    public void viewResults(View view)
-//    {
-//        Intent intent = new Intent(this, RecyclerActivity.class);
-//        startActivity(intent);
-//    }
-
     private SeekBar.OnSeekBarChangeListener examSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             rateDayValue = thisSeekBar.getProgress();
-            //rateDay.setText(rateDayValue);
             inputRateDay.setText(String.valueOf(rateDayValue));
         }
 
@@ -129,7 +118,8 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        //set color according to selected RadioButton
+
+        //set weather according to selected RadioButton
         switch (checkedId) {
             case R.id.sunnyRadioButton:
                 inputWeather = "Sunny";
@@ -160,17 +150,6 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
                 break;
         }
     }
-
-//    @Override
-//    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//    }
-//
-//    @Override
-//    public void afterTextChanged(Editable editable) {
-//
-//    }
-
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {

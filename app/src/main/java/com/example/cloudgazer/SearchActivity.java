@@ -18,9 +18,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-/**
- * Created by helmine on 2017-02-09.
- */
 
 public class SearchActivity extends Activity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
@@ -42,7 +39,6 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
 
         //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
-//        Cursor checkCursor = db.getData();
 
         //get the column index for both the columns
         int index1 = cursor.getColumnIndex(Constants.TITLE);
@@ -52,27 +48,17 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
         int usernameSelect = cursor.getColumnIndex(Constants.USER);
 
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        //SharedPreferences.Editor editor = sharedPrefs.edit();
         String searchQuery = sharedPrefs.getString("searchQuery", DEFAULT);
         String usernameQuery= sharedPrefs.getString("username", DEFAULT);
 
-        //retrieve the arraylist from the database
-        //populate all the data from the database and run the while loop
-
-//        Intent intent = getIntent();
-//        String databaseData = intent.getStringExtra("dataSelect");
-//        Log.i("TEST", "This is the value of what's passed: "+databaseData);
-
-//        if(intentQuery != null) {
         ArrayList<String> mArrayList = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             //does the date match and does the user match (is it just a personal entry)
             String dateQueryMatch = cursor.getString(dateSelect);
             String usernameQueryMatch = cursor.getString(usernameSelect);
-            //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
+
             if (searchQuery.equals(dateQueryMatch) && usernameQuery.equals(usernameQueryMatch)) {
-                //Log.i("TEST", "It's a MATCH");
                 String title = cursor.getString(index1);
                 String date = cursor.getString(index2);
                 String dayDes = cursor.getString(index3);
@@ -88,21 +74,6 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
         Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
         myAdapter = new MyAdapter(mArrayList);
         myRecycler.setAdapter(myAdapter);
-//        }
-
-//        else if (intentQuery == null){
-//            ArrayList<String> mArrayList = new ArrayList<>();
-//            cursor.moveToFirst();
-//            while (!cursor.isAfterLast()) {
-//                String date = cursor.getString(index1);
-//                String cloudDes = cursor.getString(index2);
-//                String row = date + "," + cloudDes;
-//                mArrayList.add(row);
-//                cursor.moveToNext();
-//            }
-//            myAdapter = new MyAdapter(mArrayList);
-//            myRecycler.setAdapter(myAdapter);
-//        }
         dateInputted.setText(searchQuery);
     }
 

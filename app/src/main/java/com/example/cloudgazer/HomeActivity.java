@@ -18,9 +18,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-/**
- * Created by helmine on 2017-02-09.
- */
 
 public class HomeActivity extends Activity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
@@ -47,46 +44,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         int index1 = cursor.getColumnIndex(Constants.TITLE);
         int index2 = cursor.getColumnIndex(Constants.DATE);
         int index3 = cursor.getColumnIndex(Constants.DAY_DES);
-        //int index4 = cursor.getColumnIndex(Constants.USER);
         int personalUser = cursor.getColumnIndex(Constants.USER);
-
-        //retrieve the arraylist from the database
-        //populate all the data from the database and run the while loop
-
-//        Intent intent = getIntent();
-//        String intentQuery = intent.getStringExtra("query");
-        //Log.i("TEST", "This is the value of what's passed: "+plantQuery);
-
-//        if(intentQuery != null) {
-//            ArrayList<String> mArrayList = new ArrayList<>();
-//            cursor.moveToFirst();
-//            while (!cursor.isAfterLast()) {
-//                //checking for if cloud des matches
-//                String intentQueryMatch = cursor.getString(index2);
-//                //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
-//                if (intentQuery.equals(intentQueryMatch)) {
-//                    //Log.i("TEST", "It's a MATCH");
-//                    String date = cursor.getString(index1);
-//                    String cloudType = cursor.getString(index2);
-//                    String s = date + "," + cloudType;
-//                    mArrayList.add(s);
-//                    cursor.moveToNext();
-//                }
-//
-//                else if (intentQuery != intentQueryMatch) {
-//                    cursor.moveToNext();
-//                }
-//            }
-//            Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
-//            myAdapter = new MyAdapter(mArrayList);
-//            myRecycler.setAdapter(myAdapter);
-//        }
 
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String savedUsername = sharedPrefs.getString("username", DEFAULT);
 
-//        else if (intentQuery == null){
-//        if (intentQuery == null){
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -97,7 +59,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     String title = cursor.getString(index1);
                     String date = cursor.getString(index2);
                     String dayDes = cursor.getString(index3);
-                    //String user = cursor.getString(index4);
                     String row = title + "," + date + "," + dayDes;
                     mArrayList.add(row);
                     cursor.moveToNext();
@@ -109,8 +70,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             }
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
-    //}
-
 
     }
 
@@ -128,12 +87,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
     public void communityActivity (View view)
     {
-//        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPrefs.edit();
-//        editor.putString("communitySelect", "yes");
-//        Toast.makeText(this, "Community selection has been selected", Toast.LENGTH_LONG).show();
-//        editor.commit();
-
         Intent intent = new Intent(this, CommunityActivity.class);
         intent.putExtra("communitySelect", "Yes");
         startActivity(intent);
@@ -157,7 +110,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         TextView title = (TextView) view.findViewById(R.id.titleRow);
         TextView date = (TextView) view.findViewById(R.id.dateRow);
         TextView dayDes = (TextView) view.findViewById(R.id.dayDesRow);
-        //TextView user = (TextView) view.findViewById(R.id.userRow);
         Toast.makeText(this, "row " + (1+position) + ":  " + title.getText() +" "+date.getText() +" "+dayDes.getText(), Toast.LENGTH_LONG).show();
     }
 }

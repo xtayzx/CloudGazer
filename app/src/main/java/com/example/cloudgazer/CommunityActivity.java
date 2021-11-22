@@ -14,9 +14,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-/**
- * Created by helmine on 2017-02-09.
- */
 
 public class CommunityActivity extends Activity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
@@ -35,7 +32,6 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
 
         //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
-//        Cursor checkCursor = db.getData();
 
         //get the column index for both the columns
         int index1 = cursor.getColumnIndex(Constants.TITLE);
@@ -51,15 +47,13 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         String intentQuery = intent.getStringExtra("communitySelect");
         Log.i("TEST", "This is the value of what's passed: "+intentQuery);
 
-//        if(intentQuery != null) {
             ArrayList<String> mArrayList = new ArrayList<>();
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                //checking for if cloud des matches
+
                 String intentQueryMatch = cursor.getString(communitySelect);
-                //Log.i("TEST", "This is the value of cursor: "+plantQueryMatch);
+//                is the entry shared in the community forum
                 if (intentQuery.equals(intentQueryMatch)) {
-                    //Log.i("TEST", "It's a MATCH");
                     String title = cursor.getString(index1);
                     String date = cursor.getString(index2);
                     String dayDes = cursor.getString(index3);
@@ -76,21 +70,6 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
             Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
             myAdapter = new MyAdapterC(mArrayList);
             myRecycler.setAdapter(myAdapter);
-//        }
-
-//        else if (intentQuery == null){
-//            ArrayList<String> mArrayList = new ArrayList<>();
-//            cursor.moveToFirst();
-//            while (!cursor.isAfterLast()) {
-//                String date = cursor.getString(index1);
-//                String cloudDes = cursor.getString(index2);
-//                String row = date + "," + cloudDes;
-//                mArrayList.add(row);
-//                cursor.moveToNext();
-//            }
-//            myAdapter = new MyAdapter(mArrayList);
-//            myRecycler.setAdapter(myAdapter);
-//        }
     }
 
     public void backToHome (View view)
