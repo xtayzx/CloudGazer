@@ -135,7 +135,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 //        editor.commit();
 
         Intent intent = new Intent(this, CommunityActivity.class);
-        intent.putExtra("communitySelect", "yes");
+        intent.putExtra("communitySelect", "Yes");
         startActivity(intent);
     }
 
