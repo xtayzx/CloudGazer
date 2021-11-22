@@ -36,6 +36,10 @@ public class MyHelper extends SQLiteOpenHelper {
         try {
             Log.i("DATABASE", "No database created, make a database");
             db.execSQL(CREATE_TABLE);
+<<<<<<< Updated upstream
+=======
+//            communitySampleData(db);
+>>>>>>> Stashed changes
             Toast.makeText(context, "onCreate() called", Toast.LENGTH_LONG).show();
         } catch (SQLException e) {
             Log.i("DATABASE", "Catch called");
