@@ -39,6 +39,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         //inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
         inputRateDay = (EditText)findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
+        inputWeather = "'example'";
 
         db = new MyDatabase(this);
 
