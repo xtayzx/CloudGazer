@@ -215,41 +215,24 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        Log.i("tag", "pos = found" );
-                        // Got last known location. In some rare situations this can be null.
-                        Log.i("tag", "latlng = " + location);
 
-                        if (location != null) {
-                            // Logic to handle location object
-
+                        @Override
+                        public void onSuccess(Location location){
+                            Log.i("TEST", "onSuccess is called");
                             LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
                             String pos = String.valueOf(latlng);
+                            Log.i("tag", "currentlocation:" + pos);
                             inputLocation.setText(pos);
-                        }
-                        else {
-                            inputLocation.setText("no pos");
-                        }
-            Log.i("TEST", "permissions are not working haha");
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, location -> {
-                    Log.i("TEST", "onSuccess is called");
-                    LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-                    String pos = String.valueOf(latlng);
-                    Log.i("tag","currentlocation:" + pos);
-                    inputLocation.setText(pos);
 
-                    if (location != null) {
-                        Log.i("TEST", "location is not null");
-                        // Logic to handle location object
-                    }
+                            if (location != null) {
+                                Log.i("TEST", "location is not null");
+                                // Logic to handle location object
+                            }
+                        }
                 });
-    });
     }
 
     @Override
