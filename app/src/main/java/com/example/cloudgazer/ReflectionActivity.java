@@ -5,21 +5,16 @@ import static com.example.cloudgazer.Welcome.DEFAULT;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,24 +23,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
 public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener{
     private SeekBar thisSeekBar;
@@ -163,20 +148,20 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
         //set weather according to selected RadioButton
         switch (checkedId) {
-            case R.id.sunnyRadioButton:
-                inputWeather = "Sunny";
+            case R.id.cumulus:
+                inputWeather = "Cumulus";
                 break;
-            case R.id.partlyCloudyRadioButton:
-                inputWeather = "Partly Cloudy";
+            case R.id.stratus:
+                inputWeather = "Stratus";
                 break;
-            case R.id.cloudyRadioButton:
-                inputWeather = "Cloudy";
+            case R.id.cumulonimbus:
+                inputWeather = "Cumulonimbus";
                 break;
-            case R.id.rainyRadioButton:
-                inputWeather = "Rainy";
+            case R.id.cirrus:
+                inputWeather = "Cirrus";
                 break;
-            case R.id.snowyRadioButton:
-                inputWeather = "Snowy";
+            case R.id.altocumulus:
+                inputWeather = "Altocumulus";
                 break;
             case R.id.otherRadioButton:
                 inputWeather = "Other";
@@ -222,14 +207,13 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
                         @Override
                         public void onSuccess(Location location){
                             Log.i("TEST", "onSuccess is called");
+                            Log.i("TEST", "location is not null");
                             LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
                             String pos = String.valueOf(latlng);
                             Log.i("tag", "currentlocation:" + pos);
                             inputLocation.setText(pos);
-
                             if (location != null) {
-                                Log.i("TEST", "location is not null");
-                                // Logic to handle location object
+
                             }
                         }
                 });
