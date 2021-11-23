@@ -2,25 +2,47 @@ package com.example.cloudgazer;
 
 import static com.example.cloudgazer.Welcome.DEFAULT;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener {
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
     private SeekBar thisSeekBar;
     private RadioGroup communitySelect, weatherSelect;
     private int rateDayValue;
-    EditText inputTitle, inputDate, inputTime, inputLocation, inputRateDay, inputDayDes;
+    EditText inputTitle, inputDate, inputTime, inputRateDay, inputDayDes;
+    TextView inputLocation;
+    Button location;
     MyDatabase db;
     String inputCommunity, inputWeather;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +61,15 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText)findViewById(R.id.inputTime);
-        inputLocation = (EditText)findViewById(R.id.inputLocation);
         //inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
         inputRateDay = (EditText)findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
+
+        inputLocation = (TextView)findViewById(R.id.inputLocation);
+
+        location = (Button) findViewById(R.id.getLocation);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         db = new MyDatabase(this);
 
@@ -79,10 +106,6 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
             } else {
                 Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             }
-    //        plantName.setText("");
-    //        plantType.setText("");
-    //        plantLocation.setText("");
-    //        plantLatin.setText("");
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
        }
@@ -161,6 +184,29 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         }
     }
 
+    public void showCurrentLocation(View v) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
+                        String pos = String.valueOf(latlng);
+                        Log.i("tag","currentlocation:" + pos);
+                        inputLocation.setText(pos);
+
+                        if (location != null) {
+                            // Logic to handle location object
+                        }
+                    }
+                });
+    }
+
 //    @Override
 //    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 //
@@ -184,6 +230,21 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        return false;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
 
     }
 }
