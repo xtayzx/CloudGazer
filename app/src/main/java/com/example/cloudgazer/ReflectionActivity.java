@@ -61,7 +61,6 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText) findViewById(R.id.inputTime);
-        //inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
         inputRateDay = (EditText) findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
 
@@ -193,11 +192,6 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
 
@@ -239,19 +233,17 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
+            //show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
+                //try again to request the permission
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.title_location_permission)
                         .setMessage(R.string.text_location_permission)
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
+                                //prompt the user once explanation has been shown
                                 ActivityCompat.requestPermissions(ReflectionActivity.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
@@ -262,7 +254,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
 
             } else {
-                // No explanation needed, we can request the permission.
+                //we can request the permission
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
@@ -278,24 +270,18 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
+                //if request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
+                    // permission was granted
                     if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.ACCESS_FINE_LOCATION)
                             == PackageManager.PERMISSION_GRANTED) {
-
-                        //Request location updates:
-                        //  locationManager.requestLocationUpdates(provider, 400, 1, this);
                     }
 
                 } else {
-
-                    // permission denied - Disable the
-                    // functionality that depends on this permission.
+                    // permission was denied
 
                 }
                 return;
