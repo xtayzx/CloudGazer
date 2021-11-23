@@ -118,8 +118,7 @@
                 android:layout_height="wrap_content"
                 android:background="#3F51B5"
                 android:onClick="showCurrentLocation"
-                android:textSize="10sp"
-                tools:text="Location" />
+                android:text="Location" />
 
         </LinearLayout>
 
@@ -259,7 +258,12 @@
                 </RadioGroup>
 
         </LinearLayout>
-
+        <Button
+            android:id="@+id/cloudFinder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Types of Clouds"
+            android:onClick="cloudLaunch"/>
         <Button
             android:id="@+id/submitButton"
             android:layout_width="match_parent"

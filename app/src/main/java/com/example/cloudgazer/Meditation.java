@@ -38,7 +38,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
     private boolean still = false;
     private boolean facedown = false;
     private boolean meditate = false;
-
+    private boolean played = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,13 +110,22 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                     Log.i(TAG, "counter = " + counter);
                     String time = String.valueOf(counter);
                     displaymsg.setText("counter : " + time);
-                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
-                    beep.start();
+                    if(played == false){
+                        beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                        beep.start();
+                        played = true;
+                    }
+
                 }
 
                 if (counter == 60) {
-                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
-                    beep.start();
+                    played = false;
+                    if (played == false){
+                        beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                        beep.start();
+                        played = true;
+                    }
+
                     displaymsg.setText("all done");
                     facedown = false;
                     meditate = true;

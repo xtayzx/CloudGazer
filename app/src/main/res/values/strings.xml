@@ -7,4 +7,7 @@
     <string name="day_des">Describe your day today:</string>
     <string name="share_des">Share your day to the community?</string>
     <string name="padding">16dp</string>
+    <string name="title_location_permission">loc1</string>
+    <string name="text_location_permission">loc2</string>
+    <string name="ok">ok</string>
 </resources>
