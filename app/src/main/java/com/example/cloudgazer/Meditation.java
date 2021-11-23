@@ -115,7 +115,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 }
 
                 if (counter == 60) {
-                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_01);
+                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
                     beep.start();
                     displaymsg.setText("all done");
                     facedown = false;
@@ -124,7 +124,6 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 }
             }
             if (meditate == true){
-                //this was intially a implicit intent but we might have to change becasue it doesnt apply here. we can use it for the social media thing
                 reflect.setVisibility(View.VISIBLE);
             }
             else {

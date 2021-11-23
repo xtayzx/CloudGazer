@@ -40,9 +40,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.titleView.setText(results[0]);
         holder.dateView.setText(results[1]);
         holder.dayDesView.setText(results[2]);
-        //holder.userView.setText(results[3]);
-//        holder.locationTextView.setText(results[2]);
-//        holder.latinTextView.setText(results[3]);
     }
 
 
@@ -56,9 +53,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView titleView;
         public TextView dateView;
         public TextView dayDesView;
-        //public TextView userView;
-//        public TextView locationTextView;
-//        public TextView latinTextView;
         public LinearLayout myLayout;
 
         Context context;
@@ -70,7 +64,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             titleView = (TextView)itemView.findViewById(R.id.titleRow);
             dateView = (TextView) itemView.findViewById(R.id.dateRow);
             dayDesView = (TextView) itemView.findViewById(R.id.dayDesRow);
-            //userView = (TextView) itemView.findViewById(R.id.userRow);
 
             itemView.setOnClickListener(this);
             context = itemView.getContext();

@@ -68,7 +68,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues1.put(Constants.RATE_DAY, "6");
         contentValues1.put(Constants.WEATHER, "Cloudy");
         contentValues1.put(Constants.DAY_DES, "Today was the best day!");
-        contentValues1.put(Constants.COMMUNITY, "yes");
+        contentValues1.put(Constants.COMMUNITY, "Yes");
         contentValues1.put(Constants.USER, "Amy");
         db.insert(Constants.TABLE_NAME, null, contentValues1);
         Log.i("INPUT DATA", "Data 1 has been inputted in the database");
@@ -81,7 +81,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues2.put(Constants.RATE_DAY, "7");
         contentValues2.put(Constants.WEATHER, "Sunny");
         contentValues2.put(Constants.DAY_DES, "Today was an okay day.");
-        contentValues2.put(Constants.COMMUNITY, "yes");
+        contentValues2.put(Constants.COMMUNITY, "Yes");
         contentValues2.put(Constants.USER, "Bob");
         db.insert(Constants.TABLE_NAME, null, contentValues2);
         Log.i("INPUT DATA", "Data Set 2 has been inputted in the database");
@@ -94,7 +94,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues3.put(Constants.RATE_DAY, "2");
         contentValues3.put(Constants.WEATHER, "Rainy");
         contentValues3.put(Constants.DAY_DES, "Today was the worst day ever. I really hope it becomes sunny again soon.");
-        contentValues3.put(Constants.COMMUNITY, "yes");
+        contentValues3.put(Constants.COMMUNITY, "Yes");
         contentValues3.put(Constants.USER, "Charlie");
         db.insert(Constants.TABLE_NAME, null, contentValues3);
         Log.i("INPUT DATA", "Data Set 3 has been inputted in the database");

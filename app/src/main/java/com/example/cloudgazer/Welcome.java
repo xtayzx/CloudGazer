@@ -30,13 +30,10 @@ public class Welcome extends AppCompatActivity {
     }
 
     public void logIn(View v){
-
-        //Log.i("TESTING", "Login button clicked");
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("enteredUsername", usernameEntered.getText().toString());
         editor.putString("enteredPassword", passwordEntered.getText().toString());
-        //Log.i("TESTING", "Entered username and password saved:" + usernameEntered +" & "+passwordEntered);
         editor.commit();
 
         String username = sharedPrefs.getString("username", DEFAULT);
@@ -60,18 +57,15 @@ public class Welcome extends AppCompatActivity {
 
         else if (enteredUsername != username && enteredPassword != password){
             Toast.makeText(this, "Incorrect username and/or password. Try again or create another account.", Toast.LENGTH_LONG).show();
-//            Intent intent= new Intent(this, RegisterActivity.class);
-//            startActivity(intent);
         }
-        //**** THIS INTENT WILL CHANGE TO FOLLOW THE PROPER SITE MAP ****
-//        Intent i = new Intent(this, Meditation.class);
-//        startActivity(i);
     }
 
     public void accountCreate (View v){
         Intent i = new Intent(this, SignUp.class);
         startActivity(i);
     }
+
+//    this loads the create account right away if the user is opening the app for the first time
 
 //    public void checkData() {
 //        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
