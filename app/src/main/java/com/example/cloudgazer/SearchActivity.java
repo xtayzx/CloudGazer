@@ -37,7 +37,6 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
 
         dateInputted = (TextView)findViewById(R.id.dateQuery);
 
-        //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
 
         //get the column index for both the columns
@@ -54,6 +53,7 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
         ArrayList<String> mArrayList = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
+
             //does the date match and does the user match (is it just a personal entry)
             String dateQueryMatch = cursor.getString(dateSelect);
             String usernameQueryMatch = cursor.getString(usernameSelect);
@@ -67,6 +67,7 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
                 cursor.moveToNext();
             }
 
+            //else move to the next row
             else if (searchQuery != dateQueryMatch) {
                 cursor.moveToNext();
             }
@@ -74,6 +75,7 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
         Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
         myAdapter = new MyAdapter(mArrayList);
         myRecycler.setAdapter(myAdapter);
+        //set the search input
         dateInputted.setText(searchQuery);
     }
 

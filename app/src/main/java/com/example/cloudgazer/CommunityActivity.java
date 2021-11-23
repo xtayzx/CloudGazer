@@ -30,7 +30,6 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         db = new MyDatabase(this);
         helper = new MyHelper(this);
 
-        //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
 
         //get the column index for both the columns
@@ -39,9 +38,6 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
         int index3 = cursor.getColumnIndex(Constants.DAY_DES);
         int index4 = cursor.getColumnIndex(Constants.USER);
         int communitySelect = cursor.getColumnIndex(Constants.COMMUNITY);
-
-        //retrieve the arraylist from the database
-        //populate all the data from the database and run the while loop
 
         Intent intent = getIntent();
         String intentQuery = intent.getStringExtra("communitySelect");
@@ -52,7 +48,8 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
             while (!cursor.isAfterLast()) {
 
                 String intentQueryMatch = cursor.getString(communitySelect);
-//                is the entry shared in the community forum
+
+                //is the entry shared in the community forum?
                 if (intentQuery.equals(intentQueryMatch)) {
                     String title = cursor.getString(index1);
                     String date = cursor.getString(index2);
@@ -63,6 +60,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
                     cursor.moveToNext();
                 }
 
+                //if not then go to the next row
                 else if (intentQuery != intentQueryMatch) {
                     cursor.moveToNext();
                 }

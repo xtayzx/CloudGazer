@@ -41,7 +41,6 @@ public class CommunityViewEntryActivity extends Activity {
         db = new MyDatabase(this);
         helper = new MyHelper(this);
 
-        //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
 
         //get the column index for both the columns
@@ -57,9 +56,6 @@ public class CommunityViewEntryActivity extends Activity {
 
         int title = cursor.getColumnIndex(Constants.TITLE);
 
-        //retrieve the arraylist from the database
-        //populate all the data from the database and run the while loop
-
         Intent intent = getIntent();
         String intentQuery = intent.getStringExtra("title");
         Log.i("TEST", "This is the value of what's passed: "+intentQuery);
@@ -67,6 +63,8 @@ public class CommunityViewEntryActivity extends Activity {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
+
+            //if the name of the title pressed matches the title listed in the database
             String intentQueryMatch = cursor.getString(title);
 
             if (intentQuery.equals(intentQueryMatch)) {
@@ -92,6 +90,7 @@ public class CommunityViewEntryActivity extends Activity {
                 cursor.moveToNext();
             }
 
+            //if not then move to the next row
             else if (intentQuery != intentQueryMatch) {
                 cursor.moveToNext();
             }

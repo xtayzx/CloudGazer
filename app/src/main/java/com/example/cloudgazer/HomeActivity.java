@@ -37,7 +37,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         searchInput = (EditText)findViewById(R.id.searchEntry);
 
-        //populate all the data and put it inside the arraylist
         Cursor cursor = db.getData();
 
         //get the column index for both the columns
@@ -54,7 +53,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             while (!cursor.isAfterLast()) {
                 String intentQueryMatch = cursor.getString(personalUser);
 
-                //only show the user inputted entries
+                //only show the user inputted entries that have the same username
                 if (intentQueryMatch.equals(savedUsername)) {
                     String title = cursor.getString(index1);
                     String date = cursor.getString(index2);
@@ -64,6 +63,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     cursor.moveToNext();
                 }
 
+                //else move to the next row
                 else if (intentQueryMatch != savedUsername) {
                     cursor.moveToNext();
                 }
