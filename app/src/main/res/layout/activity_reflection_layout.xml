@@ -119,7 +119,7 @@
                 android:background="#3F51B5"
                 android:onClick="showCurrentLocation"
                 android:textSize="10sp"
-                tools:text="Location" />
+                android:text="Location" />
 
         </LinearLayout>
 
