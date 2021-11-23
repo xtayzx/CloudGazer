@@ -106,17 +106,17 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 if (facedown == true) {
                     Log.i(TAG, "light value is 0");
-                    displaymsg.setText("counter : ");
                     counter++;
                     Log.i(TAG, "counter = " + counter);
-
-//                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
-//                    beep.start();
+                    String time = String.valueOf(counter);
+                    displaymsg.setText("counter : " + time);
+                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                    beep.start();
                 }
 
                 if (counter == 60) {
-//                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_01);
-//                    beep.start();
+                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_01);
+                    beep.start();
                     displaymsg.setText("all done");
                     facedown = false;
                     meditate = true;
@@ -128,7 +128,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 reflect.setVisibility(View.VISIBLE);
             }
             else {
-                displaymsg.setText("look at the sky - not your phone");
+                //displaymsg.setText("look at the sky - not your phone");
             }
         }
 
