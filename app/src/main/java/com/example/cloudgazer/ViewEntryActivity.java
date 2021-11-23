@@ -136,8 +136,6 @@ public class ViewEntryActivity extends Activity {
                 dialog.show();
             }
         });
-
-
     }
 
     public void homeButton(View view) {

@@ -66,7 +66,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues1.put(Constants.TIME, "12:01");
         contentValues1.put(Constants.LOCATION, "Home");
         contentValues1.put(Constants.RATE_DAY, "6");
-        contentValues1.put(Constants.WEATHER, "Cloudy");
+        contentValues1.put(Constants.WEATHER, "Cumulonimbus");
         contentValues1.put(Constants.DAY_DES, "Today was the best day!");
         contentValues1.put(Constants.COMMUNITY, "Yes");
         contentValues1.put(Constants.USER, "Amy");
@@ -79,7 +79,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues2.put(Constants.TIME, "12:02");
         contentValues2.put(Constants.LOCATION, "The Park");
         contentValues2.put(Constants.RATE_DAY, "7");
-        contentValues2.put(Constants.WEATHER, "Sunny");
+        contentValues2.put(Constants.WEATHER, "Cumulus");
         contentValues2.put(Constants.DAY_DES, "Today was an okay day.");
         contentValues2.put(Constants.COMMUNITY, "Yes");
         contentValues2.put(Constants.USER, "Bob");
@@ -92,7 +92,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues3.put(Constants.TIME, "12:03");
         contentValues3.put(Constants.LOCATION, "Bedroom");
         contentValues3.put(Constants.RATE_DAY, "2");
-        contentValues3.put(Constants.WEATHER, "Rainy");
+        contentValues3.put(Constants.WEATHER, "Cirrus");
         contentValues3.put(Constants.DAY_DES, "Today was the worst day ever. I really hope it becomes sunny again soon.");
         contentValues3.put(Constants.COMMUNITY, "Yes");
         contentValues3.put(Constants.USER, "Charlie");
