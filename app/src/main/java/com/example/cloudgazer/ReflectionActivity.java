@@ -61,7 +61,11 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputTime = (EditText)findViewById(R.id.inputTime);
+<<<<<<< HEAD
         //inputCloudDes = (EditText)findViewById(R.id.inputCloudDes);
+=======
+        inputLocation = (EditText)findViewById(R.id.inputLocation);
+>>>>>>> ad4d294a30ecac4bbff9d7c79bce80b99a4e651a
         inputRateDay = (EditText)findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
 
@@ -106,6 +110,10 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
             } else {
                 Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ad4d294a30ecac4bbff9d7c79bce80b99a4e651a
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
        }
@@ -116,18 +124,11 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         startActivity(intent);
     }
 
-//    public void viewResults(View view)
-//    {
-//        Intent intent = new Intent(this, RecyclerActivity.class);
-//        startActivity(intent);
-//    }
-
     private SeekBar.OnSeekBarChangeListener examSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             rateDayValue = thisSeekBar.getProgress();
-            //rateDay.setText(rateDayValue);
             inputRateDay.setText(String.valueOf(rateDayValue));
         }
 
@@ -152,7 +153,8 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        //set color according to selected RadioButton
+
+        //set weather according to selected RadioButton
         switch (checkedId) {
             case R.id.sunnyRadioButton:
                 inputWeather = "Sunny";
@@ -184,6 +186,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         }
     }
 
+<<<<<<< HEAD
     public void showCurrentLocation(View v) {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -218,6 +221,8 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 //    }
 
 
+=======
+>>>>>>> ad4d294a30ecac4bbff9d7c79bce80b99a4e651a
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
 
