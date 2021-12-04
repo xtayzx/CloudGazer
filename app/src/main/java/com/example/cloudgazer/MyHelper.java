@@ -24,7 +24,8 @@ public class MyHelper extends SQLiteOpenHelper {
                     Constants.WEATHER+ " TEXT, " +
                     Constants.DAY_DES+ " TEXT, " +
                     Constants.COMMUNITY+ " TEXT, " +
-                    Constants.USER + " TEXT);" ;
+                    Constants.USER+ " TEXT, " +
+                    Constants.PHOTO+ " TEXT);" ;
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME;
 
@@ -38,7 +39,7 @@ public class MyHelper extends SQLiteOpenHelper {
         try {
             Log.i("DATABASE", "No database created, make a database");
             db.execSQL(CREATE_TABLE);
-            communitySampleData(db);
+//            communitySampleData(db);
             Toast.makeText(context, "onCreate() called", Toast.LENGTH_LONG).show();
         } catch (SQLException e) {
             Log.i("DATABASE", "Catch called");
@@ -70,6 +71,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues1.put(Constants.DAY_DES, "Today was the best day!");
         contentValues1.put(Constants.COMMUNITY, "Yes");
         contentValues1.put(Constants.USER, "Amy");
+        contentValues1.put(Constants.PHOTO, "empty");
         db.insert(Constants.TABLE_NAME, null, contentValues1);
         Log.i("INPUT DATA", "Data 1 has been inputted in the database");
 
@@ -83,6 +85,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues2.put(Constants.DAY_DES, "Today was an okay day.");
         contentValues2.put(Constants.COMMUNITY, "Yes");
         contentValues2.put(Constants.USER, "Bob");
+        contentValues2.put(Constants.PHOTO, "empty");
         db.insert(Constants.TABLE_NAME, null, contentValues2);
         Log.i("INPUT DATA", "Data Set 2 has been inputted in the database");
 
@@ -96,6 +99,7 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues3.put(Constants.DAY_DES, "Today was the worst day ever. I really hope it becomes sunny again soon.");
         contentValues3.put(Constants.COMMUNITY, "Yes");
         contentValues3.put(Constants.USER, "Charlie");
+        contentValues3.put(Constants.PHOTO, "empty");
         db.insert(Constants.TABLE_NAME, null, contentValues3);
         Log.i("INPUT DATA", "Data Set 3 has been inputted in the database");
     }

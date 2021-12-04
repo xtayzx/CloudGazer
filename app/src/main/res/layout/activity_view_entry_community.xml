@@ -175,6 +175,18 @@
             android:text="Date Entry Input" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/entryImageViewC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->

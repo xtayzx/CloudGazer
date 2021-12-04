@@ -7,21 +7,28 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import utils.CameraUtils;
 
 public class CommunityViewEntryActivity extends Activity {
 
     MyDatabase db;
     MyHelper helper;
     TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField, userField;
+    ImageView image;
+    String photoPath;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,8 @@ public class CommunityViewEntryActivity extends Activity {
         dayDesField = (TextView)findViewById(R.id.dayDesEntry);
         communityField = (TextView)findViewById(R.id.communityEntry);
         userField = (TextView)findViewById(R.id.userEntry);
+        image = (ImageView)findViewById(R.id.entryImageViewC);
+
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
@@ -53,6 +62,7 @@ public class CommunityViewEntryActivity extends Activity {
         int index7 = cursor.getColumnIndex(Constants.DAY_DES);
         int index8 = cursor.getColumnIndex(Constants.COMMUNITY);
         int index9 = cursor.getColumnIndex(Constants.USER);
+        int index10 = cursor.getColumnIndex(Constants.PHOTO);
 
         int title = cursor.getColumnIndex(Constants.TITLE);
 
@@ -77,6 +87,7 @@ public class CommunityViewEntryActivity extends Activity {
                 String dayDesEntry = cursor.getString(index7);
                 String communityEntry = cursor.getString(index8);
                 String userEntry = cursor.getString(index9);
+                String entryPhotoPath = cursor.getString(index10);
 
                 titleField.setText(titleEntry);
                 dateField.setText(dateEntry);
@@ -87,6 +98,7 @@ public class CommunityViewEntryActivity extends Activity {
                 dayDesField.setText(dayDesEntry);
                 communityField.setText(communityEntry);
                 userField.setText(userEntry);
+                photoPath = entryPhotoPath;
                 cursor.moveToNext();
             }
 
@@ -94,6 +106,16 @@ public class CommunityViewEntryActivity extends Activity {
             else if (intentQuery != intentQueryMatch) {
                 cursor.moveToNext();
             }
+        }
+
+        //display photo
+        try {
+            image.setVisibility(View.VISIBLE);
+//            Log.d("new", path);
+            final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(photoPath);
+            image.setImageBitmap(bitmap);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 
     }

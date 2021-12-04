@@ -7,15 +7,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import utils.CameraUtils;
 
 public class ViewEntryActivity extends Activity {
 
@@ -25,6 +29,8 @@ public class ViewEntryActivity extends Activity {
     MyDatabase db;
     MyHelper helper;
     TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField;
+    ImageView image;
+    String photoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class ViewEntryActivity extends Activity {
         weatherField = (TextView)findViewById(R.id.weatherEntry);
         dayDesField = (TextView)findViewById(R.id.dayDesEntry);
         communityField = (TextView)findViewById(R.id.communityEntry);
+        image = (ImageView)findViewById(R.id.entryImageView);
 
         deleteButton = (Button)findViewById(R.id.deleteButton);
 
@@ -56,6 +63,7 @@ public class ViewEntryActivity extends Activity {
         int index6 = cursor.getColumnIndex(Constants.WEATHER);
         int index7 = cursor.getColumnIndex(Constants.DAY_DES);
         int index8 = cursor.getColumnIndex(Constants.COMMUNITY);
+        int index10 = cursor.getColumnIndex(Constants.PHOTO);
 
         int title = cursor.getColumnIndex(Constants.TITLE);
 
@@ -79,6 +87,7 @@ public class ViewEntryActivity extends Activity {
                 String weatherEntry = cursor.getString(index6);
                 String dayDesEntry = cursor.getString(index7);
                 String communityEntry = cursor.getString(index8);
+                String savedPhotoPath = cursor.getString(index10);
 
                 //transfer all fields in the database
                 titleField.setText(titleEntry);
@@ -89,12 +98,23 @@ public class ViewEntryActivity extends Activity {
                 weatherField.setText(weatherEntry);
                 dayDesField.setText(dayDesEntry);
                 communityField.setText(communityEntry);
+                photoPath = savedPhotoPath;
                 cursor.moveToNext();
             }
 
             else if (intentQuery != intentQueryMatch) {
                 cursor.moveToNext();
             }
+        }
+
+        //display photo
+        try {
+            image.setVisibility(View.VISIBLE);
+//            Log.d("new", path);
+            final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(photoPath);
+            image.setImageBitmap(bitmap);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 
         //if the user would like to delete the entry

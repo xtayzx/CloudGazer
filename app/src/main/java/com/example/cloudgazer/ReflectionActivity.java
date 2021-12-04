@@ -11,13 +11,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,12 +29,20 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import utils.CameraUtils;
 
 public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener{
     private SeekBar thisSeekBar;
@@ -39,9 +51,11 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     EditText inputTitle, inputDate, inputTime, inputRateDay, inputDayDes;
     TextView inputLocation;
     Button locationButton;
+    ImageView image;
     MyDatabase db;
-    String inputCommunity, inputWeather;
+    String inputCommunity, inputWeather, inputPhoto;
     private FusedLocationProviderClient fusedLocationClient;
+    private static final int CAMERA_CAPTURE_IMAGE = 1;
     GoogleMap myMap;
 
     @Override
@@ -63,6 +77,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         inputTime = (EditText) findViewById(R.id.inputTime);
         inputRateDay = (EditText) findViewById(R.id.rateDay);
         inputDayDes = (EditText) findViewById(R.id.inputDayDes);
+        image = (ImageView) findViewById(R.id.previewImage);
         inputWeather = "'example'";
 
         inputLocation = (TextView) findViewById(R.id.inputLocation);
@@ -79,7 +94,6 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
 
 
     public void submit(View view) {
-
         String title = inputTitle.getText().toString();
         String date = inputDate.getText().toString();
         String time = inputTime.getText().toString();
@@ -87,20 +101,21 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         String rateDay = inputRateDay.getText().toString();
         String weather = inputWeather;
         String dayDes = inputDayDes.getText().toString();
+        String photo = inputPhoto;
         String communitySelect = inputCommunity;
 
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String user = sharedPrefs.getString("username", DEFAULT);
 
-        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect + " " + user;
+        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect + " " + user + " " + photo;
 
         //check if any fields do not have any data inputted
-        if (title == null || title.matches("") || date == null || date.matches("") || time == null || date.matches("") || location == null || location.matches("") || weather == null || dayDes == null || dayDes.matches("") || communitySelect == null) {
+        if (title == null || title.matches("") || date == null || date.matches("") || time == null || date.matches("") || location == null || location.matches("") || weather == null || dayDes == null || dayDes.matches("") || communitySelect == null || photo == null || photo.matches("")) {
             Log.i("ENTRIES", allData);
             Toast.makeText(this, "Error: not all fields have been inputted. Please try again.", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, allData, Toast.LENGTH_SHORT).show();
-            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect, user);
+            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect, user, photo);
             if (id < 0) {
                 Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
             } else {
@@ -289,6 +304,102 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
             }
 
         }
+    }
+
+    /**
+     * Receiving activity result method will be called after closing the camera
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+
+            switch (requestCode) {
+//                case CAMERA_CAPTURE_IMAGE_THUMB:
+//                    Bundle extras = data.getExtras();
+//                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                    myImageThumb.setImageBitmap(imageBitmap);
+//                    break;
+//
+//                case CAMERA_CAPTURE_IMAGE_NEW:
+//                    Toast.makeText(this, "new", Toast.LENGTH_SHORT).show();
+////                    galleryAddPic(mCurrentPhotoPath);
+//                    Intent i = new Intent(this, ActivityNew.class);
+//                    i.putExtra("PATH", mCurrentPhotoPath);
+//                    startActivity(i);
+//                    break;
+
+                case CAMERA_CAPTURE_IMAGE:
+//                    galleryAddPic(mCurrentPhotoPath);
+//                    galleryAddPic();
+                    Toast.makeText(this, "File path saved: "+inputPhoto, Toast.LENGTH_SHORT).show();
+                    previewCapturedImage();
+                    break;
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            // user cancelled Image capture
+            Toast.makeText(this, "User cancelled the capture", Toast.LENGTH_SHORT).show();
+        } else {
+            // failed to capture image
+            Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void launchCamera(View view) {
+        dispatchTakePictureIntent(CAMERA_CAPTURE_IMAGE);
+    }
+
+    /*
+     * Display image from a path to ImageView
+     */
+    private void previewCapturedImage() {
+        try {
+            image.setVisibility(View.VISIBLE);
+//            Log.d("preview", inputPhoto);
+            final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(inputPhoto);
+            image.setImageBitmap(bitmap);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void dispatchTakePictureIntent(int requestCode) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                Log.i("TEST", "created the file");
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                Log.d("ex", "cannot create file");
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, requestCode);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        inputPhoto = image.getAbsolutePath();
+        return image;
     }
 }
 
