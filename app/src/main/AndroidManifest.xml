@@ -8,10 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CloudGazer" >
+        android:theme="@style/Theme.CloudGazer">
         <activity
             android:name=".Meditation"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".SignUp"
             android:exported="true" />
@@ -28,6 +30,12 @@
             android:name=".CommunityActivity"
             android:exported="true" />
         <activity
+            android:name=".SearchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CommunityViewEntryActivity"
+            android:exported="true" />
+        <activity
             android:name=".Welcome"
             android:exported="true" >
             <intent-filter>
@@ -36,6 +44,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAH6zR-L7G9S1XwmYJPK-4ZUfz36O3Obsg" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="22" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
 </manifest>

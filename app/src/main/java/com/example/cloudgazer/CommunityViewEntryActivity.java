@@ -17,19 +17,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ViewEntryActivity extends Activity {
-
-    Button deleteButton;
-    Boolean delete;
+public class CommunityViewEntryActivity extends Activity {
 
     MyDatabase db;
     MyHelper helper;
-    TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField;
+    TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField, userField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_entry);
+        setContentView(R.layout.activity_view_entry_community);
 
         titleField = (TextView)findViewById(R.id.titleTextView);
         dateField = (TextView)findViewById(R.id.dateEntry);
@@ -39,8 +36,7 @@ public class ViewEntryActivity extends Activity {
         weatherField = (TextView)findViewById(R.id.weatherEntry);
         dayDesField = (TextView)findViewById(R.id.dayDesEntry);
         communityField = (TextView)findViewById(R.id.communityEntry);
-
-        deleteButton = (Button)findViewById(R.id.deleteButton);
+        userField = (TextView)findViewById(R.id.userEntry);
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
@@ -56,6 +52,7 @@ public class ViewEntryActivity extends Activity {
         int index6 = cursor.getColumnIndex(Constants.WEATHER);
         int index7 = cursor.getColumnIndex(Constants.DAY_DES);
         int index8 = cursor.getColumnIndex(Constants.COMMUNITY);
+        int index9 = cursor.getColumnIndex(Constants.USER);
 
         int title = cursor.getColumnIndex(Constants.TITLE);
 
@@ -67,9 +64,9 @@ public class ViewEntryActivity extends Activity {
 
         while (!cursor.isAfterLast()) {
 
+            //if the name of the title pressed matches the title listed in the database
             String intentQueryMatch = cursor.getString(title);
 
-            //is the title that was pressed the same as in the database
             if (intentQuery.equals(intentQueryMatch)) {
                 String titleEntry = cursor.getString(index1);
                 String dateEntry = cursor.getString(index2);
@@ -79,8 +76,8 @@ public class ViewEntryActivity extends Activity {
                 String weatherEntry = cursor.getString(index6);
                 String dayDesEntry = cursor.getString(index7);
                 String communityEntry = cursor.getString(index8);
+                String userEntry = cursor.getString(index9);
 
-                //transfer all fields in the database
                 titleField.setText(titleEntry);
                 dateField.setText(dateEntry);
                 timeField.setText(timeEntry);
@@ -89,57 +86,15 @@ public class ViewEntryActivity extends Activity {
                 weatherField.setText(weatherEntry);
                 dayDesField.setText(dayDesEntry);
                 communityField.setText(communityEntry);
+                userField.setText(userEntry);
                 cursor.moveToNext();
             }
 
+            //if not then move to the next row
             else if (intentQuery != intentQueryMatch) {
                 cursor.moveToNext();
             }
         }
 
-        //if the user would like to delete the entry
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ViewEntryActivity.this);
-
-                //title for the alert dialog
-                builder.setTitle("Delete Entry");
-
-                //ask the final question
-                builder.setMessage("Are you sure to delete the entry: " + titleField.getText() +"?");
-
-                //set a yes button click listener
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),
-                                "This entry has been deleted",Toast.LENGTH_SHORT).show();
-                        Log.i("VALUE", String.valueOf(titleField.getText()));
-                        db.deleteRow(String.valueOf(titleField.getText()));
-                        deleteButton.setText("Entry Deleted");
-                        deleteButton.setBackgroundColor(Color.BLACK);
-                    }
-                });
-
-                //set the no button click listener
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),
-                                "No Button Clicked",Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                //display the alert dialog on interface
-                dialog.show();
-            }
-        });
-    }
-
-    public void homeButton(View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 }

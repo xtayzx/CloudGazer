@@ -30,13 +30,10 @@ public class Welcome extends AppCompatActivity {
     }
 
     public void logIn(View v){
-
-        //Log.i("TESTING", "Login button clicked");
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("enteredUsername", usernameEntered.getText().toString());
         editor.putString("enteredPassword", passwordEntered.getText().toString());
-        //Log.i("TESTING", "Entered username and password saved:" + usernameEntered +" & "+passwordEntered);
         editor.commit();
 
         String username = sharedPrefs.getString("username", DEFAULT);
@@ -60,12 +57,7 @@ public class Welcome extends AppCompatActivity {
 
         else if (enteredUsername != username && enteredPassword != password){
             Toast.makeText(this, "Incorrect username and/or password. Try again or create another account.", Toast.LENGTH_LONG).show();
-//            Intent intent= new Intent(this, RegisterActivity.class);
-//            startActivity(intent);
         }
-        //**** THIS INTENT WILL CHANGE TO FOLLOW THE PROPER SITE MAP ****
-//        Intent i = new Intent(this, Meditation.class);
-//        startActivity(i);
     }
 
     public void accountCreate (View v){
@@ -73,22 +65,24 @@ public class Welcome extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void checkData() {
-        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//    this loads the create account right away if the user is opening the app for the first time
 
-        String savedUsername = sharedPrefs.getString("username", DEFAULT);
-        String savedEmail = sharedPrefs.getString("email", DEFAULT);
-        String savedPassword = sharedPrefs.getString("password", DEFAULT);
-
-        Log.i("TESTING", "Saved Username: "+savedUsername+" || Saved Password: "+savedPassword+" || Saved Email: "+savedEmail);
-
-        //add email later
-        if((savedUsername.isEmpty() && savedPassword.isEmpty()) && savedEmail.isEmpty() || savedUsername.equals(DEFAULT) && savedPassword.equals(DEFAULT) && savedEmail.equals(DEFAULT)) {
-            Toast.makeText(this, "No saved username and password. Create a new username and password.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, SignUp.class);
-            startActivity(intent);
-        }
-    }
+//    public void checkData() {
+//        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//
+//        String savedUsername = sharedPrefs.getString("username", DEFAULT);
+//        String savedEmail = sharedPrefs.getString("email", DEFAULT);
+//        String savedPassword = sharedPrefs.getString("password", DEFAULT);
+//
+//        Log.i("TESTING", "Saved Username: "+savedUsername+" || Saved Password: "+savedPassword+" || Saved Email: "+savedEmail);
+//
+//        //add email later
+//        if((savedUsername.isEmpty() && savedPassword.isEmpty()) && savedEmail.isEmpty() || savedUsername.equals(DEFAULT) && savedPassword.equals(DEFAULT) && savedEmail.equals(DEFAULT)) {
+//            Toast.makeText(this, "No saved username and password. Create a new username and password.", Toast.LENGTH_LONG).show();
+//            Intent intent = new Intent(this, SignUp.class);
+//            startActivity(intent);
+//        }
+//    }
 
 }
 

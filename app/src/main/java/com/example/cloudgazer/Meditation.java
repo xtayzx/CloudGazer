@@ -38,7 +38,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
     private boolean still = false;
     private boolean facedown = false;
     private boolean meditate = false;
-
+    private boolean played = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
             Log.i(TAG, "Change = " + change);
 
 // This would mean the phone is not moving and if the light sensor is low than it is flipped over.
-            if (change == 0 ){
+            if (change <= 2 ){ // to intense
                 still = true;
             }
 
@@ -106,17 +106,26 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 if (facedown == true) {
                     Log.i(TAG, "light value is 0");
-                    displaymsg.setText("meditating mode ");
                     counter++;
                     Log.i(TAG, "counter = " + counter);
+                    String time = String.valueOf(counter);
+                    displaymsg.setText("counter : " + time);
+                    if(played == false){
+                        beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                        beep.start();
+                        played = true;
+                    }
 
-//                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
-//                    beep.start();
                 }
 
                 if (counter == 60) {
-//                    beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_01);
-//                    beep.start();
+                    played = false;
+                    if (played == false){
+                        beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                        beep.start();
+                        played = true;
+                    }
+
                     displaymsg.setText("all done");
                     facedown = false;
                     meditate = true;
@@ -124,11 +133,10 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 }
             }
             if (meditate == true){
-                //this was intially a implicit intent but we might have to change becasue it doesnt apply here. we can use it for the social media thing
                 reflect.setVisibility(View.VISIBLE);
             }
             else {
-                displaymsg.setText("look at the sky - not your phone");
+                //displaymsg.setText("look at the sky - not your phone");
             }
         }
 
