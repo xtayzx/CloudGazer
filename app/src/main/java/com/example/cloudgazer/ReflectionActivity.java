@@ -314,24 +314,11 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         if (resultCode == RESULT_OK) {
 
             switch (requestCode) {
-//                case CAMERA_CAPTURE_IMAGE_THUMB:
-//                    Bundle extras = data.getExtras();
-//                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-//                    myImageThumb.setImageBitmap(imageBitmap);
-//                    break;
-//
-//                case CAMERA_CAPTURE_IMAGE_NEW:
-//                    Toast.makeText(this, "new", Toast.LENGTH_SHORT).show();
-////                    galleryAddPic(mCurrentPhotoPath);
-//                    Intent i = new Intent(this, ActivityNew.class);
-//                    i.putExtra("PATH", mCurrentPhotoPath);
-//                    startActivity(i);
-//                    break;
-
                 case CAMERA_CAPTURE_IMAGE:
 //                    galleryAddPic(mCurrentPhotoPath);
 //                    galleryAddPic();
-                    Toast.makeText(this, "File path saved: "+inputPhoto, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "File path saved: "+inputPhoto, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Image has been saved!", Toast.LENGTH_SHORT).show();
                     previewCapturedImage();
                     break;
             }

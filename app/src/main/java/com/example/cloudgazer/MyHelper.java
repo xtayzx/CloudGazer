@@ -2,11 +2,17 @@ package com.example.cloudgazer;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MyHelper extends SQLiteOpenHelper {
 
@@ -39,8 +45,9 @@ public class MyHelper extends SQLiteOpenHelper {
         try {
             Log.i("DATABASE", "No database created, make a database");
             db.execSQL(CREATE_TABLE);
-//            communitySampleData(db);
-            Toast.makeText(context, "onCreate() called", Toast.LENGTH_LONG).show();
+            communitySampleData(db);
+            Toast.makeText(context, "Welcome to Cloud Gazer!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "onCreate() called", Toast.LENGTH_LONG).show();
         } catch (SQLException e) {
             Log.i("DATABASE", "Catch called");
             Toast.makeText(context, "exception onCreate() db", Toast.LENGTH_LONG).show();
@@ -60,46 +67,50 @@ public class MyHelper extends SQLiteOpenHelper {
     }
 
     protected void communitySampleData(SQLiteDatabase db) {
+
         //insert sample data for the community activity
         ContentValues contentValues1 = new ContentValues();
-        contentValues1.put(Constants.TITLE, "The Best Day");
+        contentValues1.put(Constants.TITLE, "rainbow sunsets");
         contentValues1.put(Constants.DATE, "2021/11/01");
-        contentValues1.put(Constants.TIME, "12:01");
+        contentValues1.put(Constants.TIME, "16:06");
         contentValues1.put(Constants.LOCATION, "Home");
-        contentValues1.put(Constants.RATE_DAY, "6");
-        contentValues1.put(Constants.WEATHER, "Cumulonimbus");
-        contentValues1.put(Constants.DAY_DES, "Today was the best day!");
+        contentValues1.put(Constants.RATE_DAY, "8");
+        contentValues1.put(Constants.WEATHER, "Altocumulus");
+        contentValues1.put(Constants.DAY_DES, "Today was super great! I saw the most gorgeous sunset from my porch. What a" +
+                " view!");
         contentValues1.put(Constants.COMMUNITY, "Yes");
         contentValues1.put(Constants.USER, "Amy");
-        contentValues1.put(Constants.PHOTO, "empty");
+        contentValues1.put(Constants.PHOTO, "cloudGazer1");
         db.insert(Constants.TABLE_NAME, null, contentValues1);
         Log.i("INPUT DATA", "Data 1 has been inputted in the database");
 
         ContentValues contentValues2 = new ContentValues();
-        contentValues2.put(Constants.TITLE, "The Okay Day");
-        contentValues2.put(Constants.DATE, "2021/11/02");
-        contentValues2.put(Constants.TIME, "12:02");
+        contentValues2.put(Constants.TITLE, "SUMMER SUNRISES!!");
+        contentValues2.put(Constants.DATE, "2021/07/05");
+        contentValues2.put(Constants.TIME, "06:45");
         contentValues2.put(Constants.LOCATION, "The Park");
-        contentValues2.put(Constants.RATE_DAY, "7");
-        contentValues2.put(Constants.WEATHER, "Cumulus");
-        contentValues2.put(Constants.DAY_DES, "Today was an okay day.");
+        contentValues2.put(Constants.RATE_DAY, "9");
+        contentValues2.put(Constants.WEATHER, "Other");
+        contentValues2.put(Constants.DAY_DES, "Sometimes all you need is an amazing sunset to start off the day. Look at these" +
+                " views! It may be 6:00AM, but just look at what you are missing!");
         contentValues2.put(Constants.COMMUNITY, "Yes");
-        contentValues2.put(Constants.USER, "Bob");
-        contentValues2.put(Constants.PHOTO, "empty");
+        contentValues2.put(Constants.USER, "Bianca");
+        contentValues2.put(Constants.PHOTO, "cloudGazer2");
         db.insert(Constants.TABLE_NAME, null, contentValues2);
         Log.i("INPUT DATA", "Data Set 2 has been inputted in the database");
 
         ContentValues contentValues3 = new ContentValues();
-        contentValues3.put(Constants.TITLE, "The Worst Day");
-        contentValues3.put(Constants.DATE, "2021/11/03");
-        contentValues3.put(Constants.TIME, "12:03");
-        contentValues3.put(Constants.LOCATION, "Bedroom");
-        contentValues3.put(Constants.RATE_DAY, "2");
-        contentValues3.put(Constants.WEATHER, "Cirrus");
-        contentValues3.put(Constants.DAY_DES, "Today was the worst day ever. I really hope it becomes sunny again soon.");
+        contentValues3.put(Constants.TITLE, "On the train downtown");
+        contentValues3.put(Constants.DATE, "2021/09/12");
+        contentValues3.put(Constants.TIME, "06:37");
+        contentValues3.put(Constants.LOCATION, "The Train Station");
+        contentValues3.put(Constants.RATE_DAY, "5");
+        contentValues3.put(Constants.WEATHER, "Cumulus");
+        contentValues3.put(Constants.DAY_DES, "My day was okay today, but I just really wanted to share this photo that I" +
+                        " took as I was waiting for the train to head off downtown. That's what made it great.");
         contentValues3.put(Constants.COMMUNITY, "Yes");
         contentValues3.put(Constants.USER, "Charlie");
-        contentValues3.put(Constants.PHOTO, "empty");
+        contentValues3.put(Constants.PHOTO, "cloudGazer3");
         db.insert(Constants.TABLE_NAME, null, contentValues3);
         Log.i("INPUT DATA", "Data Set 3 has been inputted in the database");
     }

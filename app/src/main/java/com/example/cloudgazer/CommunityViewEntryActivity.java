@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import utils.CameraUtils;
@@ -45,7 +49,6 @@ public class CommunityViewEntryActivity extends Activity {
         communityField = (TextView)findViewById(R.id.communityEntry);
         userField = (TextView)findViewById(R.id.userEntry);
         image = (ImageView)findViewById(R.id.entryImageViewC);
-
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
@@ -108,14 +111,71 @@ public class CommunityViewEntryActivity extends Activity {
             }
         }
 
-        //display photo
-        try {
-            image.setVisibility(View.VISIBLE);
+        if(photoPath.equals("cloudGazer1")) {
+            try {
+                image.setVisibility(View.VISIBLE);
+                AssetManager assetManager = getAssets();
+                InputStream is = null;
+                try {
+                    is = assetManager.open("img/cloudGazer1.jpg");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Bitmap bitmap1 = BitmapFactory.decodeStream(is);
+                image.setImageBitmap(bitmap1);
+                }
+            catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else if(photoPath.equals("cloudGazer2")) {
+            try {
+                image.setVisibility(View.VISIBLE);
+                AssetManager assetManager = getAssets();
+                InputStream is = null;
+                try {
+                    is = assetManager.open("img/cloudGazer2.jpg");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Bitmap bitmap1 = BitmapFactory.decodeStream(is);
+                image.setImageBitmap(bitmap1);
+            }
+            catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else if(photoPath.equals("cloudGazer3")) {
+            try {
+                image.setVisibility(View.VISIBLE);
+                AssetManager assetManager = getAssets();
+                InputStream is = null;
+                try {
+                    is = assetManager.open("img/cloudGazer3.jpg");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Bitmap bitmap1 = BitmapFactory.decodeStream(is);
+                image.setImageBitmap(bitmap1);
+            }
+            catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else {
+
+            //display photo
+            try {
+                image.setVisibility(View.VISIBLE);
 //            Log.d("new", path);
-            final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(photoPath);
-            image.setImageBitmap(bitmap);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+                    final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(photoPath);
+                    image.setImageBitmap(bitmap);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
 
     }
