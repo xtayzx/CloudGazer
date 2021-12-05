@@ -137,8 +137,10 @@ public class ViewEntryActivity extends Activity {
                                 "This entry has been deleted",Toast.LENGTH_SHORT).show();
                         Log.i("VALUE", String.valueOf(titleField.getText()));
                         db.deleteRow(String.valueOf(titleField.getText()));
-                        deleteButton.setText("Entry Deleted");
-                        deleteButton.setBackgroundColor(Color.BLACK);
+                        deleteButton.setVisibility(View.INVISIBLE);
+//                        deleteButton.setText("Entry Deleted");
+//                        deleteButton.setBackgroundColor(Color.BLACK);
+
                     }
                 });
 

@@ -191,19 +191,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/purple_500"
+                android:theme="@style/BlueButton"
                 android:text="Back to Home"
-                android:textColor="@color/white"
                 android:onClick="homeButton"/>
 
             <Button
                 android:id="@+id/deleteButton"
+                android:theme="@style/BlueButton"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delete Entry"
-                android:background="@color/purple_500"
-                android:textColor="@color/white"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"/>
         </LinearLayout>

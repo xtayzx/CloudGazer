@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/light_blue"
     android:padding="20dp">
 
     <TextView
@@ -117,9 +118,8 @@
                 android:id="@+id/getLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#3F51B5"
+                android:theme="@style/BlueButton"
                 android:onClick="showCurrentLocation"
-                android:textSize="10sp"
                 android:text="Location" />
 
         </LinearLayout>
@@ -175,12 +175,7 @@
                     android:paddingBottom="20dp"
                     android:text="@string/weather_des" />
 
-                <Button
-                    android:id="@+id/cloudFinder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="cloudLaunch"
-                    android:text="Types of Clouds" />
+
             </LinearLayout>
 
                 <RadioGroup
@@ -188,6 +183,15 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/weatherSelect"
                     android:layout_weight="2">
+
+                    <Button
+                        android:id="@+id/cloudFinder"
+                        android:theme="@style/BlueButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="cloudLaunch"
+                        android:layout_gravity="right"
+                        android:text="Types of Clouds" />
 
                     <RadioButton
                         android:id="@+id/cumulus"
@@ -234,11 +238,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingRight="25dp"
+                android:paddingRight="70dp"
                 android:text="@string/photo_des"/>
 
             <Button
                 android:id="@+id/cameraButton"
+                android:theme="@style/BlueButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -260,7 +265,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="20dp">
 
@@ -274,6 +279,7 @@
 
             <EditText
                 android:id="@+id/inputDayDes"
+                android:theme="@style/Description"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_weight="1"
@@ -315,12 +321,14 @@
 
         <Button
             android:id="@+id/submitButton"
+            android:theme="@style/BlueButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/submit"
             android:onClick="submit"/>
         <Button
             android:id="@+id/homeButton"
+            android:theme="@style/BlueButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go to Home"
@@ -330,4 +338,4 @@
     </ScrollView>
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5FCFF"
+    android:background="@color/light_blue"
     tools:context=".SignUp">
 
 <!-- LOOK FOR CONSISTENT CONSTRAINT -->
@@ -98,8 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-
-        android:backgroundTint="#FF75CAE4"
+        android:theme="@style/BlueButton"
         android:text="Sign Up"
 
         android:onClick="signedUp"
@@ -114,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
 
-        android:backgroundTint="#FF75CAE4"
+        android:theme="@style/BlueButton"
         android:text="Go To Reflection"
 
         android:onClick="reflectionActivity"

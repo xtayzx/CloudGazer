@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5FCFF"
+    android:background="@color/light_blue"
     android:orientation="vertical"
     tools:context=".Welcome">
 
@@ -98,7 +98,7 @@
         android:layout_marginStart="162dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="162dp"
-        android:backgroundTint="#75CAE4"
+        android:theme="@style/BlueButton"
         android:text="Log In"
 
         android:onClick="logIn"
