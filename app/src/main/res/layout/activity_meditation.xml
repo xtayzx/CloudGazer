@@ -13,8 +13,8 @@
         android:id="@+id/display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="Meditation App"
+        android:layout_marginTop="150dp"
+        android:text="Let's Look at the Sky!"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,17 +25,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="159dp"
+        android:backgroundTint="#FF75CAE4"
+
+        android:onClick="goToReflect"
         android:text="Reflect"
 
-        android:backgroundTint="#FF75CAE4"
         android:visibility="invisible"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/display"
 
-        android:onClick="goToReflect"/>
+        app:layout_constraintTop_toBottomOf="@+id/display" />
+
+    <TextView
+        android:id="@+id/posMsg"
+        android:layout_width="291dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="52dp"
+        android:text="Turn over your phone and place it down to begin the session"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/display" />
+
+    <TextView
+        android:id="@+id/bellMsg"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:text=" A bell will ring at the start and end to guide you "
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/posMsg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
