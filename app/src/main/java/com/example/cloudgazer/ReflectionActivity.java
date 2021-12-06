@@ -119,9 +119,9 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(this, allData, Toast.LENGTH_SHORT).show();
             long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect, user, photo);
             if (id < 0) {
-                Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Could not create entry.", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Entry success!", Toast.LENGTH_SHORT).show();
             }
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
@@ -329,16 +329,13 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
 
             switch (requestCode) {
                 case CAMERA_CAPTURE_IMAGE:
-//                    galleryAddPic(mCurrentPhotoPath);
-//                    galleryAddPic();
-//                    Toast.makeText(this, "File path saved: "+inputPhoto, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "Image has been saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "The image has been saved!", Toast.LENGTH_SHORT).show();
                     previewCapturedImage();
                     break;
             }
         } else if (resultCode == RESULT_CANCELED) {
             // user cancelled Image capture
-            Toast.makeText(this, "User cancelled the capture", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User has cancelled the capture", Toast.LENGTH_SHORT).show();
         } else {
             // failed to capture image
             Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
