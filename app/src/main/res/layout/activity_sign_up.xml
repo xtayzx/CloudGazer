@@ -24,53 +24,19 @@
 
     <TextView
         android:id="@+id/nameTextView3"
+        style="@style/Blue"
         android:layout_width="80dp"
         android:layout_height="16dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:text="Email"
         android:textAlignment="viewStart"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/emailEntry"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nameTextView2"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView2" />
 
     <EditText
         android:id="@+id/passwordEntry"
-        android:layout_width="151dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="90dp"
-        android:ems="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEntry" />
-
-    <TextView
-        android:id="@+id/passwordTextView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="90dp"
-        android:text="Password"
-        android:textAlignment="viewStart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView3" />
-
-    <TextView
-        android:id="@+id/nameTextView2"
-        android:layout_width="80dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="80dp"
-        android:text="Username"
-
-        android:textAlignment="viewStart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/usernameEntry"
         android:layout_width="152dp"
         android:layout_height="46dp"
         android:layout_marginStart="170dp"
@@ -80,10 +46,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEntry" />
+
+    <TextView
+        android:id="@+id/passwordTextView2"
+        style="@style/Blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="Password"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toStartOf="@+id/passwordEntry"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nameTextView3"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView3" />
+
+    <TextView
+        android:id="@+id/nameTextView2"
+        style="@style/Blue"
+        android:layout_width="80dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="80dp"
+        android:text="Username"
+
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toStartOf="@+id/usernameEntry"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/usernameEntry"
+        android:layout_width="152dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="90dp"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
+        style="@style/Blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"

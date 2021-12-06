@@ -39,4 +39,10 @@
         <item name="android:textSize">26dp</item>
 <!--                <item name="android:fontFeatureSettings">smcp</item>-->
     </style>
+
+    <style name="Blue" parent="Widget.AppCompat.TextView">
+        <!--        <item name="android:background">@color/dark_navyblue</item>-->
+        <item name="android:textColor">@color/dark_navyblue</item>
+        <!--                <item name="android:fontFeatureSettings">smcp</item>-->
+    </style>
 </resources>
