@@ -17,6 +17,7 @@
         android:text="Let's Look at the Sky!"
         android:gravity="center"
         android:textSize="34sp"
+        style="@style/TitleEntry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +45,7 @@
         android:layout_width="291dp"
         android:layout_height="65dp"
         android:layout_marginTop="52dp"
+        style="@style/Subtitle"
         android:text="Turn over your phone and place it down to begin the session"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -56,6 +58,8 @@
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
+        style="@style/Subtitle"
+
         android:text=" A bell will ring at the start and end to guide you "
         android:textAlignment="center"
         android:textSize="20sp"

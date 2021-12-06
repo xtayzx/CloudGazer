@@ -146,8 +146,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:max="10"
                 android:paddingTop="15dp"
-                android:max="10"/>
+                android:progressTint="#3F51B5"
+                android:thumbTint="#3F51B5"
+                 />
 
             <EditText
                 android:id="@+id/rateDay"
@@ -160,101 +163,134 @@
         </LinearLayout>
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="20dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="273dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/weatherTextView"
                     style="@style/Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="20dp"
+                    android:layout_weight="2"
                     android:text="@string/weather_des" />
+
+                <Button
+                    android:id="@+id/cloudFinder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="cloudLaunch"
+                    android:text="Types of Clouds"
+                    android:theme="@style/BlueButton" />
 
 
             </LinearLayout>
 
                 <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/weatherSelect"
-                    android:layout_weight="2">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TableRow>
+                            <RadioButton
+                                android:id="@+id/cirrus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Cirrus" />
 
-                    <Button
-                        android:id="@+id/cloudFinder"
-                        android:theme="@style/BlueButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="cloudLaunch"
-                        android:layout_gravity="right"
-                        android:layout_marginBottom="10dp"
-                        android:text="Types of Clouds" />
+                            <RadioButton
+                                android:id="@+id/cirrocumulus"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cirrocumulus" />
+                        </TableRow>
 
-                    <RadioButton
-                        android:id="@+id/cirrus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cirrus" />
-                    <RadioButton
-                        android:id="@+id/cirrocumulus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cirrocumulus" />
-                    <RadioButton
-                        android:id="@+id/cirrostratus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cirrostratus" />
-                    <RadioButton
-                        android:id="@+id/altocumulus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Altocumulus" />
-                    <RadioButton
-                        android:id="@+id/altostratus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Altostratus" />
-                    <RadioButton
-                        android:id="@+id/nimbostratus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Nimbostratus" />
-                    <RadioButton
-                        android:id="@+id/cumulus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cumulus" />
-                    <RadioButton
-                        android:id="@+id/cumulonimbus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cumulonimbus" />
-                    <RadioButton
-                        android:id="@+id/stratocumulus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Stratocumulus" />
-                    <RadioButton
-                        android:id="@+id/stratus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Stratus" />
+                        <TableRow>
+                            <RadioButton
+                                android:id="@+id/cirrostratus"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cirrostratus" />
+
+                            <RadioButton
+                                android:id="@+id/altocumulus"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Altocumulus" />
+                        </TableRow>
+
+                    <TableRow>
+                        <RadioButton
+                            android:id="@+id/altostratus"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Altostratus" />
+
+                        <RadioButton
+                            android:id="@+id/nimbostratus"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nimbostratus" />
+                    </TableRow>
+
+                        <TableRow>
+                            <RadioButton
+                                android:id="@+id/cumulus"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cumulus" />
+
+                            <RadioButton
+                                android:id="@+id/cumulonimbus"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cumulonimbus" />
+
+                        </TableRow>
+
+                    <TableRow>
+                        <RadioButton
+                            android:id="@+id/stratocumulus"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Stratocumulus" />
+
+                        <RadioButton
+                            android:id="@+id/stratus"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Stratus" />
+                    </TableRow>
+
                     <RadioButton
                         android:id="@+id/other"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Other" />
+
+                    </TableLayout>
+
                 </RadioGroup>
+
 
         </LinearLayout>
 
