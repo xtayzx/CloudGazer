@@ -11,12 +11,12 @@
 
     <TextView
         android:id="@+id/display"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="180dp"
         android:text="Let's Look at the Sky!"
         android:gravity="center"
-        android:textSize="34sp"
+        android:textSize="30sp"
         style="@style/TitleEntry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +26,9 @@
         android:id="@+id/reflect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="160dp"
         android:backgroundTint="#FF75CAE4"
 
         android:onClick="goToReflect"
@@ -42,27 +42,27 @@
 
     <TextView
         android:id="@+id/posMsg"
-        android:layout_width="291dp"
+        android:layout_width="250dp"
         android:layout_height="65dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         style="@style/Subtitle"
         android:text="Turn over your phone and place it down to begin the session"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/display" />
 
     <TextView
         android:id="@+id/bellMsg"
-        android:layout_width="320dp"
+        android:layout_width="250dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         style="@style/Subtitle"
 
         android:text=" A bell will ring at the start and end to guide you "
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/posMsg" />
