@@ -26,15 +26,15 @@
                 android:text="Meditation"
                 android:onClick="meditationActivity"/>
 
-            <Button
-                android:id="@+id/addButton"
-                android:theme="@style/BlueButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16sp"
-                android:layout_weight="1"
-                android:text="Reflection"
-                android:onClick="reflectionActivity"/>
+<!--            <Button-->
+<!--                android:id="@+id/addButton"-->
+<!--                android:theme="@style/BlueButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16sp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Reflection"-->
+<!--                android:onClick="reflectionActivity"/>-->
 
             <Button
                 android:id="@+id/communityButton"
@@ -54,13 +54,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/BlackItalic"
+                android:layout_weight="4"
                 android:text="Search by Date (yyyy/mm/dd): "/>
 
             <EditText
                 android:id="@+id/searchEntry"
+                android:layout_marginStart="20dp"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -71,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="20dp"
-                android:text="Search"
+                android:text="Go"
                 android:onClick="searchActivity"/>
         </LinearLayout>
 
