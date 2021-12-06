@@ -123,21 +123,20 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 }
 
-                if (counter == 150) {
+                if (counter == 10) {
                     played = false;
                     if (played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                         beep.start();
                         played = true;
                     }
-
+                    displaymsg.setText("How Were the Clouds Today?");
                     facedown = false;
                     meditate = true;
                     counter = 0;
                 }
             }
             if (meditate == true){
-                displaymsg.setText("How Were the Clouds Today?");
                 directionMsg.setVisibility(View.INVISIBLE);
                 countMsg.setVisibility(View.INVISIBLE);
                 reflect.setVisibility(View.VISIBLE);

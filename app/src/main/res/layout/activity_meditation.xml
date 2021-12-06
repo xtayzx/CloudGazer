@@ -11,10 +11,11 @@
 
     <TextView
         android:id="@+id/display"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:text="Let's Look at the Sky!"
+        android:gravity="center"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
