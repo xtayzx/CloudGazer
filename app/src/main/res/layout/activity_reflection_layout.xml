@@ -200,6 +200,11 @@
                         android:text="Types of Clouds" />
 
                     <RadioButton
+                        android:id="@+id/cirrus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cirrus" />
+                    <RadioButton
                         android:id="@+id/cumulus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -214,18 +219,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Cumulonimbus" />
-                    <RadioButton
-                        android:id="@+id/cirrus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cirrus" />
+
                     <RadioButton
                         android:id="@+id/altocumulus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Altocumulus" />
                     <RadioButton
-                        android:id="@+id/otherRadioButton"
+                        android:id="@+id/other"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Other" />

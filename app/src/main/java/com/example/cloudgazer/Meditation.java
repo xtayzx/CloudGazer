@@ -89,10 +89,14 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
             Log.i(TAG, "Change = " + change);
 
 // This would mean the phone is not moving and if the light sensor is low than it is flipped over.
-            if (change <= 1 ){ // to intense
+
+            if (change <= 1 ){
+
                 still = true;
             }
-
+            else {
+                still = false;
+            }
         }
         Log.i(TAG, "still = " + still);
 
@@ -100,10 +104,8 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
             Log.i(TAG, "light found");
 
             float lux = event.values[0];
-            Log.i(TAG, "meditate: " + meditate);
 
             if (lux <= 5 && meditate == false) {
-                Log.i(TAG, "meditate: " + meditate);
                 facedown = true;
 
                 if (facedown == true) {

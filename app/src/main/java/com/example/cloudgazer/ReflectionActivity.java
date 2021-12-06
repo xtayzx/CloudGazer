@@ -180,7 +180,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
             case R.id.altocumulus:
                 inputWeather = "Altocumulus";
                 break;
-            case R.id.otherRadioButton:
+            case R.id.other:
                 inputWeather = "Other";
                 break;
         }
