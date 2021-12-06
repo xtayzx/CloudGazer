@@ -17,11 +17,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 import utils.CameraUtils;
 
-public class ViewEntryActivity extends Activity {
+public class ViewEntryActivity extends AppCompatActivity {
 
     Button deleteButton;
     Boolean delete;
@@ -106,6 +108,8 @@ public class ViewEntryActivity extends Activity {
                 cursor.moveToNext();
             }
         }
+
+//        getSupportActionBar().setTitle("Cloud Gazer");
 
         //display photo
         try {
