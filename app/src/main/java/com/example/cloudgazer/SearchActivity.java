@@ -62,7 +62,7 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
                 String title = cursor.getString(index1);
                 String date = cursor.getString(index2);
                 String dayDes = cursor.getString(index3);
-                String s = title + "," + date + "," + dayDes;
+                String s = title + "~" + date + "~" + dayDes;
                 mArrayList.add(s);
                 cursor.moveToNext();
             }

@@ -27,6 +27,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -44,7 +45,7 @@ import java.util.Date;
 
 import utils.CameraUtils;
 
-public class ReflectionActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener{
+public class ReflectionActivity extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener{
     private SeekBar thisSeekBar;
     private RadioGroup communitySelect, weatherSelect;
     private int rateDayValue;
@@ -89,6 +90,8 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
         db = new MyDatabase(this);
 
         checkLocationPermission();
+
+        getSupportActionBar().setTitle("Reflection");
 
     }
 
@@ -284,6 +287,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 //if request is cancelled, the result arrays are empty.
@@ -311,6 +315,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
 
             switch (requestCode) {

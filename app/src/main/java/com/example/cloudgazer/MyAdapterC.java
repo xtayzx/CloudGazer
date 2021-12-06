@@ -37,6 +37,7 @@ public class MyAdapterC extends RecyclerView.Adapter<MyAdapterC.MyViewHolderC> {
 
     @Override
     public void onBindViewHolder(MyAdapterC.MyViewHolderC holder, int position) {
+        //as most entries will most likely have commas, this needed to be changed to a different symbol to separate the values
         String[] results = (list.get(position).toString()).split("~");
         holder.titleView.setText(results[0]);
         holder.dateView.setText(results[1]);

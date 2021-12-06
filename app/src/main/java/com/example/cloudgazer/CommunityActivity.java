@@ -11,11 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CommunityActivity extends Activity implements AdapterView.OnItemClickListener{
+public class CommunityActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
     MyDatabase db;
     MyAdapterC myAdapter;
@@ -68,6 +69,8 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
             Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
             myAdapter = new MyAdapterC(mArrayList);
             myRecycler.setAdapter(myAdapter);
+
+        getSupportActionBar().setTitle("Cloud Gazer - Community");
     }
 
     public void backToHome (View view)

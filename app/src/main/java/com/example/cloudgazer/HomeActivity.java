@@ -15,11 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends Activity implements AdapterView.OnItemClickListener{
+public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
     MyDatabase db;
     MyAdapter myAdapter;
@@ -30,6 +31,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         myRecycler = (RecyclerView) findViewById(R.id.recycler);
 
         db = new MyDatabase(this);
@@ -71,6 +73,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
 
+        getSupportActionBar().setTitle("Welcome back " +savedUsername+"!");
     }
 
     public void meditationActivity (View view)

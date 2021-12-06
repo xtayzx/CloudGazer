@@ -11,12 +11,32 @@
         <item name="android:paddingBottom">6dp</item>
     </style>
 
-    <style name="NameTitle" parent="Widget.AppCompat.TextView">
+    <style name="BlackItalic" parent="Widget.AppCompat.TextView">
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">@color/dark_navyblue</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Date" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/dark_navyblue</item>
+    </style>
+
+    <style name="Subtitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/dark_navyblue</item>
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:fontFeatureSettings">smcp</item>-->
+    </style>
+
+    <style name="SubtitleEntry" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/dark_navyblue</item>
+        <item name="android:textStyle">bold</item>
+        <!--        <item name="android:fontFeatureSettings">smcp</item>-->
+    </style>
+
+    <style name="TitleEntry" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/dark_navyblue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">30dp</item>
+        <!--        <item name="android:fontFeatureSettings">smcp</item>-->
     </style>
 </resources>
