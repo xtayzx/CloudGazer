@@ -33,7 +33,6 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -56,7 +55,7 @@ public class ReflectionActivity extends Activity implements View.OnClickListener
     String inputCommunity, inputWeather, inputPhoto;
     private FusedLocationProviderClient fusedLocationClient;
     private static final int CAMERA_CAPTURE_IMAGE = 1;
-    GoogleMap myMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
