@@ -128,11 +128,6 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    public void home(View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-    }
-
     private SeekBar.OnSeekBarChangeListener examSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
 
         @Override

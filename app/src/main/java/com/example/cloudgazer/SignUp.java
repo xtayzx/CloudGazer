@@ -31,11 +31,6 @@ public class SignUp extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void reflectionActivity(View v){
-        Intent i  = new Intent(this, ReflectionActivity.class);
-        startActivity(i);
-    }
-
     public void submit(View view){
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();

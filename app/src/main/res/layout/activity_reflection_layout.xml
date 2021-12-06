@@ -372,13 +372,6 @@
             android:layout_height="wrap_content"
             android:text="@string/submit"
             android:onClick="submit"/>
-        <Button
-            android:id="@+id/homeButton"
-            android:theme="@style/BlueButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Go to Home"
-            android:onClick="home"/>
         </LinearLayout>
 
     </ScrollView>
