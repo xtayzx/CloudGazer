@@ -89,7 +89,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
             Log.i(TAG, "Change = " + change);
 
 // This would mean the phone is not moving and if the light sensor is low than it is flipped over.
-            if (change <= 2 ){ // to intense
+            if (change <= 1 ){ // to intense
                 still = true;
             }
 
@@ -121,7 +121,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 }
 
-                if (counter == 60) {
+                if (counter == 150) {
                     played = false;
                     if (played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
