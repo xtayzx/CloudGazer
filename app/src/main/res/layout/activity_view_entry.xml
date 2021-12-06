@@ -152,7 +152,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingTop="16dp">
             <TextView
                 android:id="@+id/dayDesTextView"
@@ -165,8 +165,9 @@
                 android:id="@+id/dayDesEntry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dp"
                 android:layout_weight="1"
-                android:text="Date Entry Input" />
+                android:text="Entry Input" />
         </LinearLayout>
 
         <LinearLayout

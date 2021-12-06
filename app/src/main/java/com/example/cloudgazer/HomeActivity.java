@@ -58,7 +58,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     String title = cursor.getString(index1);
                     String date = cursor.getString(index2);
                     String dayDes = cursor.getString(index3);
-                    String row = title + "," + date + "," + dayDes;
+                    String row = title + "~" + date + "~" + dayDes;
                     mArrayList.add(row);
                     cursor.moveToNext();
                 }

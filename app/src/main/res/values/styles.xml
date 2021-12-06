@@ -4,7 +4,19 @@
         <item name="android:backgroundTint">@color/dark_blue</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
-    <style name="Description" parent="Widget.AppCompat.EditText">
-        <item name="android:backgroundTint">@color/dark_blue</item>
+
+    <style name="RowTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/dark_navyblue</item>
+        <item name="android:paddingBottom">6dp</item>
+    </style>
+
+    <style name="NameTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/dark_navyblue</item>
+    </style>
+
+    <style name="Date" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/dark_navyblue</item>
     </style>
 </resources>

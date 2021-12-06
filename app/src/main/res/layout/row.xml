@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="94dp"
     android:paddingBottom="16dp"
     android:id="@+id/listLayout">
 
@@ -10,24 +10,32 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:text="2000/00/00"
+        android:theme="@style/Date"
         android:id="@+id/dateRow"
         android:layout_weight="1"
         android:gravity="left" />
 
-    <TextView
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:text="Cloud Des"
-        android:id="@+id/titleRow"
-        android:layout_weight="1"
-        android:gravity="left"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_weight="2"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="Day Des"
-        android:id="@+id/dayDesRow"
-        android:layout_weight="1"
-        android:gravity="left"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cloud Des"
+            android:id="@+id/titleRow"
+            android:theme="@style/RowTitle"
+            android:gravity="left"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Day Des"
+            android:id="@+id/dayDesRow"
+            android:layout_weight="1"
+            android:gravity="left"/>
+    </LinearLayout>
 
 </LinearLayout>

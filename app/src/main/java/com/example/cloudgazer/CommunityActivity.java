@@ -55,7 +55,7 @@ public class CommunityActivity extends Activity implements AdapterView.OnItemCli
                     String date = cursor.getString(index2);
                     String dayDes = cursor.getString(index3);
                     String user = cursor.getString(index4);
-                    String s = title + "," + date + "," + dayDes+ "," + user;
+                    String s = title + "~" + date + "~" + dayDes+ "~" + user;
                     mArrayList.add(s);
                     cursor.moveToNext();
                 }

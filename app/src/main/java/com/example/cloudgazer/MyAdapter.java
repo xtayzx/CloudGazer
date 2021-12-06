@@ -36,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyAdapter.MyViewHolder holder, int position) {
-        String[] results = (list.get(position).toString()).split(",");
+        String[] results = (list.get(position).toString()).split("~");
         holder.titleView.setText(results[0]);
         holder.dateView.setText(results[1]);
         holder.dayDesView.setText(results[2]);
