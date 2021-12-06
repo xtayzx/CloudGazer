@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 import utils.CameraUtils;
 
-public class CommunityViewEntryActivity extends AppCompatActivity {
+public class CommunityViewEntryActivity extends Activity {
 
     MyDatabase db;
     MyHelper helper;
@@ -105,7 +105,7 @@ public class CommunityViewEntryActivity extends AppCompatActivity {
                 userField.setText(userEntry);
                 photoPath = entryPhotoPath;
 
-                getSupportActionBar().setTitle("Cloud Gazer - Community");
+//                getSupportActionBar().setTitle("Cloud Gazer - Community");
 
                 cursor.moveToNext();
             }

@@ -90,7 +90,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
 
         checkLocationPermission();
 
-        getSupportActionBar().setTitle("Reflection");
+        getSupportActionBar().setTitle("Cloud Gazer - Reflection");
 
     }
 
