@@ -23,7 +23,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
     private static final String TAG = "TAG";
 
-    TextView displaymsg;
+    TextView displaymsg, countMsg, directionMsg;
     Button reflect;
 
     private SensorManager mSensor;
@@ -46,6 +46,8 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
         setContentView(R.layout.activity_meditation);
 
         displaymsg = (TextView) findViewById(R.id.display);
+        countMsg = (TextView) findViewById(R.id.bellMsg);
+        directionMsg = (TextView) findViewById(R.id.posMsg);
         reflect = (Button) findViewById(R.id.reflect);
 
         beep = new MediaPlayer();
@@ -109,9 +111,10 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                     counter++;
                     Log.i(TAG, "counter = " + counter);
                     String time = String.valueOf(counter);
-                    displaymsg.setText("counter : " + time);
+                    displaymsg.setText("Keep Looking Up");
+                    countMsg.setText("Timeleft: " + counter);
                     if(played == false){
-                        beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                        beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                         beep.start();
                         played = true;
                     }
@@ -121,18 +124,20 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 if (counter == 60) {
                     played = false;
                     if (played == false){
-                        beep = MediaPlayer.create(getApplicationContext(), R.raw.beep_00);
+                        beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                         beep.start();
                         played = true;
                     }
 
-                    displaymsg.setText("all done");
                     facedown = false;
                     meditate = true;
                     counter = 0;
                 }
             }
             if (meditate == true){
+                displaymsg.setText("How Were the Clouds Today?");
+                directionMsg.setVisibility(View.INVISIBLE);
+                countMsg.setVisibility(View.INVISIBLE);
                 reflect.setVisibility(View.VISIBLE);
             }
             else {
