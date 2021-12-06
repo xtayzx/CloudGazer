@@ -13,7 +13,7 @@
         android:id="@+id/MainHeading"
         android:layout_width="227dp"
         android:layout_height="74dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="CLOUD GAZER"
         style="@style/TitleEntry"
         android:textAlignment="center"
@@ -27,6 +27,7 @@
 
     <TextView
         android:id="@+id/subtitle"
+        android:textColor="@color/dark_navyblue"
         android:layout_width="189dp"
         android:layout_height="35dp"
         android:layout_marginStart="32dp"
@@ -36,6 +37,7 @@
         style="@style/Subtitle"
         android:text="look up to the sky"
         android:textAlignment="center"
+
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/MainHeading"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +75,7 @@
 
     <TextView
         android:id="@+id/nameTextView"
+        style="@style/Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -84,6 +87,7 @@
 
     <TextView
         android:id="@+id/passwordTextView"
+        style="@style/Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
