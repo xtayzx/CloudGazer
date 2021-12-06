@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 import utils.CameraUtils;
 
-public class ViewEntryActivity extends AppCompatActivity {
+public class ViewEntryActivity extends Activity {
 
     Button deleteButton;
     Boolean delete;
