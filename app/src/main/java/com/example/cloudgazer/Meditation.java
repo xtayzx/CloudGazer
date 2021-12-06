@@ -91,7 +91,6 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 // This would mean the phone is not moving and if the light sensor is low than it is flipped over.
 
             if (change <= 1 ){
-
                 still = true;
             }
             else {
