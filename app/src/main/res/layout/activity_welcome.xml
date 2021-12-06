@@ -27,7 +27,6 @@
 
     <TextView
         android:id="@+id/subtitle"
-        android:textColor="@color/dark_navyblue"
         android:layout_width="189dp"
         android:layout_height="35dp"
         android:layout_marginStart="32dp"
