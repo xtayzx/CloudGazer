@@ -51,7 +51,7 @@ public class Welcome extends AppCompatActivity {
         else if (enteredUsername.equals(username) && enteredPassword.equals(password))
         {
             Toast.makeText(this, "Entry success!", Toast.LENGTH_LONG).show();
-            Intent intent= new Intent(this, Meditation.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
 
