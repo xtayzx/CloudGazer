@@ -185,7 +185,9 @@
                     style="@style/SubtitleEntry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="About the day" />
+                    android:textSize="18dp"
+                    android:fontFeatureSettings="smcp"
+                    android:text="about the day" />
 
                 <TextView
                     android:id="@+id/dayDesEntry"
