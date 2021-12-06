@@ -19,13 +19,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import utils.CameraUtils;
 
-public class CommunityViewEntryActivity extends Activity {
+public class CommunityViewEntryActivity extends AppCompatActivity {
 
     MyDatabase db;
     MyHelper helper;
@@ -102,6 +104,9 @@ public class CommunityViewEntryActivity extends Activity {
                 communityField.setText(communityEntry);
                 userField.setText(userEntry);
                 photoPath = entryPhotoPath;
+
+                getSupportActionBar().setTitle("Cloud Gazer - Community");
+
                 cursor.moveToNext();
             }
 
@@ -110,6 +115,8 @@ public class CommunityViewEntryActivity extends Activity {
                 cursor.moveToNext();
             }
         }
+
+
 
         if(photoPath.equals("cloudGazer1")) {
             try {

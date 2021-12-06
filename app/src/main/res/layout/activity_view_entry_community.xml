@@ -10,7 +10,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        style="@style/TitleEntry"
         android:text="Title Entry"
         android:paddingBottom="16dp"/>
 
@@ -177,22 +177,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="16dp">
+                android:orientation="vertical"
+                android:paddingTop="28dp">
                 <TextView
                     android:id="@+id/dayDesTextView"
                     style="@style/SubtitleEntry"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingRight="20dp"
-                    android:text="More about the day: " />
+                    android:text="About the day" />
 
                 <TextView
                     android:id="@+id/dayDesEntry"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
                     android:layout_weight="1"
-                    android:text="Date Entry Input" />
+                    android:text="Entry Input" />
             </LinearLayout>
 
             <LinearLayout
