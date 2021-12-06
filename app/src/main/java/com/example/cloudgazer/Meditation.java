@@ -113,7 +113,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                     Log.i(TAG, "counter = " + counter);
                     String time = String.valueOf(counter);
                     displaymsg.setText("Keep Looking Up");
-                    countMsg.setText("Timeleft: " + counter);
+                    countMsg.setText("Time: " + counter);
                     if(played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                         beep.start();
@@ -122,7 +122,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 }
 
-                if (counter == 10) {
+                if (counter == 150) {
                     played = false;
                     if (played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
