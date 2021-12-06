@@ -205,26 +205,50 @@
                         android:layout_height="wrap_content"
                         android:text="Cirrus" />
                     <RadioButton
-                        android:id="@+id/cumulus"
+                        android:id="@+id/cirrocumulus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cumulus" />
+                        android:text="Cirrocumulus" />
                     <RadioButton
-                        android:id="@+id/stratus"
+                        android:id="@+id/cirrostratus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Stratus" />
-                    <RadioButton
-                        android:id="@+id/cumulonimbus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cumulonimbus" />
-
+                        android:text="Cirrostratus" />
                     <RadioButton
                         android:id="@+id/altocumulus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Altocumulus" />
+                    <RadioButton
+                        android:id="@+id/altostratus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Altostratus" />
+                    <RadioButton
+                        android:id="@+id/nimbostratus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nimbostratus" />
+                    <RadioButton
+                        android:id="@+id/cumulus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cumulus" />
+                    <RadioButton
+                        android:id="@+id/cumulonimbus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cumulonimbus" />
+                    <RadioButton
+                        android:id="@+id/stratocumulus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Stratocumulus" />
+                    <RadioButton
+                        android:id="@+id/stratus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Stratus" />
                     <RadioButton
                         android:id="@+id/other"
                         android:layout_width="match_parent"

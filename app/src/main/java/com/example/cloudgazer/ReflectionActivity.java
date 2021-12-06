@@ -180,6 +180,21 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
             case R.id.altocumulus:
                 inputWeather = "Altocumulus";
                 break;
+            case R.id.cirrocumulus:
+                inputWeather = "Cirrocumulus";
+                break;
+            case R.id.cirrostratus:
+                inputWeather = "Cirrostratus";
+                break;
+            case R.id.altostratus:
+                inputWeather = "Altostratus";
+                break;
+            case R.id.nimbostratus:
+                inputWeather = "Nimbostratus";
+                break;
+            case R.id.stratocumulus:
+                inputWeather = "Stratocumulus";
+                break;
             case R.id.other:
                 inputWeather = "Other";
                 break;
