@@ -100,11 +100,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
             locationString = locationEntry.getText().toString();
             Toast.makeText(this, "Searching for " + locationString, Toast.LENGTH_SHORT).show();
 
-            SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putString("locentry", locationString);
-            Toast.makeText(this, "Location Saved", Toast.LENGTH_LONG).show();
-            editor.commit();
 
             List<Address> list = null;
             try {
@@ -122,6 +117,13 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
                 double lng = add.getLongitude();
                 gotoLocation(lat, lng, 15);
 
+                SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putString("locentry", locationString);
+                editor.putString("lat", String.valueOf(lat));
+                editor.putString("lng", String.valueOf(lng));
+                Toast.makeText(this, "Location Saved", Toast.LENGTH_LONG).show();
+                editor.commit();
 
                 MarkerOptions options = new MarkerOptions()
                         .title(locality)
