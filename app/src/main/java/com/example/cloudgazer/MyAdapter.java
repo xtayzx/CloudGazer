@@ -72,9 +72,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(context,
-                    "You have clicked " + ((TextView)view.findViewById(R.id.titleRow)).getText().toString(),
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,
+//                    "You have clicked " + ((TextView)view.findViewById(R.id.titleRow)).getText().toString(),
+//                    Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(view.getContext(), ViewEntryActivity.class);
             intent.putExtra("title",((TextView)view.findViewById(R.id.titleRow)).getText().toString() );
