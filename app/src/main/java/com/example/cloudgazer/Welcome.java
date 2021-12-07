@@ -39,13 +39,16 @@ public class Welcome extends AppCompatActivity {
         String enteredUsername = sharedPrefs.getString("enteredUsername", DEFAULT);
         String enteredPassword = sharedPrefs.getString("enteredPassword", DEFAULT);
 
+        //see values for username and password
         Log.i("TESTING", "SET USERNAME: "+username+" || INPUTTED: "+enteredUsername+" || SET PASSWORD: "+password+" || INPUTTED: "+enteredPassword);
 
+        //if there is nothing saved in sharedprefs
         if (username.equals(DEFAULT)||password.equals(DEFAULT))
         {
             Toast.makeText(this, "No data found. Please create an account.", Toast.LENGTH_LONG).show();
         }
 
+        //if there is success and typed values match sharedprefs
         else if (enteredUsername.equals(username) && enteredPassword.equals(password))
         {
             Toast.makeText(this, "Entry success!", Toast.LENGTH_LONG).show();
@@ -53,6 +56,7 @@ public class Welcome extends AppCompatActivity {
             startActivity(intent);
         }
 
+        //if typed values are incorrect
         else if (enteredUsername != username && enteredPassword != password){
             Toast.makeText(this, "Incorrect username and/or password. Try again or create another account.", Toast.LENGTH_LONG).show();
         }

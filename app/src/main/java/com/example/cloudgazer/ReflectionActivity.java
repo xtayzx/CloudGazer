@@ -106,14 +106,12 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         String photo = inputPhoto;
         String communitySelect = inputCommunity;
 
-
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String user = sharedPrefs.getString("username", DEFAULT);
         String lat = sharedPrefs.getString("lat", DEFAULT);
         String lng = sharedPrefs.getString("lng", DEFAULT);
 
         Log.i("TEST", "Values lat: "+lat+" and values lng: "+lng);
-
 
         String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect + " " + user + " " + photo + " " + lat + " " + lng;
 
@@ -201,6 +199,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
 
+        //set the community value according to the radio button
         switch (checkedId) {
             case R.id.yesRadioButton:
                 inputCommunity = "Yes";
@@ -246,6 +245,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
     public boolean checkLocationPermission() {
+        //make sure location permissions are on, otherwise the app will crash once the map activity is launched
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             //show an explanation?
@@ -306,19 +306,18 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    /**
-     * Receiving activity result method will be called after closing the camera
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case CAMERA_CAPTURE_IMAGE:
+                    //once returning back to the activity, set the image in the layout
                     Toast.makeText(this, "The image has been saved!", Toast.LENGTH_SHORT).show();
                     previewCapturedImage();
                     break;
                 case RETURN_MAP:
+                    //once returning back to the activity, set the location in the layout
                     Toast.makeText(this, "Back to Reflection", Toast.LENGTH_SHORT).show();
                     if(data.hasExtra("location")) {
                         inputLocation.setText(data.getExtras().getString("location"));
@@ -338,13 +337,10 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         dispatchTakePictureIntent(CAMERA_CAPTURE_IMAGE);
     }
 
-    /*
-     * Display image from a path to ImageView
-     */
+    //display image from a path to imageView
     private void previewCapturedImage() {
         try {
             image.setVisibility(View.VISIBLE);
-//            Log.d("preview", inputPhoto);
             final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(inputPhoto);
             image.setImageBitmap(bitmap);
         } catch (NullPointerException e) {

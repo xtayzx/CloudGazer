@@ -52,7 +52,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        //create map  displa
+        //create map display
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -63,7 +63,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
     @Override
     public void onMapReady(GoogleMap map) {
-        //set up map to open at specified location and allow for any changes/ inputs
+        //set up map to open at specified location and allow for any changes/inputs
         myMap = map;
         checkLocationPermission();
         myMap.setMyLocationEnabled(true);
@@ -73,9 +73,9 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     }
 
     public void saveLoc(View v){
-//Save location boolean to ensure that there is a inputted value
+        //Save location boolean to ensure that there is a inputted value
         if(locationEntry.getText().toString() == null || locationEntry.getText().toString() == " ") {
-            Toast.makeText(this, "There needs to be a name for your current location! Please type in a name in the search bar and then save again.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "No location entered. Please try again.", Toast.LENGTH_LONG).show();
         }
         finish();
     }

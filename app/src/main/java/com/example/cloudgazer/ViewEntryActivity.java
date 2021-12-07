@@ -134,6 +134,7 @@ public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
 
         }
 
+        //set lat and lng values
         lat = Double.parseDouble(latValue);
         lng = Double.parseDouble(lngValue);
 
@@ -193,7 +194,7 @@ public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
         startActivity(intent);
     }
 
-    //set up map in the saved postiion of that entry
+    //set up map in the saved position of that entry
     @Override
     public void onMapReady(GoogleMap map) {
         myMap = map;

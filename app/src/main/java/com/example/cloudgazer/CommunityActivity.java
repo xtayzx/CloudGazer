@@ -67,9 +67,12 @@ public class CommunityActivity extends AppCompatActivity implements AdapterView.
                 }
             }
             Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
+
+        //set the recyclerview
             myAdapter = new MyAdapterC(mArrayList);
             myRecycler.setAdapter(myAdapter);
 
+        //set the title bar
         getSupportActionBar().setTitle("Cloud Gazer - Community");
     }
 
