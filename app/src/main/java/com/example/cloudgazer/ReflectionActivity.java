@@ -56,6 +56,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
     String inputCommunity, inputWeather, inputPhoto;
     private FusedLocationProviderClient fusedLocationClient;
     private static final int CAMERA_CAPTURE_IMAGE = 1;
+    private static final int RETURN_MAP = 2;
 
 
     @Override
@@ -92,9 +93,9 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
 
         getSupportActionBar().setTitle("Cloud Gazer - Reflection");
 
-        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        String locEntry = sharedPrefs.getString("locentry", DEFAULT);
-        inputLocation.setText(locEntry);
+       // SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//        String locEntry = sharedPrefs.getString("locentry", DEFAULT);
+//        inputLocation.setText(locEntry);
 
     }
 
@@ -219,6 +220,12 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    public void launchLocation(View v) {
+        Intent i = new Intent(this, Map.class);
+        i.putExtra("location", "Location Retrieved");
+        startActivityForResult(i, RETURN_MAP);
+    }
+
 //    public void showCurrentLocation(View v) {
 //        Log.i("TEST", "button is pressed");
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -330,11 +337,16 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-
             switch (requestCode) {
                 case CAMERA_CAPTURE_IMAGE:
                     Toast.makeText(this, "The image has been saved!", Toast.LENGTH_SHORT).show();
                     previewCapturedImage();
+                    break;
+                case RETURN_MAP:
+                    Toast.makeText(this, "Back to Reflection", Toast.LENGTH_SHORT).show();
+                    if(data.hasExtra("location")) {
+                        inputLocation.setText(data.getExtras().getString("location"));
+                    }
                     break;
             }
         } else if (resultCode == RESULT_CANCELED) {

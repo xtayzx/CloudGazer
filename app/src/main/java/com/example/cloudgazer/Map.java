@@ -76,9 +76,18 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
-    public void saveLoc (View v){
-        Intent i = new Intent(this, ReflectionActivity.class);
-        startActivity(i);
+    public void saveLoc(View v){
+//        Intent i = new Intent(this, ReflectionActivity.class);
+//        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        Intent data = getIntent();
+        data.putExtra("location", locationString);
+        setResult(RESULT_OK, data);
+        super.finish();
     }
 
 

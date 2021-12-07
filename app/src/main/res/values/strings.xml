@@ -3,8 +3,8 @@
     <string name="submit">Submit</string>
     <string name="cloud_des">What cloud did you see today?</string>
     <string name="rate_des">Rate your day today:</string>
-    <string name="weather_des">Which clouds did you see?</string>
-    <string name="day_des">Describe your day today:</string>
+    <string name="weather_des">What type of clouds did you see?</string>
+    <string name="day_des">Describe your day:</string>
     <string name="share_des">Share your day to the community?</string>
     <string name="photo_des">Take a Photo!</string>
     <string name="padding">16dp</string>

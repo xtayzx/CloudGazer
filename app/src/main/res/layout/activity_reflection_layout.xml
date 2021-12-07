@@ -60,7 +60,7 @@
                 style="@style/Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="Date (yyyy/mm/dd) : " />
 
             <EditText
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:theme="@style/BlueButton"
-                android:onClick="showCurrentLocation"
+                android:onClick="launchLocation"
                 android:text="Location" />
 
         </LinearLayout>
