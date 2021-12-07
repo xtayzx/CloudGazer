@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
         editor.putString("username", usernameEditText.getText().toString());
         editor.putString("email", emailEditText.getText().toString());
         editor.putString("password", passwordEditText.getText().toString());
-        Toast.makeText(this, "Name, email and password have been saved to Preferences", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Name, email and password have been saved!", Toast.LENGTH_LONG).show();
         editor.commit();
     }
 

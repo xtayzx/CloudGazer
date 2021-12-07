@@ -24,9 +24,6 @@ public class Welcome extends AppCompatActivity {
 
         usernameEntered = findViewById(R.id.usernameEntry);
         passwordEntered = findViewById(R.id.passwordEntry);
-
-        //check to see if there is anything saved under sharedPreferences
-        //checkData();
     }
 
     public void logIn(View v){

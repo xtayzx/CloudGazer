@@ -71,6 +71,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     }
 
     public void saveLoc(View v){
+
+        if(locationEntry.getText().toString() == null || locationEntry.getText().toString() == " ") {
+            Toast.makeText(this, "There needs to be a name for your current location! Please type in a name in the search bar and then save again.", Toast.LENGTH_LONG).show();
+        }
         finish();
     }
 
@@ -85,7 +89,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
     public void geolocate(View v) {
         Geocoder myGeocoder = new Geocoder(this);
-
         hideSoftKeyboard(v);
 
         if (v.getId() == R.id.locationButton) {
@@ -114,15 +117,18 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
                 editor.putString("locentry", locationString);
                 editor.putString("lat", String.valueOf(lat));
                 editor.putString("lng", String.valueOf(lng));
-                Log.d ("lat val", String.valueOf(lat));
-                Log.d ("lng val", String.valueOf(lng));
+                Log.d("lat val", String.valueOf(lat));
+                Log.d("lng val", String.valueOf(lng));
                 editor.commit();
 
-                MarkerOptions mark = new MarkerOptions().title(locality).position(new LatLng(lat, lng));
-                myMap.addMarker(mark);
+                    MarkerOptions options = new MarkerOptions()
+                            .title(locality)
+                            .position(new LatLng(lat, lng));
+                    myMap.addMarker(options);
+                }
             }
         }
-    }
+
 
     private void hideSoftKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -185,8 +191,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
