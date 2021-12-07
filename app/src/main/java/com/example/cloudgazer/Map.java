@@ -52,6 +52,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        //create map  displa
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -62,6 +63,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
     @Override
     public void onMapReady(GoogleMap map) {
+        //set up map to open at specified location and allow for any changes/ inputs
         myMap = map;
         checkLocationPermission();
         myMap.setMyLocationEnabled(true);
@@ -71,7 +73,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     }
 
     public void saveLoc(View v){
-
+//Save location boolean to ensure that there is a inputted value
         if(locationEntry.getText().toString() == null || locationEntry.getText().toString() == " ") {
             Toast.makeText(this, "There needs to be a name for your current location! Please type in a name in the search bar and then save again.", Toast.LENGTH_LONG).show();
         }
@@ -80,6 +82,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
     @Override
     public void finish() {
+        //once the map activity i s done, save the info and go back to the reflection activity
         Intent data = getIntent();
         data.putExtra("location", locationString);
         setResult(RESULT_OK, data);
@@ -91,6 +94,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         Geocoder myGeocoder = new Geocoder(this);
         hideSoftKeyboard(v);
 
+        // finding location using a search input
         if (v.getId() == R.id.locationButton) {
             locationString = locationEntry.getText().toString();
             Toast.makeText(this, "Searching for " + locationString, Toast.LENGTH_SHORT).show();
@@ -112,6 +116,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
                 double lng = add.getLongitude();
                 gotoLocation(lat, lng, 15);
 
+                // save the sharedprefs of lat anf lng values
                 SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPrefs.edit();
                 editor.putString("locentry", locationString);
@@ -121,10 +126,9 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
                 Log.d("lng val", String.valueOf(lng));
                 editor.commit();
 
-                    MarkerOptions options = new MarkerOptions()
-                            .title(locality)
-                            .position(new LatLng(lat, lng));
-                    myMap.addMarker(options);
+                //set up the marker to be in the selected location
+                    MarkerOptions mark = new MarkerOptions().title(locality).position(new LatLng(lat, lng));
+                    myMap.addMarker(mark);
                 }
             }
         }
@@ -135,7 +139,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    //lan lng and zoom
     private void gotoLocation(double lat, double lng, float zoom) {
         LatLng latlng = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, zoom);
@@ -145,18 +148,15 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-
         return false;
     }
 
 
-
+// Permission request
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
     public boolean checkLocationPermission() {

@@ -195,6 +195,7 @@ public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
         startActivity(intent);
     }
 
+    //set up map in the saved postiion of that entry
     @Override
     public void onMapReady(GoogleMap map) {
         myMap = map;
@@ -207,6 +208,7 @@ public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
         myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
+    // go to location and set up a marker in that location
     private void gotoLocation(double lat, double lng, float zoom) {
         LatLng latlng = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, zoom);
@@ -215,6 +217,7 @@ public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
         myMap.addMarker(mark);
     }
 
+    // permission for location
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 

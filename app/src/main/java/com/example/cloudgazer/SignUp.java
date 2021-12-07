@@ -25,12 +25,14 @@ public class SignUp extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEntry);
     }
 
+    //go to next activity
     public void signedUp(View v){
         submit(v);
         Intent i  = new Intent(this, Welcome.class);
         startActivity(i);
     }
 
+    //checking shared prefs
     public void submit(View view){
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
