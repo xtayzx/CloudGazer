@@ -76,10 +76,6 @@ public class MyAdapterC extends RecyclerView.Adapter<MyAdapterC.MyViewHolderC> {
 
         @Override
         public void onClick(View view) {
-//            Toast.makeText(context,
-//                    "You have clicked " + ((TextView)view.findViewById(R.id.titleRow)).getText().toString(),
-//                    Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(view.getContext(), CommunityViewEntryActivity.class);
             intent.putExtra("title",((TextView)view.findViewById(R.id.titleRow)).getText().toString() );
             view.getContext().startActivity(intent);

@@ -105,8 +105,6 @@ public class CommunityViewEntryActivity extends Activity {
                 userField.setText(userEntry);
                 photoPath = entryPhotoPath;
 
-//                getSupportActionBar().setTitle("Cloud Gazer - Community");
-
                 cursor.moveToNext();
             }
 

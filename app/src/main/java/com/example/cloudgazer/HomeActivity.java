@@ -82,12 +82,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
-    public void reflectionActivity (View view)
-    {
-        Intent intent = new Intent(this, ReflectionActivity.class);
-        startActivity(intent);
-    }
-
     public void communityActivity (View view)
     {
         Intent intent = new Intent(this, CommunityActivity.class);

@@ -93,20 +93,6 @@
                 android:text="Location Entry Input" />
         </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <fragment
-                    android:id="@+id/showmap"
-                    android:layout_marginTop="20dp"
-                    android:name="com.google.android.gms.maps.MapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="155dp" />
-            </LinearLayout>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -195,6 +181,19 @@
                 android:layout_weight="1"
                 android:text="Entry Input" />
         </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <fragment
+                    android:id="@+id/showmap"
+                    android:layout_marginTop="20dp"
+                    android:name="com.google.android.gms.maps.MapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp" />
+            </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
