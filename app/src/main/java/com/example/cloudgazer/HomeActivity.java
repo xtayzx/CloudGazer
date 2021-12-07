@@ -70,9 +70,11 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                     cursor.moveToNext();
                 }
             }
+        //set the recyclerview
             myAdapter = new MyAdapter(mArrayList);
             myRecycler.setAdapter(myAdapter);
 
+            //set the title bar
         getSupportActionBar().setTitle("Welcome back " +savedUsername+"!");
     }
 

@@ -15,11 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends Activity implements AdapterView.OnItemClickListener{
+public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     RecyclerView myRecycler;
     MyDatabase db;
     MyAdapter myAdapter;
@@ -73,10 +74,15 @@ public class SearchActivity extends Activity implements AdapterView.OnItemClickL
             }
         }
         Log.i("TEST", "Size of ArrayList: "+mArrayList.size());
+
+        //set the recyclerview
         myAdapter = new MyAdapter(mArrayList);
         myRecycler.setAdapter(myAdapter);
         //set the search input
         dateInputted.setText(searchQuery);
+
+        //set the title bar
+        getSupportActionBar().setTitle("Cloud Gazer - Search");
     }
 
     public void backToHome (View view)

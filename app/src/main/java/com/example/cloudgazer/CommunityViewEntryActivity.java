@@ -114,8 +114,9 @@ public class CommunityViewEntryActivity extends Activity {
             }
         }
 
+        //if the entry is a sample data entry, load the photo that matches the value saved from the database
 
-
+        //example 1
         if(photoPath.equals("cloudGazer1")) {
             try {
                 image.setVisibility(View.VISIBLE);
@@ -134,6 +135,7 @@ public class CommunityViewEntryActivity extends Activity {
             }
         }
 
+        //example 2
         else if(photoPath.equals("cloudGazer2")) {
             try {
                 image.setVisibility(View.VISIBLE);
@@ -152,6 +154,7 @@ public class CommunityViewEntryActivity extends Activity {
             }
         }
 
+        //example 3
         else if(photoPath.equals("cloudGazer3")) {
             try {
                 image.setVisibility(View.VISIBLE);
@@ -170,8 +173,8 @@ public class CommunityViewEntryActivity extends Activity {
             }
         }
 
+        //if not an example and it is an entry from the user, then use the process that would generate in a private entry, using CameraUtils
         else {
-
             //display photo
             try {
                 image.setVisibility(View.VISIBLE);
