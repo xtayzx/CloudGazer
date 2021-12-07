@@ -1,11 +1,13 @@
 package com.example.cloudgazer;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -18,18 +20,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
 import utils.CameraUtils;
 
-public class ViewEntryActivity extends Activity {
+public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
 
     Button deleteButton;
-
+    Boolean delete;
+    GoogleMap myMap;
+    Double lat, lng;
     MyDatabase db;
     MyHelper helper;
     TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField;
@@ -52,6 +63,9 @@ public class ViewEntryActivity extends Activity {
         image = (ImageView)findViewById(R.id.entryImageView);
 
         deleteButton = (Button)findViewById(R.id.deleteButton);
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.showmap);
+        mapFragment.getMapAsync(this);
 
         db = new MyDatabase(this);
         helper = new MyHelper(this);
@@ -116,7 +130,13 @@ public class ViewEntryActivity extends Activity {
             else if (intentQuery != intentQueryMatch) {
                 cursor.moveToNext();
             }
+
         }
+
+        lat = Double.parseDouble(latValue);
+        lng = Double.parseDouble(lngValue);
+
+//        getSupportActionBar().setTitle("Cloud Gazer");
 
         //display photo
         try {
@@ -172,5 +192,78 @@ public class ViewEntryActivity extends Activity {
     public void homeButton(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        myMap = map;
+
+        checkLocationPermission();
+
+        gotoLocation(lat, lng, 15);
+
+        myMap.setMyLocationEnabled(true);
+        myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+    }
+
+    private void gotoLocation(double lat, double lng, float zoom) {
+        LatLng latlng = new LatLng(lat, lng);
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, zoom);
+        myMap.moveCamera(update);
+    }
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.title_location_permission)
+                        .setMessage(R.string.text_location_permission)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(ViewEntryActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                    }
+
+                } else {
+
+                }
+                return;
+            }
+
+        }
     }
 }
