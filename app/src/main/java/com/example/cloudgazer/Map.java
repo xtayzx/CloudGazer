@@ -16,6 +16,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -122,6 +123,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
                 editor.putString("locentry", locationString);
                 editor.putString("lat", String.valueOf(lat));
                 editor.putString("lng", String.valueOf(lng));
+                Log.d ("lat val", String.valueOf(lat));
+                Log.d ("lng val", String.valueOf(lng));
                 Toast.makeText(this, "Location Saved", Toast.LENGTH_LONG).show();
                 editor.commit();
 
