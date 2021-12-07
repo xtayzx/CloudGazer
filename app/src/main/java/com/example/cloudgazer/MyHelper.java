@@ -49,7 +49,6 @@ public class MyHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE);
             communitySampleData(db);
             Toast.makeText(context, "Welcome to Cloud Gazer!", Toast.LENGTH_SHORT).show();
-//            Toast.makeText(context, "onCreate() called", Toast.LENGTH_LONG).show();
         } catch (SQLException e) {
             Log.i("DATABASE", "Catch called");
             Toast.makeText(context, "exception onCreate() db", Toast.LENGTH_LONG).show();

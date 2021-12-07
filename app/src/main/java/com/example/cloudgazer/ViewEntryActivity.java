@@ -137,12 +137,10 @@ public class ViewEntryActivity extends Activity implements OnMapReadyCallback {
         lat = Double.parseDouble(latValue);
         lng = Double.parseDouble(lngValue);
 
-//        getSupportActionBar().setTitle("Cloud Gazer");
 
         //display photo
         try {
             image.setVisibility(View.VISIBLE);
-//            Log.d("new", path);
             final Bitmap bitmap = CameraUtils.scaleDownAndRotatePic(photoPath);
             image.setImageBitmap(bitmap);
         } catch (NullPointerException e) {

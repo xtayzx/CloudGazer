@@ -119,7 +119,8 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 }
 
-                if (counter == 10) {
+                //30 seconds
+                if (counter == 50) {
                     played = false;
                     if (played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
@@ -136,9 +137,6 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 directionMsg.setVisibility(View.INVISIBLE);
                 countMsg.setVisibility(View.INVISIBLE);
                 reflect.setVisibility(View.VISIBLE);
-            }
-            else {
-                //displaymsg.setText("look at the sky - not your phone");
             }
         }
 

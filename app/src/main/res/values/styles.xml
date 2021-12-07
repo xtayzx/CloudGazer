@@ -12,7 +12,7 @@
     </style>
 
     <style name="BlackItalic" parent="Widget.AppCompat.TextView">
-        <item name="android:textStyle">italic</item>
+<!--        <item name="android:textStyle">italic</item>-->
         <item name="android:textColor">@color/black</item>
     </style>
 

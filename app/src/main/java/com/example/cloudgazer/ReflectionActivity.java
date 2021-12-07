@@ -94,7 +94,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setTitle("Cloud Gazer - Reflection");
     }
 
-    
+
     public void submit(View view) {
         String title = inputTitle.getText().toString();
         String date = inputDate.getText().toString();
