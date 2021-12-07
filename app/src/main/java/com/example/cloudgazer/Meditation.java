@@ -24,7 +24,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
     private static final String TAG = "TAG";
 
     TextView displaymsg, countMsg, directionMsg;
-    Button reflect;
+    Button reflect, location;
 
     private SensorManager mSensor;
     Sensor mLight;
@@ -49,6 +49,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
         countMsg = (TextView) findViewById(R.id.bellMsg);
         directionMsg = (TextView) findViewById(R.id.posMsg);
         reflect = (Button) findViewById(R.id.reflect);
+        location = (Button) findViewById(R.id.location);
 
         beep = new MediaPlayer();
 
@@ -122,7 +123,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 }
 
-                if (counter == 150) {
+                if (counter == 10) {
                     played = false;
                     if (played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
@@ -139,6 +140,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 directionMsg.setVisibility(View.INVISIBLE);
                 countMsg.setVisibility(View.INVISIBLE);
                 reflect.setVisibility(View.VISIBLE);
+                location.setVisibility(View.VISIBLE);
             }
             else {
                 //displaymsg.setText("look at the sky - not your phone");
@@ -151,6 +153,13 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
         Intent i = new Intent(this, ReflectionActivity.class);
         startActivity(i);
     }
+
+    public void goToMap (View v) {
+        Intent i = new Intent(this, Map.class);
+        startActivity(i);
+    }
+
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {

@@ -88,9 +88,13 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
 
         db = new MyDatabase(this);
 
-        checkLocationPermission();
+        //checkLocationPermission();
 
         getSupportActionBar().setTitle("Cloud Gazer - Reflection");
+
+        SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        String locEntry = sharedPrefs.getString("locentry", DEFAULT);
+        inputLocation.setText(locEntry);
 
     }
 
@@ -215,32 +219,32 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    public void showCurrentLocation(View v) {
-        Log.i("TEST", "button is pressed");
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            return;
-        }
-
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-
-                        @Override
-                        public void onSuccess(Location location){
-                            Log.i("TEST", "onSuccess is called");
-                            Log.i("TEST", "location is not null");
-                            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-                            String pos = String.valueOf(latlng);
-                            Log.i("tag", "currentlocation:" + pos);
-                            inputLocation.setText(pos);
-                            if (location != null) {
-
-                            }
-                        }
-                });
-    }
-
+//    public void showCurrentLocation(View v) {
+//        Log.i("TEST", "button is pressed");
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            return;
+//        }
+//
+//        fusedLocationClient.getLastLocation()
+//                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+//
+//                        @Override
+//                        public void onSuccess(Location location){
+//                            Log.i("TEST", "onSuccess is called");
+//                            Log.i("TEST", "location is not null");
+//                            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
+//                            String pos = String.valueOf(latlng);
+//                            Log.i("tag", "currentlocation:" + pos);
+//                            inputLocation.setText(pos);
+//                            if (location != null) {
+//
+//                            }
+//                        }
+//                });
+//    }
+//
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
 
@@ -255,69 +259,69 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
 
     }
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
-
-    public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            //show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                //try again to request the permission
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.title_location_permission)
-                        .setMessage(R.string.text_location_permission)
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(ReflectionActivity.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION);
-                            }
-                        })
-                        .create()
-                        .show();
-
-
-            } else {
-                //we can request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                //if request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted
-                    if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-                    }
-
-                } else {
-                    // permission was denied
-
-                }
-                return;
-            }
-
-        }
-    }
+//
+//    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
+//
+//    public boolean checkLocationPermission() {
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//            //show an explanation?
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+//
+//                //try again to request the permission
+//                new AlertDialog.Builder(this)
+//                        .setTitle(R.string.title_location_permission)
+//                        .setMessage(R.string.text_location_permission)
+//                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                //prompt the user once explanation has been shown
+//                                ActivityCompat.requestPermissions(ReflectionActivity.this,
+//                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                                        MY_PERMISSIONS_REQUEST_LOCATION);
+//                            }
+//                        })
+//                        .create()
+//                        .show();
+//
+//
+//            } else {
+//                //we can request the permission
+//                ActivityCompat.requestPermissions(this,
+//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                        MY_PERMISSIONS_REQUEST_LOCATION);
+//            }
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode,
+//                                           String permissions[], int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_LOCATION: {
+//                //if request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                    // permission was granted
+//                    if (ContextCompat.checkSelfPermission(this,
+//                            Manifest.permission.ACCESS_FINE_LOCATION)
+//                            == PackageManager.PERMISSION_GRANTED) {
+//                    }
+//
+//                } else {
+//                    // permission was denied
+//
+//                }
+//                return;
+//            }
+//
+//        }
+//    }
 
     /**
      * Receiving activity result method will be called after closing the camera
