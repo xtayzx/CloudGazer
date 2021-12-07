@@ -101,12 +101,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="162dp"
-        android:theme="@style/BlueButton"
+        android:onClick="logIn"
         android:text="Log In"
 
-        android:onClick="logIn"
+        android:theme="@style/BlueButton"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,10 +114,10 @@
 
     <TextView
         android:id="@+id/signUpText"
+        style="@style/Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        style="@style/Subtitle"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
         android:onClick="accountCreate"

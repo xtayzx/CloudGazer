@@ -85,8 +85,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
             double change = currentPos - lastPos;
             Log.i(TAG, "Change = " + change);
 
-// This would mean the phone is not moving and if the light sensor is low than it is flipped over.
-
+// Check if the phone is placed down/ isnt moving
             if (change <= 1 ){
                 still = true;
             }
@@ -100,17 +99,19 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
             Log.i(TAG, "light found");
 
             float lux = event.values[0];
-
+// check if the light sensor is low and
             if (lux <= 5 && meditate == false) {
                 facedown = true;
 
+// if both still and light sensor at 0 than begin count and meditate
                 if (facedown == true) {
-                    Log.i(TAG, "light value is 0");
                     counter++;
-                    Log.i(TAG, "counter = " + counter);
                     String time = String.valueOf(counter);
                     displaymsg.setText("Keep Looking Up");
+                    directionMsg.setText("Turn over your phone and place it down to resume the session");
                     countMsg.setText("Time: " + counter);
+
+                   // first/ starting bell
                     if(played == false){
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                         beep.start();
@@ -119,20 +120,25 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
                 }
 
-                //30 seconds
-                if (counter == 50) {
+                //30 seconds passed
+                if (counter == 150) {
                     played = false;
                     if (played == false){
+                        //play second/ending bell
                         beep = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                         beep.start();
                         played = true;
                     }
+
+                    //end the if statements
                     displaymsg.setText("How Were the Clouds Today?");
                     facedown = false;
                     meditate = true;
                     counter = 0;
                 }
             }
+
+            //set up meditate for next activity
             if (meditate == true){
                 directionMsg.setVisibility(View.INVISIBLE);
                 countMsg.setVisibility(View.INVISIBLE);
@@ -142,6 +148,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
     }
 
+    // go to reflection
     public void goToReflect (View v) {
         Intent i = new Intent(this, ReflectionActivity.class);
         startActivity(i);

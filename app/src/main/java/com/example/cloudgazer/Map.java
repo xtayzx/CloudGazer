@@ -139,6 +139,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
+    //go to the location specified
     private void gotoLocation(double lat, double lng, float zoom) {
         LatLng latlng = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, zoom);
