@@ -92,11 +92,6 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         checkLocationPermission();
 
         getSupportActionBar().setTitle("Cloud Gazer - Reflection");
-
-       // SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-//        String locEntry = sharedPrefs.getString("locentry", DEFAULT);
-//        inputLocation.setText(locEntry);
-
     }
 
 
@@ -232,32 +227,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         startActivityForResult(i, RETURN_MAP);
     }
 
-//    public void showCurrentLocation(View v) {
-//        Log.i("TEST", "button is pressed");
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//            return;
-//        }
-//
-//        fusedLocationClient.getLastLocation()
-//                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-//
-//                        @Override
-//                        public void onSuccess(Location location){
-//                            Log.i("TEST", "onSuccess is called");
-//                            Log.i("TEST", "location is not null");
-//                            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-//                            String pos = String.valueOf(latlng);
-//                            Log.i("tag", "currentlocation:" + pos);
-//                            inputLocation.setText(pos);
-//                            if (location != null) {
-//
-//                            }
-//                        }
-//                });
-//    }
-//
+
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
 

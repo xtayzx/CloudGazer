@@ -24,7 +24,7 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
     private static final String TAG = "TAG";
 
     TextView displaymsg, countMsg, directionMsg;
-    Button reflect, location;
+    Button reflect;
 
     private SensorManager mSensor;
     Sensor mLight;
@@ -49,7 +49,6 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
         countMsg = (TextView) findViewById(R.id.bellMsg);
         directionMsg = (TextView) findViewById(R.id.posMsg);
         reflect = (Button) findViewById(R.id.reflect);
-        location = (Button) findViewById(R.id.location);
 
         beep = new MediaPlayer();
 
@@ -58,20 +57,17 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
 
         mLight = mSensor.getDefaultSensor(Sensor.TYPE_LIGHT);
         if(mLight != null){
-            Toast.makeText(this,"Light Available",Toast.LENGTH_SHORT).show();
             mSensor.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
 
         } else {
-            Toast.makeText(this,"Lights Out",Toast.LENGTH_SHORT).show();
         }
 
         mAccel = mSensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         if(mAccel != null){
-            Toast.makeText(this,"Accel Available",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Accel Available",Toast.LENGTH_SHORT).show();
             mSensor.registerListener(this, mAccel, SensorManager.SENSOR_DELAY_NORMAL);
         }
         else {
-            Toast.makeText(this,"No Accel",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -140,7 +136,6 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
                 directionMsg.setVisibility(View.INVISIBLE);
                 countMsg.setVisibility(View.INVISIBLE);
                 reflect.setVisibility(View.VISIBLE);
-                location.setVisibility(View.VISIBLE);
             }
             else {
                 //displaymsg.setText("look at the sky - not your phone");
@@ -153,12 +148,6 @@ public class Meditation extends AppCompatActivity implements SensorEventListener
         Intent i = new Intent(this, ReflectionActivity.class);
         startActivity(i);
     }
-
-    public void goToMap (View v) {
-        Intent i = new Intent(this, Map.class);
-        startActivity(i);
-    }
-
 
 
     @Override

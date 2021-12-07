@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Map">
+    tools:context=".Map"
+    android:layout_margin="10dp"
+    android:background="#E5FCFF">
 
 
     <LinearLayout
@@ -19,7 +21,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/locationEditText"
-            android:hint="location" />
+            android:hint="Enter Location" />
 
         <Button
             android:layout_width="wrap_content"
@@ -30,21 +32,6 @@
             android:nestedScrollingEnabled="false" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Current Location"
-            android:id="@+id/latLngButton"
-            android:onClick="showCurrentLocation" />
-
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/sumbit_loc"

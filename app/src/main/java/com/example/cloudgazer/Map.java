@@ -46,9 +46,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
     private FusedLocationProviderClient fusedLocationClient;
 
-    private static final double
-            VANCOUVER_LAT = 49.277549,
-            VANCOUVER_LNG = -123.123921;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +63,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     @Override
     public void onMapReady(GoogleMap map) {
         myMap = map;
-
         checkLocationPermission();
-
-        gotoLocation(VANCOUVER_LAT, VANCOUVER_LNG, 15);
-
         myMap.setMyLocationEnabled(true);
         myMap.setOnMyLocationButtonClickListener(this);
         myMap.setOnMyLocationClickListener(this);
@@ -78,8 +71,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     }
 
     public void saveLoc(View v){
-//        Intent i = new Intent(this, ReflectionActivity.class);
-//        startActivity(i);
         finish();
     }
 
@@ -125,20 +116,16 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
                 editor.putString("lng", String.valueOf(lng));
                 Log.d ("lat val", String.valueOf(lat));
                 Log.d ("lng val", String.valueOf(lng));
-                Toast.makeText(this, "Location Saved", Toast.LENGTH_LONG).show();
                 editor.commit();
 
-                MarkerOptions options = new MarkerOptions()
-                        .title(locality)
-                        .position(new LatLng(lat, lng));
-                myMap.addMarker(options);
+                MarkerOptions mark = new MarkerOptions().title(locality).position(new LatLng(lat, lng));
+                myMap.addMarker(mark);
             }
         }
     }
 
     private void hideSoftKeyboard(View v) {
-        InputMethodManager imm =
-                (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
@@ -149,34 +136,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
         myMap.moveCamera(update);
     }
 
-
-    public void showCurrentLocation(View v) {
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-
-                        LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-                        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, 15);
-                        myMap.animateCamera(update);
-
-
-                        if (location != null) {
-                        }
-                    }
-                });
-    }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
