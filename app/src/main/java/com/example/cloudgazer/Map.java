@@ -80,6 +80,9 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
     public void saveLoc(View v){
 //        Intent i = new Intent(this, ReflectionActivity.class);
 //        startActivity(i);
+        if(locationEntry.getText().toString() == null || locationEntry.getText().toString() == " ") {
+            Toast.makeText(this, "There needs to be a name for your current location! Please type in a name in the search bar and then save again.", Toast.LENGTH_LONG).show();
+        }
         finish();
     }
 
@@ -93,47 +96,46 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback, Google
 
 
     public void geolocate(View v) {
-        Geocoder myGeocoder = new Geocoder(this);
+            Geocoder myGeocoder = new Geocoder(this);
+            hideSoftKeyboard(v);
 
-        hideSoftKeyboard(v);
-
-        if (v.getId() == R.id.locationButton) {
-            locationString = locationEntry.getText().toString();
-            Toast.makeText(this, "Searching for " + locationString, Toast.LENGTH_SHORT).show();
+            if (v.getId() == R.id.locationButton) {
+                locationString = locationEntry.getText().toString();
+                Toast.makeText(this, "Searching for " + locationString, Toast.LENGTH_SHORT).show();
 
 
-            List<Address> list = null;
-            try {
-                list = myGeocoder.getFromLocationName(locationString, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
+                List<Address> list = null;
+                try {
+                    list = myGeocoder.getFromLocationName(locationString, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (list.size() > 0) {
+                    Address add = list.get(0);
+                    String locality = add.getLocality();
+                    Toast.makeText(this, "Found " + locality, Toast.LENGTH_SHORT).show();
+
+                    double lat = add.getLatitude();
+                    double lng = add.getLongitude();
+                    gotoLocation(lat, lng, 15);
+
+                    SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("locentry", locationString);
+                    editor.putString("lat", String.valueOf(lat));
+                    editor.putString("lng", String.valueOf(lng));
+                    Log.d("lat val", String.valueOf(lat));
+                    Log.d("lng val", String.valueOf(lng));
+                    Toast.makeText(this, "Location Saved", Toast.LENGTH_LONG).show();
+                    editor.commit();
+
+                    MarkerOptions options = new MarkerOptions()
+                            .title(locality)
+                            .position(new LatLng(lat, lng));
+                    myMap.addMarker(options);
+                }
             }
-
-            if (list.size() > 0) {
-                Address add = list.get(0);
-                String locality = add.getLocality();
-                Toast.makeText(this, "Found " + locality, Toast.LENGTH_SHORT).show();
-
-                double lat = add.getLatitude();
-                double lng = add.getLongitude();
-                gotoLocation(lat, lng, 15);
-
-                SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPrefs.edit();
-                editor.putString("locentry", locationString);
-                editor.putString("lat", String.valueOf(lat));
-                editor.putString("lng", String.valueOf(lng));
-                Log.d ("lat val", String.valueOf(lat));
-                Log.d ("lng val", String.valueOf(lng));
-                Toast.makeText(this, "Location Saved", Toast.LENGTH_LONG).show();
-                editor.commit();
-
-                MarkerOptions options = new MarkerOptions()
-                        .title(locality)
-                        .position(new LatLng(lat, lng));
-                myMap.addMarker(options);
-            }
-        }
     }
 
     private void hideSoftKeyboard(View v) {

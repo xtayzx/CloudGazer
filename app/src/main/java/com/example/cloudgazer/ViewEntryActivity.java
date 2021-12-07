@@ -29,7 +29,6 @@ import utils.CameraUtils;
 public class ViewEntryActivity extends Activity {
 
     Button deleteButton;
-    Boolean delete;
 
     MyDatabase db;
     MyHelper helper;
@@ -119,8 +118,6 @@ public class ViewEntryActivity extends Activity {
             }
         }
 
-//        getSupportActionBar().setTitle("Cloud Gazer");
-
         //display photo
         try {
             image.setVisibility(View.VISIBLE);
@@ -152,8 +149,6 @@ public class ViewEntryActivity extends Activity {
                         Log.i("VALUE", String.valueOf(titleField.getText()));
                         db.deleteRow(String.valueOf(titleField.getText()));
                         deleteButton.setVisibility(View.INVISIBLE);
-//                        deleteButton.setText("Entry Deleted");
-//                        deleteButton.setBackgroundColor(Color.BLACK);
 
                     }
                 });
