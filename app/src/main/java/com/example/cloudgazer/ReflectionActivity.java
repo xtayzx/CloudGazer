@@ -89,7 +89,7 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
 
         db = new MyDatabase(this);
 
-        //checkLocationPermission();
+        checkLocationPermission();
 
         getSupportActionBar().setTitle("Cloud Gazer - Reflection");
 
@@ -111,18 +111,24 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
         String photo = inputPhoto;
         String communitySelect = inputCommunity;
 
+
         SharedPreferences sharedPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String user = sharedPrefs.getString("username", DEFAULT);
+        String lat = sharedPrefs.getString("lat", DEFAULT);
+        String lng = sharedPrefs.getString("lng", DEFAULT);
 
-        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect + " " + user + " " + photo;
+        Log.i("TEST", "Values lat: "+lat+" and values lng: "+lng);
+
+
+        String allData = title + " " + date + " " + time + " " + location + " " + rateDay + " " + weather + " " + dayDes + " " + communitySelect + " " + user + " " + photo + " " + lat + " " + lng;
 
         //check if any fields do not have any data inputted
-        if (title == null || title.matches("") || date == null || date.matches("") || time == null || date.matches("") || location == null || location.matches("") || weather == null || dayDes == null || dayDes.matches("") || communitySelect == null || photo == null || photo.matches("")) {
+        if (title == null || title.matches("") || date == null || date.matches("") || time == null || date.matches("") || location == null || location.matches("") || weather == null || dayDes == null || dayDes.matches("") || communitySelect == null || photo == null || photo.matches("") || lat == null || lng == null) {
             Log.i("ENTRIES", allData);
             Toast.makeText(this, "Error: not all fields have been inputted. Please try again.", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, allData, Toast.LENGTH_SHORT).show();
-            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect, user, photo);
+            long id = db.insertData(title, date, time, location, rateDay, weather, dayDes, communitySelect, user, photo, lat, lng);
             if (id < 0) {
                 Toast.makeText(this, "Could not create entry.", Toast.LENGTH_SHORT).show();
             } else {
@@ -266,69 +272,69 @@ public class ReflectionActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
 
     }
-//
-//    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
-//
-//    public boolean checkLocationPermission() {
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//            //show an explanation?
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-//
-//                //try again to request the permission
-//                new AlertDialog.Builder(this)
-//                        .setTitle(R.string.title_location_permission)
-//                        .setMessage(R.string.text_location_permission)
-//                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                //prompt the user once explanation has been shown
-//                                ActivityCompat.requestPermissions(ReflectionActivity.this,
-//                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                                        MY_PERMISSIONS_REQUEST_LOCATION);
-//                            }
-//                        })
-//                        .create()
-//                        .show();
-//
-//
-//            } else {
-//                //we can request the permission
-//                ActivityCompat.requestPermissions(this,
-//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                        MY_PERMISSIONS_REQUEST_LOCATION);
-//            }
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode,
-//                                           String permissions[], int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        switch (requestCode) {
-//            case MY_PERMISSIONS_REQUEST_LOCATION: {
-//                //if request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//
-//                    // permission was granted
-//                    if (ContextCompat.checkSelfPermission(this,
-//                            Manifest.permission.ACCESS_FINE_LOCATION)
-//                            == PackageManager.PERMISSION_GRANTED) {
-//                    }
-//
-//                } else {
-//                    // permission was denied
-//
-//                }
-//                return;
-//            }
-//
-//        }
-//    }
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
+
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            //show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                //try again to request the permission
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.title_location_permission)
+                        .setMessage(R.string.text_location_permission)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(ReflectionActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                //we can request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                //if request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted
+                    if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+                    }
+
+                } else {
+                    // permission was denied
+
+                }
+                return;
+            }
+
+        }
+    }
 
     /**
      * Receiving activity result method will be called after closing the camera

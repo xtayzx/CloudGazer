@@ -31,7 +31,9 @@ public class MyHelper extends SQLiteOpenHelper {
                     Constants.DAY_DES+ " TEXT, " +
                     Constants.COMMUNITY+ " TEXT, " +
                     Constants.USER+ " TEXT, " +
-                    Constants.PHOTO+ " TEXT);" ;
+                    Constants.PHOTO+ " TEXT, " +
+                    Constants.LAT+ " TEXT, " +
+                    Constants.LNG+ " TEXT);" ;
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + Constants.TABLE_NAME;
 
@@ -81,6 +83,8 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues1.put(Constants.COMMUNITY, "Yes");
         contentValues1.put(Constants.USER, "Amy");
         contentValues1.put(Constants.PHOTO, "cloudGazer1");
+        contentValues1.put(Constants.LAT, "lat1");
+        contentValues1.put(Constants.LNG, "lng1");
         db.insert(Constants.TABLE_NAME, null, contentValues1);
         Log.i("INPUT DATA", "Data 1 has been inputted in the database");
 
@@ -96,6 +100,8 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues2.put(Constants.COMMUNITY, "Yes");
         contentValues2.put(Constants.USER, "Bianca");
         contentValues2.put(Constants.PHOTO, "cloudGazer2");
+        contentValues2.put(Constants.LAT, "lat2");
+        contentValues2.put(Constants.LAT, "lng2");
         db.insert(Constants.TABLE_NAME, null, contentValues2);
         Log.i("INPUT DATA", "Data Set 2 has been inputted in the database");
 
@@ -111,6 +117,8 @@ public class MyHelper extends SQLiteOpenHelper {
         contentValues3.put(Constants.COMMUNITY, "Yes");
         contentValues3.put(Constants.USER, "Charlie");
         contentValues3.put(Constants.PHOTO, "cloudGazer3");
+        contentValues3.put(Constants.LAT, "lat3");
+        contentValues3.put(Constants.LNG, "lng3");
         db.insert(Constants.TABLE_NAME, null, contentValues3);
         Log.i("INPUT DATA", "Data Set 3 has been inputted in the database");
     }

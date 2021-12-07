@@ -15,5 +15,7 @@ public class Constants {
     public static final String COMMUNITY = "community";
     public static final String USER = "user";
     public static final String PHOTO = "photo";
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
     public static final int DATABASE_VERSION = 1;
 }

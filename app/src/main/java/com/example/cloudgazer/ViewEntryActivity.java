@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+
 import java.util.ArrayList;
 
 import utils.CameraUtils;
@@ -32,7 +35,7 @@ public class ViewEntryActivity extends Activity {
     MyHelper helper;
     TextView titleField, dateField, timeField, locationField, rateDayField, weatherField, dayDesField, communityField;
     ImageView image;
-    String photoPath;
+    String photoPath, latValue, lngValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,8 @@ public class ViewEntryActivity extends Activity {
         int index7 = cursor.getColumnIndex(Constants.DAY_DES);
         int index8 = cursor.getColumnIndex(Constants.COMMUNITY);
         int index10 = cursor.getColumnIndex(Constants.PHOTO);
+        int index11 = cursor.getColumnIndex(Constants.LAT);
+        int index12 = cursor.getColumnIndex(Constants.LNG);
 
         int title = cursor.getColumnIndex(Constants.TITLE);
 
@@ -90,6 +95,8 @@ public class ViewEntryActivity extends Activity {
                 String dayDesEntry = cursor.getString(index7);
                 String communityEntry = cursor.getString(index8);
                 String savedPhotoPath = cursor.getString(index10);
+                String latEntry = cursor.getString(index11);
+                String lngEntry = cursor.getString(index12);
 
                 //transfer all fields in the database
                 titleField.setText(titleEntry);
@@ -101,6 +108,9 @@ public class ViewEntryActivity extends Activity {
                 dayDesField.setText(dayDesEntry);
                 communityField.setText(communityEntry);
                 photoPath = savedPhotoPath;
+                latValue = latEntry;
+                lngValue = lngEntry;
+
                 cursor.moveToNext();
             }
 
